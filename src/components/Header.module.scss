@@ -13,13 +13,15 @@
     }
 
     .headerMenu {
-      @apply w-80;
-
       .headerMenuList {
         @apply m-0 flex items-center justify-between;
 
         .headerMenuListItem {
-          @apply cursor-pointer list-none font-medium hover:text-emerald-200 transition-colors;
+          @apply mx-8 cursor-pointer list-none font-medium transition-colors;
+
+          .headerMenuListItemLink {
+            @apply no-underline text-slate-700 hover:text-slate-800;
+          }
         }
       }
     }

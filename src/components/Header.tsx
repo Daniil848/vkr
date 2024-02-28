@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Header.module.scss';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
@@ -11,9 +12,16 @@ const Header = () => {
           </a>
           <div className={styles.headerMenu}>
             <ul className={styles.headerMenuList}>
-              <li className={styles.headerMenuListItem}>Home</li>
-              <li className={styles.headerMenuListItem}>Articles</li>
-              <li className={styles.headerMenuListItem}>About</li>
+              <li className={styles.headerMenuListItem}>
+                <Link to={''} className={styles.headerMenuListItemLink}>
+                  Home
+                </Link>
+              </li>
+              <li className={styles.headerMenuListItem}>
+                <Link to={''} className={styles.headerMenuListItemLink}>
+                  About
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
