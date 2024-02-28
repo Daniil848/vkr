@@ -1,0 +1,27 @@
+.container {
+  @apply bg-white border-gray-200;
+
+  .header {
+    @apply border-b border-solid border-slate-400 border-t-0 border-x-0 bg-slate-200 max-w-full flex flex-wrap items-center mx-auto p-4;
+
+    .headerTitle {
+      @apply flex items-center space-x-3 rtl:space-x-reverse;
+
+      .headerTitleText {
+        @apply cursor-pointer self-center text-2xl font-semibold whitespace-nowrap;
+      }
+    }
+
+    .headerMenu {
+      @apply w-80;
+
+      .headerMenuList {
+        @apply m-0 flex items-center justify-between;
+
+        .headerMenuListItem {
+          @apply cursor-pointer list-none font-medium hover:text-emerald-200 transition-colors;
+        }
+      }
+    }
+  }
+}
