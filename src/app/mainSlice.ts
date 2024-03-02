@@ -4,6 +4,7 @@ import axios from 'axios';
 
 export interface Article {
   id: number;
+  title: string;
   text: string;
 }
 export interface State {
@@ -20,20 +21,6 @@ const initialState: State = {
   error: false,
 };
 
-export const getSingleArticle = createAsyncThunk<
-  Article,
-  number,
-  { rejectValue: string }
->('store/getSingleArticle', async (id, { rejectWithValue }) => {
-  try {
-    const { data } = await axios.get(`http://localhost:3001/articles/${id}`);
-    return data.results;
-  } catch (error) {
-    console.log(error);
-    return rejectWithValue('Server Error!');
-  }
-});
-
 export const getAllArticles = createAsyncThunk<
   Article[],
   void,
@@ -41,7 +28,21 @@ export const getAllArticles = createAsyncThunk<
 >('store/getAllArticles', async (_, { rejectWithValue }) => {
   try {
     const { data } = await axios.get('http://localhost:3001/articles');
-    return data.results;
+    return data;
+  } catch (error) {
+    console.log(error);
+    return rejectWithValue('Server Error!');
+  }
+});
+
+export const getSingleArticle = createAsyncThunk<
+  Article,
+  number,
+  { rejectValue: string }
+>('store/getSingleArticle', async (id, { rejectWithValue }) => {
+  try {
+    const { data } = await axios.get(`http://localhost:3001/articles/${id}`);
+    return data;
   } catch (error) {
     console.log(error);
     return rejectWithValue('Server Error!');

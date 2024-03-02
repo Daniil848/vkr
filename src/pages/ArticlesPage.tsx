@@ -1,7 +1,9 @@
 import React from 'react';
 import { useEffect } from 'react';
-import { getAllArticles } from '../app/mainSlice';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
+import { getAllArticles } from '../app/mainSlice';
+import { Link } from 'react-router-dom';
+import styles from './Articles.page.module.scss';
 
 const ArticlesPage = () => {
   const state = useAppSelector((state) => state.slice);
@@ -9,9 +11,21 @@ const ArticlesPage = () => {
 
   useEffect(() => {
     dispatch(getAllArticles());
-  }, [dispatch, state.articles]);
+  }, [dispatch]);
+  console.log(state.articles);
 
-  return <></>;
+  if (!state.articles) return null;
+  return (
+    <>
+      <div className={styles.wrapper}>
+        {state.articles.map((article) => (
+          <div key={article.id}>
+            <Link to={`/article/${article.id}`}>{article.title}</Link>
+          </div>
+        ))}
+      </div>
+    </>
+  );
 };
 
 export default ArticlesPage;
