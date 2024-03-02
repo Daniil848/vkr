@@ -7,9 +7,23 @@ export interface Article {
   title: string;
   text: string;
 }
+export interface Test {
+  id: number;
+  articleId: number;
+  title: string;
+  questions: {
+    id: number;
+    question: string;
+    answers: {
+      correct: boolean;
+      answer: string;
+    }[];
+  }[];
+}
 export interface State {
   article: Article | null;
   articles: Article[];
+  test: Test | null;
   loading: boolean;
   error: boolean;
 }
@@ -17,6 +31,7 @@ export interface State {
 const initialState: State = {
   article: null,
   articles: [],
+  test: null,
   loading: false,
   error: false,
 };
@@ -49,6 +64,22 @@ export const getSingleArticle = createAsyncThunk<
   }
 });
 
+export const getTest = createAsyncThunk<Test, number, { rejectValue: string }>(
+  'store/getTest',
+  async (articleId, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.get(
+        `http://localhost:3001/tests/?articleId=${articleId}`,
+      );
+
+      return data;
+    } catch (error) {
+      console.log(error);
+      return rejectWithValue('Server Error!');
+    }
+  },
+);
+
 const mainSlice = createSlice({
   name: 'slice',
   initialState,
@@ -70,6 +101,14 @@ const mainSlice = createSlice({
       .addCase(getAllArticles.fulfilled, (state, action) => {
         state.loading = false;
         state.articles = action.payload;
+      })
+      .addCase(getTest.pending, (state) => {
+        state.loading = true;
+        state.error = false;
+      })
+      .addCase(getTest.fulfilled, (state, action) => {
+        state.loading = false;
+        state.test = action.payload;
       });
   },
 });

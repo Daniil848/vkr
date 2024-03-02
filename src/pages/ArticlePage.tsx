@@ -2,8 +2,10 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { useParams } from 'react-router-dom';
-import { getSingleArticle } from '../app/mainSlice';
+import { getSingleArticle, getTest } from '../app/mainSlice';
+import HTMLReactParser from 'html-react-parser';
 import styles from './ArticlePage.module.scss';
+import Test from '../components/Test';
 
 const ArticlePage = () => {
   const state = useAppSelector((state) => state.slice);
@@ -14,16 +16,18 @@ const ArticlePage = () => {
   useEffect(() => {
     const id = Number(articleID);
     dispatch(getSingleArticle(id));
+    dispatch(getTest(id));
   }, [articleID]);
 
-  if (state.article === null) return null;
+  if (!state.article || !state.test) return null;
   return (
     <>
       <div className={styles.wrapper}>
         <article>
           <h2>{state.article.title}</h2>
-          {state.article.text}
+          {HTMLReactParser(state.article.text)}
         </article>
+        <Test articleID={articleID} />
       </div>
     </>
   );
