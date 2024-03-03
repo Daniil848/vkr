@@ -12,7 +12,6 @@ const ArticlesPage = () => {
   useEffect(() => {
     dispatch(getAllArticles());
   }, [dispatch]);
-  console.log(state.articles);
 
   if (!state.articles) return null;
   return (

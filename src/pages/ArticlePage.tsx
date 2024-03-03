@@ -19,7 +19,7 @@ const ArticlePage = () => {
     dispatch(getTest(id));
   }, [articleID]);
 
-  if (!state.article || !state.test) return null;
+  if (!state.article) return null;
   return (
     <>
       <div className={styles.wrapper}>
@@ -27,7 +27,7 @@ const ArticlePage = () => {
           <h2>{state.article.title}</h2>
           {HTMLReactParser(state.article.text)}
         </article>
-        <Test articleID={articleID} />
+        <Test />
       </div>
     </>
   );

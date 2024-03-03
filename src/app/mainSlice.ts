@@ -14,8 +14,9 @@ export interface Test {
   questions: {
     id: number;
     question: string;
+    correctAnswer: number;
     answers: {
-      correct: boolean;
+      id: number;
       answer: string;
     }[];
   }[];
@@ -68,11 +69,11 @@ export const getTest = createAsyncThunk<Test, number, { rejectValue: string }>(
   'store/getTest',
   async (articleId, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get(
-        `http://localhost:3001/tests/?articleId=${articleId}`,
-      );
+      const { data } = await axios.get(`http://localhost:3001/tests`);
 
-      return data;
+      const filteredData = data.find((el: Test) => el.articleId === articleId);
+
+      return filteredData;
     } catch (error) {
       console.log(error);
       return rejectWithValue('Server Error!');

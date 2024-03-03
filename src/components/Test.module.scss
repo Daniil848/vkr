@@ -1,0 +1,21 @@
+.container {
+  @apply my-6 p-4 bg-slate-200 rounded;
+
+  .testTitle {
+    @apply my-0 text-3xl font-semibold;
+  }
+
+  .wrapper {
+    .testQuestion {
+      @apply text-xl font-semibold;
+    }
+
+    .testAnswers {
+      @apply my-2;
+
+      .testAnswersLabel {
+        @apply select-none cursor-pointer;
+      }
+    }
+  }
+}
