@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { getTest } from '../app/mainSlice';
+import Button from '../UI/Button';
 import styles from './Test.module.scss';
 
 const Test = () => {
@@ -62,7 +63,9 @@ const Test = () => {
             ))}
           </div>
         ))}
-        <button onClick={() => handleSubmit()}>Завершить</button>
+        <div className={styles.buttonContainer}>
+          <Button onClick={() => handleSubmit()} text="Завершить" />
+        </div>
       </div>
     </>
   );
