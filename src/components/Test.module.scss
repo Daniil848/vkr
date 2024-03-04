@@ -26,4 +26,12 @@
   .buttonContainer {
     @apply w-[200px] mx-auto mt-6;
   }
+
+  .result {
+    @apply w-fit mx-auto text-xl;
+
+    .resultCount {
+      @apply text-slate-500 font-medium text-2xl;
+    }
+  }
 }

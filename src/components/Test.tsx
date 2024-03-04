@@ -1,5 +1,4 @@
-import React from 'react';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { getTest } from '../app/mainSlice';
@@ -64,9 +63,20 @@ const Test = () => {
             ))}
           </div>
         ))}
-        <div className={styles.buttonContainer}>
-          <Button onClick={() => handleSubmit()} text="Завершить" />
-        </div>
+        {!result && (
+          <div className={styles.buttonContainer}>
+            <Button onClick={() => handleSubmit()} text="Завершить" />
+          </div>
+        )}
+        {result && (
+          <p className={styles.result}>
+            Правильных ответов{' '}
+            <span className={styles.resultCount}>{result}</span> из{' '}
+            <span className={styles.resultCount}>
+              {state.test.questions.length}
+            </span>
+          </p>
+        )}
       </div>
     </>
   );
