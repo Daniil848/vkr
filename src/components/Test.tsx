@@ -50,6 +50,7 @@ const Test = () => {
               <div key={el.id} className={styles.testAnswers}>
                 <input
                   type="radio"
+                  disabled={Boolean(result)}
                   id={el.answer}
                   value={el.id}
                   name={item.question}
