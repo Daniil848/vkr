@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import { getSingleArticle, getTest } from '../app/mainSlice';
 import HTMLReactParser from 'html-react-parser';
 import styles from './ArticlePage.module.scss';
-import Test from '../components/Test';
+import Test from '../components/testComponent/Test';
 
 const ArticlePage = () => {
   const state = useAppSelector((state) => state.slice);

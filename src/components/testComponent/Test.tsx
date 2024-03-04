@@ -1,42 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../app/hooks';
-import { getTest } from '../app/mainSlice';
-import Button from '../UI/Button';
+import React from 'react';
+import { useTest } from './useTest';
+import Button from '../../UI/Button';
 import styles from './Test.module.scss';
 
 const Test = () => {
-  const state = useAppSelector((state) => state.slice);
-  const dispatch = useAppDispatch();
-  const [answers, setAnswers] = useState({});
-  const [result, setResult] = useState<number | undefined>();
-
-  const { articleID } = useParams();
-
-  useEffect(() => {
-    const id = Number(articleID);
-    dispatch(getTest(id));
-  }, [result]);
-
-  const handleRadioChange = (questionId: number, answerId: number) => {
-    setAnswers((prevState) => ({
-      ...prevState,
-      [questionId]: answerId,
-    }));
-  };
-
-  const handleSubmit = () => {
-    const answersArr = Object.values(answers);
-    const correctAnswers = state.test?.questions.map((el) => el.correctAnswer);
-    console.log('aa', answersArr);
-    console.log('ca', correctAnswers);
-
-    setResult(
-      correctAnswers?.filter((value) => answersArr.includes(value)).length,
-    );
-  };
-
-  console.log('result', result);
+  const { state, handleRadioChange, handleSubmit, result } = useTest();
 
   if (!state.test) return null;
   return (
