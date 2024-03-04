@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const Header = () => {
   return (
     <>
-      <nav className={styles.container}>
+      <nav>
         <div className={styles.header}>
           <a className={styles.headerTitle}>
             <span className={styles.headerTitleText}>VKR</span>

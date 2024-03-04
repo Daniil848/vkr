@@ -55,6 +55,7 @@ const Test = () => {
                   value={el.id}
                   name={item.question}
                   onChange={() => handleRadioChange(item.id, el.id)}
+                  className={styles.testAnswersRadio}
                 />
                 <label htmlFor={el.answer} className={styles.testAnswersLabel}>
                   {el.answer}

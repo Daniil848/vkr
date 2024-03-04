@@ -13,6 +13,10 @@
     .testAnswers {
       @apply my-2;
 
+      .testAnswersRadio {
+        @apply w-4 h-4 text-slate-600 bg-slate-100 border-slate-300 focus:ring-slate-500 focus:ring-2;
+      }
+
       .testAnswersLabel {
         @apply select-none cursor-pointer;
       }
