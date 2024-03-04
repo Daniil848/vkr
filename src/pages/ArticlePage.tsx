@@ -24,7 +24,7 @@ const ArticlePage = () => {
     <>
       <div className={styles.wrapper}>
         <article>
-          <h2>{state.article.title}</h2>
+          <h1>{state.article.title}</h1>
           {HTMLReactParser(state.article.text)}
         </article>
         <Test />
