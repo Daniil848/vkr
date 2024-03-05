@@ -1,9 +1,9 @@
 import React from 'react';
 import { Routes, Route } from 'react-router';
 import Header from './components/header/Header';
-import Footer from './components/Footer';
-import ArticlesPage from './pages/ArticlesPage';
-import ArticlePage from './pages/ArticlePage';
+import Footer from './components/footer/Footer';
+import ArticlesPage from './pages/articlesPage/ArticlesPage';
+import ArticlePage from './pages/articlePage/ArticlePage';
 import './App.css';
 
 function App() {

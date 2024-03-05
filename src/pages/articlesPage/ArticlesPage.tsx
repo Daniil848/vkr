@@ -1,17 +1,10 @@
 import React from 'react';
-import { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '../app/hooks';
-import { getAllArticles } from '../app/mainSlice';
+import { useArticlesPage } from './useArticlesPage';
 import { Link } from 'react-router-dom';
 import styles from './Articles.page.module.scss';
 
 const ArticlesPage = () => {
-  const state = useAppSelector((state) => state.slice);
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(getAllArticles());
-  }, [dispatch]);
+  const { state } = useArticlesPage();
 
   if (!state.articles) return null;
   return (

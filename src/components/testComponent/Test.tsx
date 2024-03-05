@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTest } from './useTest';
-import Button from '../../UI/Button';
+import Button from '../../UI/button/Button';
 import styles from './Test.module.scss';
 
 const Test = () => {
