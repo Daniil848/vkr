@@ -7,6 +7,9 @@ export interface Section {
   name: string;
 }
 export interface Article {
+  map(
+    arg0: (article: Article) => import('react/jsx-runtime').JSX.Element,
+  ): import('react').ReactNode;
   id: number;
   sectionId: number;
   title: string;
@@ -51,6 +54,8 @@ export const getAllArticles = createAsyncThunk<
 >('store/getAllArticles', async (_, { rejectWithValue }) => {
   try {
     const { data } = await axios.get('http://localhost:3001/articles');
+    console.log(data);
+
     return data;
   } catch (error) {
     console.log(error);

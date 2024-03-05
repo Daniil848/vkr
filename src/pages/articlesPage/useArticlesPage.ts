@@ -7,9 +7,9 @@ export const useArticlesPage = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(getAllSections());
     dispatch(getAllArticles());
-  }, [dispatch]);
+    dispatch(getAllSections());
+  }, []);
 
   return {
     state,

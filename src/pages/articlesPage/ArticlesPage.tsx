@@ -6,7 +6,7 @@ import styles from './Articles.page.module.scss';
 const ArticlesPage = () => {
   const { state } = useArticlesPage();
 
-  if (!state.articles) return null;
+  if (!state.articles || !state.sections) return null;
   return (
     <>
       <div className={styles.wrapper}>
@@ -14,7 +14,7 @@ const ArticlesPage = () => {
           <div key={section.id}>
             <h1 className={styles.section}>{section.name}</h1>
             {state.articles
-              .filter((article) => article.sectionId === section.id)
+              .filter((article) => article.sectionId == section.id)
               .map((article) => (
                 <div key={article.id}>
                   <Link to={`/article/${article.id}`}>{article.title}</Link>
