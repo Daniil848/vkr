@@ -21,6 +21,13 @@
         @apply select-none cursor-pointer;
       }
     }
+
+    .correct {
+      @apply text-green-800;
+    }
+    .incorrect {
+      @apply text-red-800;
+    }
   }
 
   .buttonContainer {

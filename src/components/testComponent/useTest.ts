@@ -29,9 +29,11 @@ export const useTest = () => {
     console.log('aa', answersArr);
     console.log('ca', correctAnswers);
 
-    setResult(
-      correctAnswers?.filter((value) => answersArr.includes(value)).length,
-    );
+    const score = correctAnswers?.filter((value) =>
+      answersArr.includes(value),
+    ).length;
+
+    setResult(score);
   };
 
   return {

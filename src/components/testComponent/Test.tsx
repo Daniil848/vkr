@@ -15,7 +15,7 @@ const Test = () => {
           <div key={item.id} className={styles.wrapper}>
             <p className={styles.testQuestion}>{item.question}</p>
             {item.answers.map((el) => (
-              <div key={el.id} className={styles.testAnswers}>
+              <div key={el.id} className={`${styles.testAnswers}`}>
                 <input
                   type="radio"
                   disabled={Boolean(result)}
