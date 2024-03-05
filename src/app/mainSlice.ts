@@ -2,8 +2,13 @@ import { createSlice } from '@reduxjs/toolkit';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+export interface Section {
+  id: number;
+  name: string;
+}
 export interface Article {
   id: number;
+  sectionId: number;
   title: string;
   text: string;
 }
@@ -22,6 +27,7 @@ export interface Test {
   }[];
 }
 export interface State {
+  sections: Section[];
   article: Article | null;
   articles: Article[];
   test: Test | null;
@@ -30,6 +36,7 @@ export interface State {
 }
 
 const initialState: State = {
+  sections: [],
   article: null,
   articles: [],
   test: null,
@@ -39,7 +46,7 @@ const initialState: State = {
 
 export const getAllArticles = createAsyncThunk<
   Article[],
-  void,
+  undefined,
   { rejectValue: string }
 >('store/getAllArticles', async (_, { rejectWithValue }) => {
   try {
@@ -81,6 +88,21 @@ export const getTest = createAsyncThunk<Test, number, { rejectValue: string }>(
   },
 );
 
+export const getAllSections = createAsyncThunk<
+  Section[],
+  undefined,
+  { rejectValue: string }
+>('store/getAllSections', async (_, { rejectWithValue }) => {
+  try {
+    const { data } = await axios.get(`http://localhost:3001/sections`);
+
+    return data;
+  } catch (error) {
+    console.log(error);
+    return rejectWithValue('Server Error!');
+  }
+});
+
 const mainSlice = createSlice({
   name: 'slice',
   initialState,
@@ -110,6 +132,14 @@ const mainSlice = createSlice({
       .addCase(getTest.fulfilled, (state, action) => {
         state.loading = false;
         state.test = action.payload;
+      })
+      .addCase(getAllSections.pending, (state) => {
+        state.loading = true;
+        state.error = false;
+      })
+      .addCase(getAllSections.fulfilled, (state, action) => {
+        state.loading = false;
+        state.sections = action.payload;
       });
   },
 });

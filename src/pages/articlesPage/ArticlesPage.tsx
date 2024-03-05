@@ -10,9 +10,16 @@ const ArticlesPage = () => {
   return (
     <>
       <div className={styles.wrapper}>
-        {state.articles.map((article) => (
-          <div key={article.id}>
-            <Link to={`/article/${article.id}`}>{article.title}</Link>
+        {state.sections.map((section) => (
+          <div key={section.id}>
+            <h1 className={styles.section}>{section.name}</h1>
+            {state.articles
+              .filter((article) => article.sectionId === section.id)
+              .map((article) => (
+                <div key={article.id}>
+                  <Link to={`/article/${article.id}`}>{article.title}</Link>
+                </div>
+              ))}
           </div>
         ))}
       </div>

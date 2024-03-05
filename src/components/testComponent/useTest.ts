@@ -29,15 +29,16 @@ export const useTest = () => {
     console.log('aa', answersArr);
     console.log('ca', correctAnswers);
 
-    const score = correctAnswers?.filter((value) =>
-      answersArr.includes(value),
-    ).length;
+    const score = correctAnswers
+      ?.filter((val, index) => val === answersArr[index])
+      .reduce((acc) => acc + 1, 0);
 
     setResult(score);
   };
 
   return {
     state,
+    answers,
     handleRadioChange,
     handleSubmit,
     result,
