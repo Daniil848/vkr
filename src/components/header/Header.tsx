@@ -12,11 +12,15 @@ const Header = () => {
     <>
       <nav>
         <div className={styles.header}>
-          <div className={styles.headerMenu}>
+          <div
+            className={`${styles.headerMenu}  ${!state.search ? styles.menuWithoutSearch : ''}`}
+          >
             <a className={styles.headerTitle}>
               <span className={styles.headerTitleText}>VKR</span>
             </a>
-            <ul className={styles.headerMenuList}>
+            <ul
+              className={`${styles.headerMenuList} ${state.search ? styles.visibleSearch : styles.invisibleSearch}`}
+            >
               <li className={styles.headerMenuListItem}>
                 <Link to={''} className={styles.headerMenuListItemLink}>
                   Home
