@@ -54,8 +54,6 @@ export const getAllArticles = createAsyncThunk<
 >('store/getAllArticles', async (_, { rejectWithValue }) => {
   try {
     const { data } = await axios.get('http://localhost:3001/articles');
-    console.log(data);
-
     return data;
   } catch (error) {
     console.log(error);
@@ -111,7 +109,11 @@ export const getAllSections = createAsyncThunk<
 const mainSlice = createSlice({
   name: 'slice',
   initialState,
-  reducers: {},
+  reducers: {
+    clearArticleState(state) {
+      state.article = null;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getSingleArticle.pending, (state) => {
@@ -148,5 +150,7 @@ const mainSlice = createSlice({
       });
   },
 });
+
+export const { clearArticleState } = mainSlice.actions;
 
 export default mainSlice.reducer;
