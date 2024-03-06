@@ -22,7 +22,6 @@ export const useArticlePage = () => {
   useEffect(() => {
     return () => {
       dispatch(clearArticleState());
-      console.log(state.article);
     };
   }, []);
 

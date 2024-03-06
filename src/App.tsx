@@ -6,6 +6,7 @@ import Footer from './components/footer/Footer';
 import HomePage from './pages/homePage/HomePage';
 import ArticlesPage from './pages/articlesPage/ArticlesPage';
 import ArticlePage from './pages/articlePage/ArticlePage';
+import AboutPage from './pages/aboutPage/AboutPage';
 import Loader from './UI/loader/Loader';
 import './App.css';
 
@@ -19,6 +20,7 @@ function App() {
         <Route index element={<HomePage />} />
         <Route path="/articles" element={<ArticlesPage />} />
         <Route path="/articles/article/:articleID" element={<ArticlePage />} />
+        <Route path="/about" element={<AboutPage />} />
       </Routes>
       <Footer />
     </div>
