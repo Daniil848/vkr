@@ -1,16 +1,21 @@
 import React from 'react';
-import styles from './Header.module.scss';
+import { useHeader } from './useHeader';
 import { Link } from 'react-router-dom';
+import styles from './Header.module.scss';
 
 const Header = () => {
+  const { state } = useHeader();
+
+  console.log(state.search);
+
   return (
     <>
       <nav>
         <div className={styles.header}>
-          <a className={styles.headerTitle}>
-            <span className={styles.headerTitleText}>VKR</span>
-          </a>
           <div className={styles.headerMenu}>
+            <a className={styles.headerTitle}>
+              <span className={styles.headerTitleText}>VKR</span>
+            </a>
             <ul className={styles.headerMenuList}>
               <li className={styles.headerMenuListItem}>
                 <Link to={''} className={styles.headerMenuListItemLink}>
@@ -31,6 +36,15 @@ const Header = () => {
                 </Link>
               </li>
             </ul>
+            <div className={styles.headerSearch}>
+              {state.search && (
+                <input
+                  type="search"
+                  placeholder="Search..."
+                  className={styles.headerSearchInput}
+                />
+              )}
+            </div>
           </div>
         </div>
       </nav>

@@ -1,24 +1,33 @@
 .header {
-  @apply absolute w-[100%] top-0 bg-slate-700 max-w-full flex flex-wrap items-center mx-auto p-4 border-b border-solid border-slate-400 border-t-0 border-x-0;
-
-  .headerTitle {
-    @apply flex items-center space-x-3 rtl:space-x-reverse;
-
-    .headerTitleText {
-      @apply cursor-pointer self-center text-2xl text-white hover:text-slate-200 transition-colors font-semibold whitespace-nowrap;
-    }
-  }
+  @apply absolute w-[100%] top-0 bg-slate-700 max-w-full  mx-auto p-4 border-b border-solid border-slate-400 border-t-0 border-x-0;
 
   .headerMenu {
+    @apply flex flex-wrap items-center justify-between;
+
+    .headerTitle {
+      @apply w-1/4 flex items-center space-x-3 rtl:space-x-reverse;
+
+      .headerTitleText {
+        @apply cursor-pointer self-center text-2xl text-white hover:text-slate-200 transition-colors font-semibold whitespace-nowrap;
+      }
+    }
+
     .headerMenuList {
-      @apply m-0 flex items-center justify-between;
+      @apply w-1/2 m-0 flex items-center justify-start;
 
       .headerMenuListItem {
-        @apply mx-8 cursor-pointer list-none font-medium transition-colors;
+        @apply mr-10 cursor-pointer list-none font-medium transition-colors;
 
         .headerMenuListItemLink {
           @apply no-underline text-white hover:text-slate-200 transition-colors;
         }
+      }
+    }
+    .headerSearch {
+      @apply w-1/4 flex justify-end;
+
+      .headerSearchInput {
+        @apply relative end-3 bg-slate-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-slate-500 focus:border-slate-500 block w-[350px] ps-10 p-2.5;
       }
     }
   }

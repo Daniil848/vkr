@@ -1,6 +1,11 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { getAllArticles, getAllSections } from '../../app/mainSlice';
+import {
+  getAllArticles,
+  getAllSections,
+  hideSearch,
+  showSearch,
+} from '../../app/mainSlice';
 
 export const useArticlesPage = () => {
   const state = useAppSelector((state) => state.slice);
@@ -9,6 +14,13 @@ export const useArticlesPage = () => {
   useEffect(() => {
     dispatch(getAllArticles());
     dispatch(getAllSections());
+    dispatch(showSearch());
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      dispatch(hideSearch());
+    };
   }, []);
 
   return {
