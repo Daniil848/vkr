@@ -17,7 +17,9 @@ const ArticlesPage = () => {
               .filter((article) => article.sectionId == section.id)
               .map((article) => (
                 <div key={article.id}>
-                  <Link to={`/article/${article.id}`}>{article.title}</Link>
+                  <Link to={`/articles/article/${article.id}`}>
+                    {article.title}
+                  </Link>
                 </div>
               ))}
           </div>

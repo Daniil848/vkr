@@ -18,6 +18,14 @@ const Header = () => {
                 </Link>
               </li>
               <li className={styles.headerMenuListItem}>
+                <Link
+                  to={'/articles'}
+                  className={styles.headerMenuListItemLink}
+                >
+                  Articles
+                </Link>
+              </li>
+              <li className={styles.headerMenuListItem}>
                 <Link to={''} className={styles.headerMenuListItemLink}>
                   About
                 </Link>

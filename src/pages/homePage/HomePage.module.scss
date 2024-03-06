@@ -1,0 +1,30 @@
+.wrapper {
+  @apply h-[100vh] flex flex-col items-center justify-center text-center overflow-hidden;
+
+  .title {
+    @apply text-5xl font-semibold;
+  }
+
+  .linkContainer {
+    @apply w-fit;
+
+    .link {
+      @apply min-w-full
+      h-12
+      border-0
+      text-white
+      bg-slate-700
+      hover:bg-slate-500
+      focus:ring-4
+      focus:ring-slate-400
+      focus:outline-none
+      font-medium
+      transition-all
+      rounded-lg
+      text-sm
+      px-5
+      py-2.5
+      text-[22px];
+    }
+  }
+}
