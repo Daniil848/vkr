@@ -13,7 +13,7 @@ export const useArticlePage = () => {
     const id = Number(articleID);
     dispatch(getSingleArticle(id));
     dispatch(getTest(id));
-  }, [articleID]);
+  }, [dispatch]);
 
   return {
     state,

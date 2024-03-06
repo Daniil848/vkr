@@ -10,13 +10,15 @@ const ArticlePage = () => {
   if (!state.article) return null;
   return (
     <>
-      <div className={styles.wrapper}>
-        <article>
-          <h1>{state.article.title}</h1>
-          {HTMLReactParser(state.article.text)}
-        </article>
-        <Test />
-      </div>
+      {!state.loading && (
+        <div className={styles.wrapper}>
+          <article>
+            <h1>{state.article.title}</h1>
+            {HTMLReactParser(state.article.text)}
+          </article>
+        </div>
+      )}
+      <Test />
     </>
   );
 };
