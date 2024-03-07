@@ -3,8 +3,8 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import {
   getAllArticles,
   getAllSections,
-  hideSearch,
-  showSearch,
+  hideSearchArticles,
+  showSearchArticles,
 } from '../../app/mainSlice';
 
 export const useArticlesPage = () => {
@@ -14,12 +14,12 @@ export const useArticlesPage = () => {
   useEffect(() => {
     dispatch(getAllArticles());
     dispatch(getAllSections());
-    dispatch(showSearch());
+    dispatch(showSearchArticles());
   }, []);
 
   useEffect(() => {
     return () => {
-      dispatch(hideSearch());
+      dispatch(hideSearchArticles());
     };
   }, []);
 

@@ -38,7 +38,10 @@ export interface State {
   tests: Test[];
   loading: boolean;
   error: boolean;
-  search: boolean;
+  articlesPage: boolean;
+  searchArticles: boolean;
+  testsPage: boolean;
+  searchTests: boolean;
 }
 
 const initialState: State = {
@@ -49,7 +52,10 @@ const initialState: State = {
   tests: [],
   loading: false,
   error: false,
-  search: false,
+  articlesPage: false,
+  searchArticles: false,
+  testsPage: false,
+  searchTests: false,
 };
 
 export const getAllArticles = createAsyncThunk<
@@ -142,6 +148,25 @@ export const getAllSections = createAsyncThunk<
   }
 });
 
+export const searchArticles = createAsyncThunk<
+  Article[],
+  string,
+  { rejectValue: string }
+>('store/searchArticles', async (search, { rejectWithValue }) => {
+  try {
+    const { data } = await axios.get(`http://localhost:3001/articles`);
+
+    const filteredData = data.filter((article: Article) => {
+      return article.title.toLowerCase().includes(search.toLowerCase());
+    });
+
+    return filteredData;
+  } catch (error) {
+    console.log(error);
+    return rejectWithValue('Server Error!');
+  }
+});
+
 const mainSlice = createSlice({
   name: 'slice',
   initialState,
@@ -149,11 +174,18 @@ const mainSlice = createSlice({
     clearArticleState(state) {
       state.article = null;
     },
-    showSearch(state) {
-      state.search = true;
+    showSearchArticles(state) {
+      state.articlesPage = true;
     },
-    hideSearch(state) {
-      state.search = false;
+    hideSearchArticles(state) {
+      state.articlesPage = false;
+    },
+    setSearchArticles(state, action) {
+      if (action.payload !== '') {
+        state.searchArticles = true;
+      } else if (action.payload === '') {
+        state.searchArticles = false;
+      }
     },
   },
   extraReducers: (builder) => {
@@ -205,10 +237,23 @@ const mainSlice = createSlice({
       .addCase(getAllSections.fulfilled, (state, action) => {
         state.loading = false;
         state.sections = action.payload;
+      })
+      .addCase(searchArticles.pending, (state) => {
+        state.loading = true;
+        state.error = false;
+      })
+      .addCase(searchArticles.fulfilled, (state, action) => {
+        state.loading = false;
+        state.articles = action.payload;
       });
   },
 });
 
-export const { clearArticleState, showSearch, hideSearch } = mainSlice.actions;
+export const {
+  clearArticleState,
+  showSearchArticles,
+  hideSearchArticles,
+  setSearchArticles,
+} = mainSlice.actions;
 
 export default mainSlice.reducer;

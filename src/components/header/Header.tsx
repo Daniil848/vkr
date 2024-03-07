@@ -4,22 +4,20 @@ import { Link } from 'react-router-dom';
 import styles from './Header.module.scss';
 
 const Header = () => {
-  const { state } = useHeader();
-
-  console.log(state.search);
+  const { state, setSearch, handleSearchChange } = useHeader();
 
   return (
     <>
       <nav>
         <div className={styles.header}>
           <div
-            className={`${styles.headerMenu}  ${!state.search ? styles.menuWithoutSearch : ''}`}
+            className={`${styles.headerMenu}  ${!state.articlesPage ? styles.menuWithoutSearch : ''}`}
           >
             <a className={styles.headerTitle}>
               <span className={styles.headerTitleText}>VKR</span>
             </a>
             <ul
-              className={`${styles.headerMenuList} ${state.search ? styles.visibleSearch : styles.invisibleSearch}`}
+              className={`${styles.headerMenuList} ${state.articlesPage ? styles.visibleSearch : styles.invisibleSearch}`}
             >
               <li className={styles.headerMenuListItem}>
                 <Link to={''} className={styles.headerMenuListItemLink}>
@@ -46,11 +44,12 @@ const Header = () => {
               </li>
             </ul>
             <div className={styles.headerSearch}>
-              {state.search && (
+              {state.articlesPage && (
                 <input
                   type="search"
                   placeholder="Search..."
                   className={styles.headerSearchInput}
+                  onChange={(e) => handleSearchChange(e)}
                 />
               )}
             </div>
