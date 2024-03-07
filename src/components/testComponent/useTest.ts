@@ -14,7 +14,7 @@ export const useTest = () => {
   useEffect(() => {
     const id = Number(articleID);
     dispatch(getTest(id));
-  }, [result]);
+  }, []);
 
   const handleRadioChange = (questionId: number, answerId: number) => {
     setAnswers((prevState) => ({
