@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { getTest } from '../../app/mainSlice';
+import { getTestByArticleId, getSingleTest } from '../../app/mainSlice';
 
 export const useTest = () => {
   const state = useAppSelector((state) => state.slice);
@@ -10,10 +10,16 @@ export const useTest = () => {
   const [result, setResult] = useState<number | undefined>();
 
   const { articleID } = useParams();
+  const { testID } = useParams();
 
   useEffect(() => {
-    const id = Number(articleID);
-    dispatch(getTest(id));
+    if (articleID) {
+      const id = Number(articleID);
+      dispatch(getTestByArticleId(id));
+    } else if (testID) {
+      const id = Number(testID);
+      dispatch(getSingleTest(id));
+    }
   }, []);
 
   const handleRadioChange = (questionId: number, answerId: number) => {

@@ -18,6 +18,7 @@ export interface Article {
 export interface Test {
   id: number;
   articleId: number;
+  sectionId: number;
   title: string;
   questions: {
     id: number;
@@ -34,6 +35,7 @@ export interface State {
   article: Article | null;
   articles: Article[];
   test: Test | null;
+  tests: Test[];
   loading: boolean;
   error: boolean;
   search: boolean;
@@ -44,6 +46,7 @@ const initialState: State = {
   article: null,
   articles: [],
   test: null,
+  tests: [],
   loading: false,
   error: false,
   search: false,
@@ -77,21 +80,52 @@ export const getSingleArticle = createAsyncThunk<
   }
 });
 
-export const getTest = createAsyncThunk<Test, number, { rejectValue: string }>(
-  'store/getTest',
-  async (articleId, { rejectWithValue }) => {
-    try {
-      const { data } = await axios.get(`http://localhost:3001/tests`);
+export const getAllTests = createAsyncThunk<
+  Test[],
+  undefined,
+  { rejectValue: string }
+>('store/getAllTests', async (id, { rejectWithValue }) => {
+  try {
+    const { data } = await axios.get(`http://localhost:3001/tests`);
 
-      const filteredData = data.find((el: Test) => el.articleId === articleId);
+    return data;
+  } catch (error) {
+    console.log(error);
+    return rejectWithValue('Server Error!');
+  }
+});
 
-      return filteredData;
-    } catch (error) {
-      console.log(error);
-      return rejectWithValue('Server Error!');
-    }
-  },
-);
+export const getSingleTest = createAsyncThunk<
+  Test,
+  number,
+  { rejectValue: string }
+>('store/getSingleTest', async (id, { rejectWithValue }) => {
+  try {
+    const { data } = await axios.get(`http://localhost:3001/tests/${id}`);
+
+    return data;
+  } catch (error) {
+    console.log(error);
+    return rejectWithValue('Server Error!');
+  }
+});
+
+export const getTestByArticleId = createAsyncThunk<
+  Test,
+  number,
+  { rejectValue: string }
+>('store/getTestByArticleId', async (articleId, { rejectWithValue }) => {
+  try {
+    const { data } = await axios.get(`http://localhost:3001/tests`);
+
+    const filteredData = data.find((el: Test) => el.articleId === articleId);
+
+    return filteredData;
+  } catch (error) {
+    console.log(error);
+    return rejectWithValue('Server Error!');
+  }
+});
 
 export const getAllSections = createAsyncThunk<
   Section[],
@@ -140,11 +174,27 @@ const mainSlice = createSlice({
         state.loading = false;
         state.articles = action.payload;
       })
-      .addCase(getTest.pending, (state) => {
+      .addCase(getAllTests.pending, (state) => {
         state.loading = true;
         state.error = false;
       })
-      .addCase(getTest.fulfilled, (state, action) => {
+      .addCase(getAllTests.fulfilled, (state, action) => {
+        state.loading = false;
+        state.tests = action.payload;
+      })
+      .addCase(getSingleTest.pending, (state) => {
+        state.loading = true;
+        state.error = false;
+      })
+      .addCase(getSingleTest.fulfilled, (state, action) => {
+        state.loading = false;
+        state.test = action.payload;
+      })
+      .addCase(getTestByArticleId.pending, (state) => {
+        state.loading = true;
+        state.error = false;
+      })
+      .addCase(getTestByArticleId.fulfilled, (state, action) => {
         state.loading = false;
         state.test = action.payload;
       })

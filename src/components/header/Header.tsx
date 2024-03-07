@@ -35,10 +35,7 @@ const Header = () => {
                 </Link>
               </li>
               <li className={styles.headerMenuListItem}>
-                <Link
-                  to={'/articles'}
-                  className={styles.headerMenuListItemLink}
-                >
+                <Link to={'/tests'} className={styles.headerMenuListItemLink}>
                   Tests
                 </Link>
               </li>
