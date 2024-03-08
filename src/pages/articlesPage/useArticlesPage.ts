@@ -22,7 +22,9 @@ export const useArticlesPage = () => {
     }
   }, [search]);
 
-  const handleSearchChange = (e: any) => {
+  const handleSearchChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     setSearch(e.target.value);
 
     if (e.target.value) {
