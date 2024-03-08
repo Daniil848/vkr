@@ -13,33 +13,29 @@ const ArticlesPage = () => {
     <>
       <div className={styles.wrapper}>
         <Input placeholder="Найти..." onChange={(e) => handleSearchChange(e)} />
-        {!state.searchArticles ? (
-          !state.loading &&
-          state.sections.map((section) => (
-            <div key={section.id}>
-              <h1 className={styles.section}>{section.name}</h1>
-              {state.articles
-                .filter((article) => article.sectionId == section.id)
-                .map((article) => (
-                  <div key={article.id}>
-                    <Link to={`/articles/article/${article.id}`}>
-                      {article.title}
-                    </Link>
-                  </div>
-                ))}
-            </div>
-          ))
-        ) : (
-          <div className={styles.wrapper}>
-            {state.articles.map((article) => (
+        {!state.searchArticles
+          ? !state.loading &&
+            state.sections.map((section) => (
+              <div key={section.id}>
+                <h1 className={styles.section}>{section.name}</h1>
+                {state.articles
+                  .filter((article) => article.sectionId == section.id)
+                  .map((article) => (
+                    <div key={article.id}>
+                      <Link to={`/articles/article/${article.id}`}>
+                        {article.title}
+                      </Link>
+                    </div>
+                  ))}
+              </div>
+            ))
+          : state.articles.map((article) => (
               <div key={article.id}>
                 <Link to={`/articles/article/${article.id}`}>
                   {article.title}
                 </Link>
               </div>
             ))}
-          </div>
-        )}
       </div>
     </>
   );
