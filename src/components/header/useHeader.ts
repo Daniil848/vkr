@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { searchArticles, setSearchArticles } from '../../app/mainSlice';
+import {
+  clearSearchArticles,
+  searchArticles,
+  setSearchArticles,
+} from '../../app/mainSlice';
 
 export const useHeader = () => {
   const state = useAppSelector((state) => state.slice);
@@ -13,7 +17,11 @@ export const useHeader = () => {
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
-    dispatch(setSearchArticles(search));
+    if (search) {
+      dispatch(setSearchArticles());
+    } else {
+      dispatch(clearSearchArticles());
+    }
   };
 
   return { state, setSearch, handleSearchChange };

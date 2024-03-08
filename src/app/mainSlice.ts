@@ -180,12 +180,11 @@ const mainSlice = createSlice({
     hideSearchArticles(state) {
       state.articlesPage = false;
     },
-    setSearchArticles(state, action) {
-      if (action.payload !== '') {
-        state.searchArticles = true;
-      } else if (action.payload === '') {
-        state.searchArticles = false;
-      }
+    setSearchArticles(state) {
+      state.searchArticles = true;
+    },
+    clearSearchArticles(state) {
+      state.searchArticles = true;
     },
   },
   extraReducers: (builder) => {
@@ -254,6 +253,7 @@ export const {
   showSearchArticles,
   hideSearchArticles,
   setSearchArticles,
+  clearSearchArticles,
 } = mainSlice.actions;
 
 export default mainSlice.reducer;
