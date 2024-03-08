@@ -86,36 +86,6 @@ export const getSingleArticle = createAsyncThunk<
   }
 });
 
-export const getAllTests = createAsyncThunk<
-  Test[],
-  undefined,
-  { rejectValue: string }
->('store/getAllTests', async (id, { rejectWithValue }) => {
-  try {
-    const { data } = await axios.get(`http://localhost:3001/tests`);
-
-    return data;
-  } catch (error) {
-    console.log(error);
-    return rejectWithValue('Server Error!');
-  }
-});
-
-export const getSingleTest = createAsyncThunk<
-  Test,
-  number,
-  { rejectValue: string }
->('store/getSingleTest', async (id, { rejectWithValue }) => {
-  try {
-    const { data } = await axios.get(`http://localhost:3001/tests/${id}`);
-
-    return data;
-  } catch (error) {
-    console.log(error);
-    return rejectWithValue('Server Error!');
-  }
-});
-
 export const getTestByArticleId = createAsyncThunk<
   Test,
   number,
@@ -204,22 +174,6 @@ const mainSlice = createSlice({
       .addCase(getAllArticles.fulfilled, (state, action) => {
         state.loading = false;
         state.articles = action.payload;
-      })
-      .addCase(getAllTests.pending, (state) => {
-        state.loading = true;
-        state.error = false;
-      })
-      .addCase(getAllTests.fulfilled, (state, action) => {
-        state.loading = false;
-        state.tests = action.payload;
-      })
-      .addCase(getSingleTest.pending, (state) => {
-        state.loading = true;
-        state.error = false;
-      })
-      .addCase(getSingleTest.fulfilled, (state, action) => {
-        state.loading = false;
-        state.test = action.payload;
       })
       .addCase(getTestByArticleId.pending, (state) => {
         state.loading = true;
