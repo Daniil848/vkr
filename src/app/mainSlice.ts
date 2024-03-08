@@ -40,8 +40,6 @@ export interface State {
   error: boolean;
   articlesPage: boolean;
   searchArticles: boolean;
-  testsPage: boolean;
-  searchTests: boolean;
 }
 
 const initialState: State = {
@@ -54,8 +52,6 @@ const initialState: State = {
   error: false,
   articlesPage: false,
   searchArticles: false,
-  testsPage: false,
-  searchTests: false,
 };
 
 export const getAllArticles = createAsyncThunk<
@@ -144,17 +140,11 @@ const mainSlice = createSlice({
     clearArticleState(state) {
       state.article = null;
     },
-    showSearchArticles(state) {
-      state.articlesPage = true;
-    },
-    hideSearchArticles(state) {
-      state.articlesPage = false;
-    },
     setSearchArticles(state) {
       state.searchArticles = true;
     },
     clearSearchArticles(state) {
-      state.searchArticles = true;
+      state.searchArticles = false;
     },
   },
   extraReducers: (builder) => {
@@ -202,12 +192,7 @@ const mainSlice = createSlice({
   },
 });
 
-export const {
-  clearArticleState,
-  showSearchArticles,
-  hideSearchArticles,
-  setSearchArticles,
-  clearSearchArticles,
-} = mainSlice.actions;
+export const { clearArticleState, setSearchArticles, clearSearchArticles } =
+  mainSlice.actions;
 
 export default mainSlice.reducer;

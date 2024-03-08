@@ -1,11 +1,8 @@
 .header {
   @apply h-[75px] absolute w-[100%] top-0 bg-slate-700 max-w-full  mx-auto py-4 border-b border-solid border-slate-400 border-t-0 border-x-0;
 
-  .menuWithoutSearch {
-    @apply mt-[5px];
-  }
   .headerMenu {
-    @apply flex flex-wrap items-center justify-between;
+    @apply flex flex-wrap items-center;
 
     .headerTitle {
       @apply w-1/4 flex items-center pl-4;
@@ -24,14 +21,6 @@
         .headerMenuListItemLink {
           @apply no-underline text-white hover:text-slate-200 transition-colors;
         }
-      }
-    }
-
-    .headerSearch {
-      @apply w-1/4 flex justify-end pr-4;
-
-      .headerSearchInput {
-        @apply relative bg-slate-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-slate-500 focus:border-slate-500 block w-[350px] p-2.5;
       }
     }
   }

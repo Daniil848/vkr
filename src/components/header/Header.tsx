@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import styles from './Header.module.scss';
 
 const Header = () => {
-  const { state, setSearch, handleSearchChange } = useHeader();
+  const { state } = useHeader();
 
   return (
     <>
@@ -33,26 +33,11 @@ const Header = () => {
                 </Link>
               </li>
               <li className={styles.headerMenuListItem}>
-                <Link to={'/tests'} className={styles.headerMenuListItemLink}>
-                  Tests
-                </Link>
-              </li>
-              <li className={styles.headerMenuListItem}>
                 <Link to={'/about'} className={styles.headerMenuListItemLink}>
                   About
                 </Link>
               </li>
             </ul>
-            <div className={styles.headerSearch}>
-              {state.articlesPage && (
-                <input
-                  type="search"
-                  placeholder="Search..."
-                  className={styles.headerSearchInput}
-                  onChange={(e) => handleSearchChange(e)}
-                />
-              )}
-            </div>
           </div>
         </div>
       </nav>
