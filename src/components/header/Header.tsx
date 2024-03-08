@@ -21,7 +21,7 @@ const Header = () => {
             >
               <li className={styles.headerMenuListItem}>
                 <Link to={''} className={styles.headerMenuListItemLink}>
-                  Home
+                  На главную
                 </Link>
               </li>
               <li className={styles.headerMenuListItem}>
@@ -29,12 +29,12 @@ const Header = () => {
                   to={'/articles'}
                   className={styles.headerMenuListItemLink}
                 >
-                  Articles
+                  Статьи
                 </Link>
               </li>
               <li className={styles.headerMenuListItem}>
                 <Link to={'/about'} className={styles.headerMenuListItemLink}>
-                  About
+                  Инфо
                 </Link>
               </li>
             </ul>

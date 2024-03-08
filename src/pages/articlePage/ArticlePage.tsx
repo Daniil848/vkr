@@ -1,8 +1,9 @@
 import React from 'react';
 import { useArticlePage } from './useArticlePage';
+import Test from '../../components/testComponent/Test';
+import SideBar from '../../components/sideBar/SideBar';
 import HTMLReactParser from 'html-react-parser';
 import styles from './ArticlePage.module.scss';
-import Test from '../../components/testComponent/Test';
 
 const ArticlePage = () => {
   const { state } = useArticlePage();
@@ -10,6 +11,7 @@ const ArticlePage = () => {
   if (!state.article) return null;
   return (
     <>
+      <SideBar />
       {!state.loading && (
         <div className={styles.wrapper}>
           <article>

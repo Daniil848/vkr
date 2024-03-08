@@ -1,5 +1,5 @@
 .header {
-  @apply h-[75px] absolute w-[100%] top-0 bg-slate-700 max-w-full  mx-auto py-4 border-b border-solid border-slate-400 border-t-0 border-x-0;
+  @apply fixed z-20 h-[65px] w-[100%] top-0 bg-slate-700 max-w-full  mx-auto py-4 border-b border-solid border-slate-400 border-t-0 border-x-0;
 
   .headerMenu {
     @apply flex flex-wrap items-center;

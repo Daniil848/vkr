@@ -17,7 +17,7 @@ export const useArticlePage = () => {
     const id = Number(articleID);
     dispatch(getSingleArticle(id));
     dispatch(getTestByArticleId(id));
-  }, [dispatch]);
+  }, [dispatch, articleID]);
 
   useEffect(() => {
     return () => {
