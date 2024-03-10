@@ -1,19 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { collection, doc, getDoc, getDocs, query } from 'firebase/firestore';
+import db from '../firebase';
 
 export interface Section {
-  id: number;
+  id: string;
   name: string;
 }
 export interface Article {
-  id: number;
+  id: string;
   sectionId: number;
   title: string;
   text: string;
 }
 export interface Test {
-  id: number;
+  id: string;
   articleId: number;
   sectionId: number;
   title: string;
@@ -57,7 +59,22 @@ export const getAllArticles = createAsyncThunk<
   { rejectValue: string }
 >('store/getAllArticles', async (_, { rejectWithValue }) => {
   try {
-    const { data } = await axios.get('http://localhost:3001/articles');
+    const docRef = query(collection(db, 'articles'));
+
+    const docs = await getDocs(docRef);
+    const data: Article[] = [];
+
+    docs.forEach((doc) => {
+      const article: Article = {
+        id: doc.id,
+        sectionId: doc.data().sectionId,
+        title: doc.data().title,
+        text: doc.data().text,
+      };
+
+      data.push(article);
+    });
+
     return data;
   } catch (error) {
     console.log(error);
@@ -67,27 +84,79 @@ export const getAllArticles = createAsyncThunk<
 
 export const getSingleArticle = createAsyncThunk<
   Article,
-  number,
+  string,
   { rejectValue: string }
 >('store/getSingleArticle', async (id, { rejectWithValue }) => {
   try {
-    const { data } = await axios.get(`http://localhost:3001/articles/${id}`);
-    return data;
+    const docRef = doc(db, 'articles', id);
+    const docArticle = await getDoc(docRef);
+
+    if (docArticle.exists()) {
+      const data: Article = {
+        id: docArticle.id,
+        sectionId: docArticle.data().sectionId,
+        title: docArticle.data().title,
+        text: docArticle.data().text,
+      };
+
+      return data;
+    } else {
+      return rejectWithValue('Article not found!');
+    }
   } catch (error) {
     console.log(error);
     return rejectWithValue('Server Error!');
   }
 });
 
+// export const searchArticles = createAsyncThunk<
+//   Article[],
+//   string,
+//   { rejectValue: string }
+// >('store/searchArticles', async (search, { rejectWithValue }) => {
+//   try {
+//     const { data } = await axios.get(`http://localhost:3001/articles`);
+
+//     const filteredData = data.filter((article: Article) => {
+//       return article.title.toLowerCase().includes(search.toLowerCase());
+//     });
+
+//     return filteredData;
+//   } catch (error) {
+//     console.log(error);
+//     return rejectWithValue('Server Error!');
+//   }
+// });
+
 export const getTestByArticleId = createAsyncThunk<
   Test,
-  number,
+  string,
   { rejectValue: string }
 >('store/getTestByArticleId', async (articleId, { rejectWithValue }) => {
   try {
-    const { data } = await axios.get(`http://localhost:3001/tests`);
+    const docRef = query(collection(db, 'tests'));
+    const docs = await getDocs(docRef);
+    const data: Test[] = [];
 
-    const filteredData = data.find((el: Test) => el.articleId === articleId);
+    docs.forEach((doc) => {
+      const test: Test = {
+        id: doc.id,
+        articleId: doc.data().articleId,
+        sectionId: doc.data().sectionId,
+        title: doc.data().title,
+        questions: doc.data().questions,
+      };
+
+      data.push(test);
+    });
+
+    const filteredData = data.find(
+      (el: Test) => el.articleId.toString() === articleId,
+    );
+
+    if (!filteredData) {
+      return rejectWithValue('Test not found');
+    }
 
     return filteredData;
   } catch (error) {
@@ -102,28 +171,20 @@ export const getAllSections = createAsyncThunk<
   { rejectValue: string }
 >('store/getAllSections', async (_, { rejectWithValue }) => {
   try {
-    const { data } = await axios.get(`http://localhost:3001/sections`);
+    const docRef = query(collection(db, 'sections'));
+    const docs = await getDocs(docRef);
+    const data: Section[] = [];
 
-    return data;
-  } catch (error) {
-    console.log(error);
-    return rejectWithValue('Server Error!');
-  }
-});
+    docs.forEach((doc) => {
+      const section: Section = {
+        id: doc.id,
+        name: doc.data().name,
+      };
 
-export const searchArticles = createAsyncThunk<
-  Article[],
-  string,
-  { rejectValue: string }
->('store/searchArticles', async (search, { rejectWithValue }) => {
-  try {
-    const { data } = await axios.get(`http://localhost:3001/articles`);
-
-    const filteredData = data.filter((article: Article) => {
-      return article.title.toLowerCase().includes(search.toLowerCase());
+      data.push(section);
     });
 
-    return filteredData;
+    return data;
   } catch (error) {
     console.log(error);
     return rejectWithValue('Server Error!');
@@ -177,15 +238,15 @@ const mainSlice = createSlice({
       .addCase(getAllSections.fulfilled, (state, action) => {
         state.loading = false;
         state.sections = action.payload;
-      })
-      .addCase(searchArticles.pending, (state) => {
-        state.loading = true;
-        state.error = false;
-      })
-      .addCase(searchArticles.fulfilled, (state, action) => {
-        state.loading = false;
-        state.articles = action.payload;
       });
+    // .addCase(searchArticles.pending, (state) => {
+    //   state.loading = true;
+    //   state.error = false;
+    // })
+    // .addCase(searchArticles.fulfilled, (state, action) => {
+    //   state.loading = false;
+    //   state.articles = action.payload;
+    // });
   },
 });
 

@@ -19,7 +19,9 @@ const ArticlesPage = () => {
               <div key={section.id}>
                 <h1 className={styles.section}>{section.name}</h1>
                 {state.articles
-                  .filter((article) => article.sectionId == section.id)
+                  .filter(
+                    (article) => article.sectionId.toString() == section.id,
+                  )
                   .map((article) => (
                     <div key={article.id}>
                       <Link to={`/articles/article/${article.id}`}>

@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import {
   clearArticleState,
   getSingleArticle,
-  getTestByArticleId,
+  // getTestByArticleId,
 } from '../../app/mainSlice';
 
 export const useArticlePage = () => {
@@ -14,9 +14,10 @@ export const useArticlePage = () => {
   const { articleID } = useParams();
 
   useEffect(() => {
-    const id = Number(articleID);
-    dispatch(getSingleArticle(id));
-    dispatch(getTestByArticleId(id));
+    if (articleID) {
+      dispatch(getSingleArticle(articleID));
+      // dispatch(getTestByArticleId(articleID));
+    }
   }, [dispatch, articleID]);
 
   useEffect(() => {
