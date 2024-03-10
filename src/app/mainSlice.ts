@@ -7,9 +7,6 @@ export interface Section {
   name: string;
 }
 export interface Article {
-  map(
-    arg0: (article: Article) => import('react/jsx-runtime').JSX.Element,
-  ): import('react').ReactNode;
   id: number;
   sectionId: number;
   title: string;
