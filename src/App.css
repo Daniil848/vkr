@@ -26,3 +26,7 @@ p {
 .App {
   margin-top: 95px;
 }
+
+.container {
+  min-height: 100vh;
+}
