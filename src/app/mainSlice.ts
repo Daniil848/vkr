@@ -12,7 +12,6 @@ const initialState: State = {
   tests: [],
   loading: false,
   error: false,
-  articlesPage: false,
   searchArticles: false,
 };
 

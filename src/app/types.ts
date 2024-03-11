@@ -31,6 +31,5 @@ export interface State {
   tests: Test[];
   loading: boolean;
   error: boolean;
-  articlesPage: boolean;
   searchArticles: boolean;
 }

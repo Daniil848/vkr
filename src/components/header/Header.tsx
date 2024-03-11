@@ -10,13 +10,9 @@ const Header = () => {
     <>
       <nav>
         <div className={styles.header}>
-          <div
-            className={`${styles.headerMenu}  ${!state.articlesPage ? styles.menuWithoutSearch : ''}`}
-          >
+          <div className={`${styles.headerMenu}`}>
             <a className={styles.headerTitle}></a>
-            <ul
-              className={`${styles.headerMenuList} ${state.articlesPage ? styles.visibleSearch : styles.invisibleSearch}`}
-            >
+            <ul className={`${styles.headerMenuList}`}>
               <li className={styles.headerMenuListItem}>
                 <Link to={''} className={styles.headerMenuListItemLink}>
                   На главную
