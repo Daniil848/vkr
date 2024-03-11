@@ -38,16 +38,11 @@ export const useTest = () => {
     }
   };
 
-  const isCorrectAnswer = (question: number, answer: number) => {
-    return state.test?.questions[question]?.correctAnswer === answer;
-  };
-
   return {
     state,
     answers,
     handleRadioChange,
     handleSubmit,
-    isCorrectAnswer,
     result,
   };
 };

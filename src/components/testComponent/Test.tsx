@@ -4,14 +4,7 @@ import Button from '../../UI/button/Button';
 import styles from './Test.module.scss';
 
 const Test = () => {
-  const {
-    state,
-    answers,
-    handleRadioChange,
-    handleSubmit,
-    isCorrectAnswer,
-    result,
-  } = useTest();
+  const { state, handleRadioChange, handleSubmit, result } = useTest();
 
   if (!state.test) return null;
   return (
