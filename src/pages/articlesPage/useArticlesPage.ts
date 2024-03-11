@@ -4,7 +4,7 @@ import {
   clearSearchArticles,
   getAllArticles,
   getAllSections,
-  // searchArticles,
+  searchArticles,
   setSearchArticles,
 } from '../../app/mainSlice';
 
@@ -18,7 +18,7 @@ export const useArticlesPage = () => {
     dispatch(getAllSections());
     dispatch(getAllArticles());
     if (search) {
-      // dispatch(searchArticles(search));
+      dispatch(searchArticles(search));
     }
   }, [search]);
 

@@ -110,24 +110,37 @@ export const getSingleArticle = createAsyncThunk<
   }
 });
 
-// export const searchArticles = createAsyncThunk<
-//   Article[],
-//   string,
-//   { rejectValue: string }
-// >('store/searchArticles', async (search, { rejectWithValue }) => {
-//   try {
-//     const { data } = await axios.get(`http://localhost:3001/articles`);
+export const searchArticles = createAsyncThunk<
+  Article[],
+  string,
+  { rejectValue: string }
+>('store/searchArticles', async (search, { rejectWithValue }) => {
+  try {
+    const docRef = query(collection(db, 'articles'));
+    const docs = await getDocs(docRef);
+    const data: Article[] = [];
 
-//     const filteredData = data.filter((article: Article) => {
-//       return article.title.toLowerCase().includes(search.toLowerCase());
-//     });
+    docs.forEach((doc: any) => {
+      const article: Article = {
+        id: doc.id,
+        sectionId: doc.data().sectionId,
+        title: doc.data().title,
+        text: doc.data().text,
+      };
 
-//     return filteredData;
-//   } catch (error) {
-//     console.log(error);
-//     return rejectWithValue('Server Error!');
-//   }
-// });
+      data.push(article);
+    });
+
+    const filteredData = data.filter((article: Article) => {
+      return article.title.toLowerCase().includes(search.toLowerCase());
+    });
+
+    return filteredData;
+  } catch (error) {
+    console.log(error);
+    return rejectWithValue('Server Error!');
+  }
+});
 
 export const getTestByArticleId = createAsyncThunk<
   Test,
@@ -239,15 +252,15 @@ const mainSlice = createSlice({
       .addCase(getAllSections.fulfilled, (state, action) => {
         state.loading = false;
         state.sections = action.payload;
+      })
+      .addCase(searchArticles.pending, (state) => {
+        state.loading = true;
+        state.error = false;
+      })
+      .addCase(searchArticles.fulfilled, (state, action) => {
+        state.loading = false;
+        state.articles = action.payload;
       });
-    // .addCase(searchArticles.pending, (state) => {
-    //   state.loading = true;
-    //   state.error = false;
-    // })
-    // .addCase(searchArticles.fulfilled, (state, action) => {
-    //   state.loading = false;
-    //   state.articles = action.payload;
-    // });
   },
 });
 
