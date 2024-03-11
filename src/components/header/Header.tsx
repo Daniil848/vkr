@@ -13,9 +13,7 @@ const Header = () => {
           <div
             className={`${styles.headerMenu}  ${!state.articlesPage ? styles.menuWithoutSearch : ''}`}
           >
-            <a className={styles.headerTitle}>
-              <span className={styles.headerTitleText}>VKR</span>
-            </a>
+            <a className={styles.headerTitle}></a>
             <ul
               className={`${styles.headerMenuList} ${state.articlesPage ? styles.visibleSearch : styles.invisibleSearch}`}
             >
