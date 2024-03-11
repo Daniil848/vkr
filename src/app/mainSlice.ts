@@ -1,8 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+
+import { db } from '../firebase';
 import { collection, doc, getDoc, getDocs, query } from 'firebase/firestore';
-import db from '../firebase';
 
 export interface Section {
   id: string;
@@ -64,7 +65,7 @@ export const getAllArticles = createAsyncThunk<
     const docs = await getDocs(docRef);
     const data: Article[] = [];
 
-    docs.forEach((doc) => {
+    docs.forEach((doc: any) => {
       const article: Article = {
         id: doc.id,
         sectionId: doc.data().sectionId,
@@ -138,7 +139,7 @@ export const getTestByArticleId = createAsyncThunk<
     const docs = await getDocs(docRef);
     const data: Test[] = [];
 
-    docs.forEach((doc) => {
+    docs.forEach((doc: any) => {
       const test: Test = {
         id: doc.id,
         articleId: doc.data().articleId,
@@ -175,7 +176,7 @@ export const getAllSections = createAsyncThunk<
     const docs = await getDocs(docRef);
     const data: Section[] = [];
 
-    docs.forEach((doc) => {
+    docs.forEach((doc: any) => {
       const section: Section = {
         id: doc.id,
         name: doc.data().name,
