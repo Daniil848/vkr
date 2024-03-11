@@ -1,0 +1,7 @@
+.wrapper {
+  @apply h-[100vh] mt-[-75px] flex flex-col items-center justify-center text-center font-semibold text-4xl;
+
+  .logo {
+    @apply bg-[url('../../img/logo.png')] flex items-center w-[150px] h-[150px] bg-no-repeat bg-contain backdrop-filter;
+  }
+}
