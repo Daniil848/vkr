@@ -4,7 +4,14 @@ import Button from '../../UI/button/Button';
 import styles from './Test.module.scss';
 
 const Test = () => {
-  const { state, handleRadioChange, handleSubmit, result } = useTest();
+  const {
+    state,
+    answers,
+    handleRadioChange,
+    handleSubmit,
+    isCorrectAnswer,
+    result,
+  } = useTest();
 
   if (!state.test) return null;
   return (
@@ -16,10 +23,13 @@ const Test = () => {
             <div key={item.id} className={styles.wrapper}>
               <p className={styles.testQuestion}>{item.question}</p>
               {item.answers.map((el) => (
-                <div key={el.id} className={`${styles.testAnswers}`}>
+                <div
+                  key={el.id}
+                  className={`${styles.testAnswers} ${result && item.correctAnswer === el.id ? styles.correct : ''}`}
+                >
                   <input
                     type="radio"
-                    disabled={Boolean(result)}
+                    disabled={Boolean(result) && !state.testError}
                     id={el.answer}
                     value={el.id}
                     name={item.question}
@@ -39,6 +49,11 @@ const Test = () => {
           {!result && (
             <div className={styles.buttonContainer}>
               <Button onClick={() => handleSubmit()} text="Завершить" />
+              {state.testError && (
+                <p className={styles.buttonErrorText}>
+                  Ответьте на все вопросы!
+                </p>
+              )}
             </div>
           )}
           {result && (

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { getTestByArticleId } from '../../app/mainSlice';
+import { getTestByArticleId, setTestError } from '../../app/mainSlice';
 
 export const useTest = () => {
   const state = useAppSelector((state) => state.slice);
@@ -25,14 +25,21 @@ export const useTest = () => {
   const handleSubmit = () => {
     const answersArr = Object.values(answers);
     const correctAnswers = state.test?.questions.map((el) => el.correctAnswer);
-    console.log('aa', answersArr);
-    console.log('ca', correctAnswers);
 
-    const score = correctAnswers
-      ?.filter((val, index) => val === answersArr[index])
-      .reduce((acc) => acc + 1, 0);
+    if (correctAnswers && answersArr.length < correctAnswers.length) {
+      dispatch(setTestError(true));
+    } else {
+      dispatch(setTestError(false));
+      const score = correctAnswers
+        ?.filter((val, index) => val === answersArr[index])
+        .reduce((acc) => acc + 1, 0);
 
-    setResult(score);
+      setResult(score);
+    }
+  };
+
+  const isCorrectAnswer = (question: number, answer: number) => {
+    return state.test?.questions[question]?.correctAnswer === answer;
   };
 
   return {
@@ -40,6 +47,7 @@ export const useTest = () => {
     answers,
     handleRadioChange,
     handleSubmit,
+    isCorrectAnswer,
     result,
   };
 };

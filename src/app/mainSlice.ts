@@ -10,6 +10,7 @@ const initialState: State = {
   articles: [],
   test: null,
   tests: [],
+  testError: false,
   loading: false,
   error: false,
   searchArticles: false,
@@ -179,6 +180,9 @@ const mainSlice = createSlice({
     clearSearchArticles(state) {
       state.searchArticles = false;
     },
+    setTestError(state, action) {
+      state.testError = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -225,7 +229,11 @@ const mainSlice = createSlice({
   },
 });
 
-export const { clearArticleState, setSearchArticles, clearSearchArticles } =
-  mainSlice.actions;
+export const {
+  clearArticleState,
+  setSearchArticles,
+  clearSearchArticles,
+  setTestError,
+} = mainSlice.actions;
 
 export default mainSlice.reducer;

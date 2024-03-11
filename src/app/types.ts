@@ -29,6 +29,7 @@ export interface State {
   articles: Article[];
   test: Test | null;
   tests: Test[];
+  testError: boolean;
   loading: boolean;
   error: boolean;
   searchArticles: boolean;
