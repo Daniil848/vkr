@@ -26,11 +26,14 @@
     }
   }
 
-  .buttonContainer {
-    @apply w-[200px] mx-auto mt-6;
+  .resultContainer {
+    @apply w-[400px] mx-auto;
 
     .buttonErrorText {
-      @apply text-red-800;
+      @apply text-red-600 text-center;
+    }
+    .buttonContainer {
+      @apply w-[200px] mx-auto mt-6;
     }
   }
 

@@ -14,7 +14,7 @@ const Header = () => {
             <a className={styles.headerTitle}></a>
             <ul className={`${styles.headerMenuList}`}>
               <li className={styles.headerMenuListItem}>
-                <Link to={''} className={styles.headerMenuListItemLink}>
+                <Link to={'/'} className={styles.headerMenuListItemLink}>
                   На главную
                 </Link>
               </li>
