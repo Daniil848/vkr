@@ -3,6 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { User } from './articlesTypes';
 import { State } from './usersTypes';
+import toast from 'react-hot-toast';
 
 const initialState: State = {
   loading: false,
@@ -21,7 +22,7 @@ export const registration = createAsyncThunk<
 >('store/registration', async (userDb, { rejectWithValue }) => {
   try {
     const { data } = await axios.post(`http://localhost:3001/users`, userDb);
-
+    toast.success('Данные добавлены');
     return data;
   } catch (error) {
     console.log(error);
@@ -53,6 +54,7 @@ const usersSlice = createSlice({
       .addCase(registration.fulfilled, (state, action) => {
         state.loading = false;
         state.user = action.payload;
+        state.logIn = false;
       });
   },
 });

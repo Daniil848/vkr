@@ -10,6 +10,7 @@ import AboutPage from './pages/aboutPage/AboutPage';
 import Loader from './UI/loader/Loader';
 import Registration from './components/registration/Registration';
 import './App.css';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   const articlesState = useAppSelector((state) => state.articlesSlice);
@@ -28,6 +29,7 @@ function App() {
         </Routes>
       </div>
       <Footer />
+      <Toaster position="bottom-center" reverseOrder={false} />
     </div>
   );
 }
