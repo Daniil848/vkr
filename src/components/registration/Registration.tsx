@@ -24,22 +24,22 @@ const Registration = () => {
             <div className={styles.formTitles}>
               <p>{usersState.logIn ? 'Зарегистрироваться' : 'Войти'}</p>
             </div>
+            <div className={styles.inputsWrapper}>
+              <Input
+                type="text"
+                placeholder="User name"
+                onChange={(e) => setUserName(e.target.value)}
+              />
+            </div>
             {usersState.logIn && (
               <div className={styles.inputsWrapper}>
                 <Input
-                  type="text"
-                  placeholder="User name"
-                  onChange={(e) => setUserName(e.target.value)}
+                  type="email"
+                  placeholder="Email"
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
             )}
-            <div className={styles.inputsWrapper}>
-              <Input
-                type="email"
-                placeholder="Email"
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
             <div className={styles.inputsWrapper}>
               <Input
                 type="password"
