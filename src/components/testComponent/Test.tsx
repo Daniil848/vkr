@@ -40,13 +40,15 @@ const Test = () => {
             </div>
           ))}
           {!result && (
-            <div className={styles.buttonContainer}>
-              <Button onClick={() => handleSubmit()} text="Завершить" />
+            <div className={styles.resultContainer}>
               {state.testError && (
                 <p className={styles.buttonErrorText}>
                   Ответьте на все вопросы!
                 </p>
               )}
+              <div className={styles.buttonContainer}>
+                <Button onClick={() => handleSubmit()} text="Завершить" />
+              </div>
             </div>
           )}
           {result && (
