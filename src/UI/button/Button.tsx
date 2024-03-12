@@ -1,7 +1,12 @@
 import React from 'react';
 import styles from './Button.module.scss';
 
-const Button = (props: { text: string; onClick: () => void }) => {
+interface Props {
+  text: string;
+  onClick: () => void;
+}
+
+const Button = (props: Partial<Props>) => {
   return (
     <button onClick={props.onClick} className={styles.button}>
       {props.text}

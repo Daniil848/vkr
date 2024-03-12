@@ -32,6 +32,12 @@ const Header = () => {
                 </Link>
               </li>
             </ul>
+            <div className={styles.headerRegistration}>
+              <button className={styles.headerRegistrationButton}>Войти</button>
+              <button className={styles.headerRegistrationButton}>
+                Зарегистрироваться
+              </button>
+            </div>
           </div>
         </div>
       </nav>
