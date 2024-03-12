@@ -8,6 +8,7 @@ import ArticlesPage from './pages/articlesPage/ArticlesPage';
 import ArticlePage from './pages/articlePage/ArticlePage';
 import AboutPage from './pages/aboutPage/AboutPage';
 import Loader from './UI/loader/Loader';
+import Registration from './components/registration/Registration';
 import './App.css';
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
   return (
     <div className="App">
       <Header />
+      <Registration />
       {state.loading && <Loader />}
       <div className="container">
         <Routes>
