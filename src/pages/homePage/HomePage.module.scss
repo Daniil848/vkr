@@ -9,22 +9,7 @@
     @apply w-fit;
 
     .link {
-      @apply min-w-full
-      h-12
-      border-0
-      text-white
-      bg-slate-700
-      hover:bg-slate-500
-      focus:ring-4
-      focus:ring-slate-400
-      focus:outline-none
-      font-medium
-      transition-all
-      rounded-lg
-      text-sm
-      px-5
-      py-2.5
-      text-[22px];
+      @apply min-w-full h-12 border-0 text-white bg-slate-700 hover:bg-slate-500 focus:ring-4 focus:ring-slate-400 focus:outline-none font-medium transition-all rounded-lg text-sm px-5 py-2.5 text-[22px];
     }
   }
 }
