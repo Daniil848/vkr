@@ -33,4 +33,6 @@ export interface State {
   loading: boolean;
   error: boolean;
   searchArticles: boolean;
+  signIn: boolean;
+  logIn: boolean;
 }

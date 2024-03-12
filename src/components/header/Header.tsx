@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import styles from './Header.module.scss';
 
 const Header = () => {
-  const { state } = useHeader();
+  const { state, handleOpenLogIn, handleOpenSignIn } = useHeader();
 
   return (
     <>
@@ -33,8 +33,16 @@ const Header = () => {
               </li>
             </ul>
             <div className={styles.headerRegistration}>
-              <button className={styles.headerRegistrationButton}>Войти</button>
-              <button className={styles.headerRegistrationButton}>
+              <button
+                className={styles.headerRegistrationButton}
+                onClick={() => handleOpenSignIn()}
+              >
+                Войти
+              </button>
+              <button
+                className={styles.headerRegistrationButton}
+                onClick={() => handleOpenLogIn()}
+              >
                 Зарегистрироваться
               </button>
             </div>

@@ -14,6 +14,8 @@ const initialState: State = {
   loading: false,
   error: false,
   searchArticles: false,
+  signIn: false,
+  logIn: false,
 };
 
 export const getAllArticles = createAsyncThunk<
@@ -183,6 +185,16 @@ const mainSlice = createSlice({
     setTestError(state, action) {
       state.testError = action.payload;
     },
+    openLogIn(state) {
+      state.logIn = true;
+    },
+    openSignIn(state) {
+      state.signIn = true;
+    },
+    closeRegistrtionModal(state) {
+      state.signIn = false;
+      state.logIn = false;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -234,6 +246,9 @@ export const {
   setSearchArticles,
   clearSearchArticles,
   setTestError,
+  openLogIn,
+  openSignIn,
+  closeRegistrtionModal,
 } = mainSlice.actions;
 
 export default mainSlice.reducer;

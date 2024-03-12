@@ -16,7 +16,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Registration />
+      {(state.signIn || state.logIn) && <Registration />}
       {state.loading && <Loader />}
       <div className="container">
         <Routes>
