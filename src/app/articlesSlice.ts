@@ -2,8 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { db } from '../firebase';
 import { collection, doc, getDoc, getDocs, query } from 'firebase/firestore';
-import { Article, Section, State, Test, User } from './articlesTypes';
-import axios from 'axios';
+import { Article, Section, State, Test } from './articlesTypes';
 
 const initialState: State = {
   sections: [],
