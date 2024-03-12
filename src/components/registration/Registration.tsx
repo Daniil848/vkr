@@ -1,29 +1,12 @@
-import React, { useState } from 'react';
-import { useAppSelector, useAppDispatch } from '../../app/hooks';
+import React from 'react';
+import { useRegistration } from './useRegistration';
 import Input from '../../UI/input/Input';
 import Button from '../../UI/button/Button';
 import styles from './Registration.module.scss';
-import { closeRegistrtionModal } from '../../app/mainSlice';
 
 const Registration = () => {
-  const state = useAppSelector((state) => state.slice);
-  const dispatch = useAppDispatch();
-
-  const [userName, setUserName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const userDb = {
-    id: 0,
-    email: userName,
-    username: email,
-    password: password,
-  };
-
-  const handleClose = () => {
-    dispatch(closeRegistrtionModal());
-  };
-
+  const { state, setUserName, setEmail, setPassword, handleClose, userDb } =
+    useRegistration();
   return (
     <>
       <div className={styles.wrapper}>
