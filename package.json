@@ -41,6 +41,7 @@
       "last 1 safari version"
     ]
   },
+  "homepage": "https://Daniil848.github.io/vkr/",
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.7",
     "eslint": "^8.57.0",

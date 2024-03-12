@@ -24,9 +24,7 @@ const ArticlesPage = () => {
                   )
                   .map((article) => (
                     <div key={article.id}>
-                      <Link to={`/articles/article/${article.id}`}>
-                        {article.title}
-                      </Link>
+                      <Link to={`/article/${article.id}`}>{article.title}</Link>
                     </div>
                   ))}
               </div>
