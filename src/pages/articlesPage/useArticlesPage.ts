@@ -6,10 +6,10 @@ import {
   getAllSections,
   searchArticles,
   setSearchArticles,
-} from '../../app/mainSlice';
+} from '../../app/articlesSlice';
 
 export const useArticlesPage = () => {
-  const state = useAppSelector((state) => state.slice);
+  const articlesState = useAppSelector((state) => state.articlesSlice);
   const dispatch = useAppDispatch();
 
   const [search, setSearch] = useState<string>('');
@@ -35,7 +35,7 @@ export const useArticlesPage = () => {
   };
 
   return {
-    state,
+    articlesState,
     handleSearchChange,
   };
 };

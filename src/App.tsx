@@ -12,7 +12,7 @@ import Registration from './components/registration/Registration';
 import './App.css';
 
 function App() {
-  const state = useAppSelector((state) => state.slice);
+  const state = useAppSelector((state) => state.articlesSlice);
   return (
     <div className="App">
       <Header />

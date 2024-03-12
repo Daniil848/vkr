@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import styles from './Header.module.scss';
 
 const Header = () => {
-  const { state, handleOpenLogIn, handleOpenSignIn } = useHeader();
+  const { handleOpenLogIn, handleOpenSignIn } = useHeader();
 
   return (
     <>

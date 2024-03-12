@@ -6,17 +6,17 @@ import HTMLReactParser from 'html-react-parser';
 import styles from './ArticlePage.module.scss';
 
 const ArticlePage = () => {
-  const { state } = useArticlePage();
+  const { articlesState } = useArticlePage();
 
-  if (!state.article) return null;
+  if (!articlesState.article) return null;
   return (
     <>
       <SideBar />
-      {!state.loading && (
+      {!articlesState.loading && (
         <div className={styles.wrapper}>
           <article>
-            <h1>{state.article.title}</h1>
-            {HTMLReactParser(state.article.text)}
+            <h1>{articlesState.article.title}</h1>
+            {HTMLReactParser(articlesState.article.text)}
           </article>
         </div>
       )}

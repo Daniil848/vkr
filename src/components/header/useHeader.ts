@@ -1,8 +1,8 @@
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
-import { openLogIn, openSignIn } from '../../app/mainSlice';
+import { openLogIn, openSignIn } from '../../app/articlesSlice';
 
 export const useHeader = () => {
-  const state = useAppSelector((state) => state.slice);
+  const articlesState = useAppSelector((state) => state.articlesSlice);
   const dispatch = useAppDispatch();
 
   const handleOpenSignIn = () => {
@@ -13,5 +13,5 @@ export const useHeader = () => {
     dispatch(openLogIn());
   };
 
-  return { state, dispatch, handleOpenLogIn, handleOpenSignIn };
+  return { articlesState, dispatch, handleOpenLogIn, handleOpenSignIn };
 };

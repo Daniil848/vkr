@@ -1,14 +1,10 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { useParams } from 'react-router-dom';
-import {
-  clearArticleState,
-  getSingleArticle,
-  // getTestByArticleId,
-} from '../../app/mainSlice';
+import { clearArticleState, getSingleArticle } from '../../app/articlesSlice';
 
 export const useArticlePage = () => {
-  const state = useAppSelector((state) => state.slice);
+  const articlesState = useAppSelector((state) => state.articlesSlice);
   const dispatch = useAppDispatch();
 
   const { articleID } = useParams();
@@ -16,7 +12,6 @@ export const useArticlePage = () => {
   useEffect(() => {
     if (articleID) {
       dispatch(getSingleArticle(articleID));
-      // dispatch(getTestByArticleId(articleID));
     }
   }, [dispatch, articleID]);
 
@@ -27,6 +22,6 @@ export const useArticlePage = () => {
   }, []);
 
   return {
-    state,
+    articlesState,
   };
 };

@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { getTestByArticleId, setTestError } from '../../app/mainSlice';
+import { getTestByArticleId, setTestError } from '../../app/articlesSlice';
 
 export const useTest = () => {
-  const state = useAppSelector((state) => state.slice);
+  const articlesState = useAppSelector((state) => state.articlesSlice);
   const dispatch = useAppDispatch();
   const [answers, setAnswers] = useState({});
   const [result, setResult] = useState<number | undefined>();
@@ -24,7 +24,9 @@ export const useTest = () => {
 
   const handleSubmit = () => {
     const answersArr = Object.values(answers);
-    const correctAnswers = state.test?.questions.map((el) => el.correctAnswer);
+    const correctAnswers = articlesState.test?.questions.map(
+      (el) => el.correctAnswer,
+    );
 
     if (correctAnswers && answersArr.length < correctAnswers.length) {
       dispatch(setTestError(true));
@@ -39,7 +41,7 @@ export const useTest = () => {
   };
 
   return {
-    state,
+    articlesState,
     answers,
     handleRadioChange,
     handleSubmit,
