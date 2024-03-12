@@ -5,8 +5,14 @@ import Button from '../../UI/button/Button';
 import styles from './Registration.module.scss';
 
 const Registration = () => {
-  const { state, setUserName, setEmail, setPassword, handleClose, userDb } =
-    useRegistration();
+  const {
+    state,
+    setUserName,
+    setEmail,
+    setPassword,
+    handleClose,
+    handleRegistation,
+  } = useRegistration();
   return (
     <>
       <div className={styles.wrapper}>
@@ -41,7 +47,7 @@ const Registration = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            <Button text="OK" />
+            <Button text="OK" onClick={() => handleRegistation()} />
           </div>
         </div>
       </div>

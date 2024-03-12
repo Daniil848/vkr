@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { db } from '../firebase';
 import { collection, doc, getDoc, getDocs, query } from 'firebase/firestore';
-import { Article, Section, State, Test } from './types';
+import { Article, Section, State, Test, User } from './types';
+import axios from 'axios';
 
 const initialState: State = {
   sections: [],
@@ -16,6 +17,9 @@ const initialState: State = {
   searchArticles: false,
   signIn: false,
   logIn: false,
+  authorized: false,
+  user: null,
+  users: [],
 };
 
 export const getAllArticles = createAsyncThunk<
@@ -169,6 +173,21 @@ export const getAllSections = createAsyncThunk<
   }
 });
 
+export const registration = createAsyncThunk<
+  User,
+  User,
+  { rejectValue: string }
+>('store/registration', async (userDb, { rejectWithValue }) => {
+  try {
+    const { data } = await axios.post(`http://localhost:3001/users`, userDb);
+
+    return data;
+  } catch (error) {
+    console.log(error);
+    return rejectWithValue('Server Error!');
+  }
+});
+
 const mainSlice = createSlice({
   name: 'slice',
   initialState,
@@ -237,6 +256,14 @@ const mainSlice = createSlice({
       .addCase(searchArticles.fulfilled, (state, action) => {
         state.loading = false;
         state.articles = action.payload;
+      })
+      .addCase(registration.pending, (state) => {
+        state.loading = true;
+        state.error = false;
+      })
+      .addCase(registration.fulfilled, (state, action) => {
+        state.loading = false;
+        state.user = action.payload;
       });
   },
 });

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
-import { closeRegistrtionModal } from '../../app/mainSlice';
+import { closeRegistrtionModal, registration } from '../../app/mainSlice';
 
 export const useRegistration = () => {
   const state = useAppSelector((state) => state.slice);
@@ -13,12 +13,16 @@ export const useRegistration = () => {
   const userDb = {
     id: 0,
     email: userName,
-    username: email,
+    userName: email,
     password: password,
   };
 
   const handleClose = () => {
     dispatch(closeRegistrtionModal());
+  };
+
+  const handleRegistation = () => {
+    dispatch(registration(userDb));
   };
 
   return {
@@ -28,5 +32,6 @@ export const useRegistration = () => {
     setPassword,
     handleClose,
     userDb,
+    handleRegistation,
   };
 };
