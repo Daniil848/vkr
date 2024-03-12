@@ -6,7 +6,7 @@ import styles from './Registration.module.scss';
 
 const Registration = () => {
   const {
-    articlesState,
+    usersState,
     setUserName,
     setEmail,
     setPassword,
@@ -22,9 +22,9 @@ const Registration = () => {
               x
             </button>
             <div className={styles.formTitles}>
-              <p>{articlesState.logIn ? 'Зарегистрироваться' : 'Войти'}</p>
+              <p>{usersState.logIn ? 'Зарегистрироваться' : 'Войти'}</p>
             </div>
-            {articlesState.logIn && (
+            {usersState.logIn && (
               <div className={styles.inputsWrapper}>
                 <Input
                   type="text"

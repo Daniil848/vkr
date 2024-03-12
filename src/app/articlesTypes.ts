@@ -39,9 +39,4 @@ export interface State {
   loading: boolean;
   error: boolean;
   searchArticles: boolean;
-  signIn: boolean;
-  logIn: boolean;
-  authorized: boolean;
-  user: User | null;
-  users: User[];
 }

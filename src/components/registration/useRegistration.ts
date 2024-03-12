@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
-import { closeRegistrtionModal, registration } from '../../app/articlesSlice';
+import { closeRegistrtionModal, registration } from '../../app/usersSlice';
 
 export const useRegistration = () => {
-  const articlesState = useAppSelector((state) => state.articlesSlice);
+  const usersState = useAppSelector((state) => state.usersSlice);
   const dispatch = useAppDispatch();
 
   const [userName, setUserName] = useState('');
@@ -26,7 +26,7 @@ export const useRegistration = () => {
   };
 
   return {
-    articlesState,
+    usersState,
     setUserName,
     setEmail,
     setPassword,

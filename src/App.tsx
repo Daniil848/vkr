@@ -12,12 +12,13 @@ import Registration from './components/registration/Registration';
 import './App.css';
 
 function App() {
-  const state = useAppSelector((state) => state.articlesSlice);
+  const articlesState = useAppSelector((state) => state.articlesSlice);
+  const usersState = useAppSelector((state) => state.usersSlice);
   return (
     <div className="App">
       <Header />
-      {(state.signIn || state.logIn) && <Registration />}
-      {state.loading && <Loader />}
+      {(usersState.signIn || usersState.logIn) && <Registration />}
+      {articlesState.loading && <Loader />}
       <div className="container">
         <Routes>
           <Route index element={<HomePage />} />

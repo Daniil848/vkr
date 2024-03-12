@@ -1,0 +1,63 @@
+import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
+import { User } from './articlesTypes';
+import { State } from './usersTypes';
+
+const initialState: State = {
+  loading: false,
+  error: false,
+  signIn: false,
+  logIn: false,
+  authorized: false,
+  user: null,
+  users: [],
+};
+
+export const registration = createAsyncThunk<
+  User,
+  User,
+  { rejectValue: string }
+>('store/registration', async (userDb, { rejectWithValue }) => {
+  try {
+    const { data } = await axios.post(`http://localhost:3001/users`, userDb);
+
+    return data;
+  } catch (error) {
+    console.log(error);
+    return rejectWithValue('Server Error!');
+  }
+});
+
+const usersSlice = createSlice({
+  name: 'usersSlice',
+  initialState,
+  reducers: {
+    openLogIn(state) {
+      state.logIn = true;
+    },
+    openSignIn(state) {
+      state.signIn = true;
+    },
+    closeRegistrtionModal(state) {
+      state.signIn = false;
+      state.logIn = false;
+    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(registration.pending, (state) => {
+        state.loading = true;
+        state.error = false;
+      })
+      .addCase(registration.fulfilled, (state, action) => {
+        state.loading = false;
+        state.user = action.payload;
+      });
+  },
+});
+
+export const { openLogIn, openSignIn, closeRegistrtionModal } =
+  usersSlice.actions;
+
+export default usersSlice.reducer;
