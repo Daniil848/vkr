@@ -8,7 +8,7 @@ export const useHeader = () => {
   const usersState = useAppSelector((state) => state.usersSlice);
   const dispatch = useAppDispatch();
 
-  const cookie = Cookies.get();
+  const cookie = Cookies.get('userId');
 
   const handleOpenSignIn = () => {
     dispatch(openSignIn());

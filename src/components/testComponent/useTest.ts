@@ -19,7 +19,7 @@ export const useTest = () => {
 
   const { articleID } = useParams();
 
-  const cookie = Cookies.get();
+  const cookie = Cookies.get('userId');
 
   useEffect(() => {
     // сначала получаем тест и потом жем его id для получения результата
@@ -28,7 +28,7 @@ export const useTest = () => {
         if (articlesState.test?.id) {
           dispatch(
             getTestResult({
-              userId: cookie.userId,
+              userId: cookie,
               testId: articlesState.test.id,
             }),
           );
@@ -67,7 +67,7 @@ export const useTest = () => {
       dispatch(
         sendTestResult({
           id: nanoid(),
-          userId: cookie.userId,
+          userId: cookie,
           testId: articlesState.test?.id,
           sectionId: articlesState.test?.sectionId,
           grade: score,

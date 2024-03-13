@@ -6,7 +6,7 @@ export interface User {
 }
 export interface Result {
   id: string;
-  userId: string;
+  userId: string | undefined;
   testId: string | undefined;
   sectionId: number | undefined;
   grade: number | undefined;

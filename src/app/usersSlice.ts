@@ -78,7 +78,7 @@ export const sendTestResult = createAsyncThunk<
 
 export const getTestResult = createAsyncThunk<
   Result,
-  { testId: string | undefined; userId: string },
+  { testId: string | undefined; userId: string | undefined },
   { rejectValue: string }
 >('store/getTestResult', async (properties, { rejectWithValue }) => {
   try {
@@ -139,9 +139,6 @@ const usersSlice = createSlice({
         state.logIn = false;
 
         Cookies.set('userId', action.payload.id);
-        Cookies.set('userName', action.payload.userName);
-        Cookies.set('userEmail', action.payload.email);
-        Cookies.set('userPassword', action.payload.password);
       })
       .addCase(autorize.pending, (state) => {
         state.loading = true;
@@ -154,9 +151,6 @@ const usersSlice = createSlice({
         state.signIn = false;
 
         Cookies.set('userId', action.payload.id);
-        Cookies.set('userName', action.payload.userName);
-        Cookies.set('userEmail', action.payload.email);
-        Cookies.set('userPassword', action.payload.password);
       })
       .addCase(sendTestResult.pending, (state) => {
         state.loading = true;

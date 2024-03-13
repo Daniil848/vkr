@@ -73,7 +73,7 @@ const Test = () => {
               </span>
             </p>
           )}
-          {Object.keys(cookie).length === 0 && (
+          {!cookie && (
             <div className={styles.lockTest}>
               <p className={styles.lockTestTitle}>
                 Чтобы пройти тест зарегистрируйтесь!

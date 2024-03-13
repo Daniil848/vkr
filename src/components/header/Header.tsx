@@ -35,7 +35,7 @@ const Header = () => {
               </li>
             </ul>
             <div className={styles.headerRegistration}>
-              {Object.keys(cookie).length === 0 && (
+              {!cookie && (
                 <>
                   <button
                     className={styles.headerRegistrationButton}
@@ -51,13 +51,13 @@ const Header = () => {
                   </button>
                 </>
               )}
-              {Object.keys(cookie).length !== 0 && (
+              {cookie && (
                 <Link
                   to={'/profile'}
                   className={styles.headerRegistrationProfile}
                 >
                   <p className={styles.headerRegistrationProfileUser}>
-                    {cookie.userName}
+                    {cookie}
                   </p>
                   <FontAwesomeIcon
                     icon={faCircleUser}
