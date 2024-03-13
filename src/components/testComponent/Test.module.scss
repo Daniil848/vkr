@@ -1,5 +1,5 @@
 .container {
-  @apply w-1/2 mx-auto my-6 p-4 bg-slate-200 rounded;
+  @apply relative w-1/2 mx-auto my-6 p-4 bg-slate-200 rounded;
 
   .testTitle {
     @apply my-0 text-3xl font-semibold;
@@ -42,6 +42,18 @@
 
     .resultCount {
       @apply text-slate-500 font-medium text-2xl;
+    }
+  }
+
+  .lockTest {
+    @apply absolute top-0 left-0 backdrop-blur-sm h-full w-full flex flex-col items-center justify-center rounded;
+
+    .lockTestTitle {
+      @apply text-2xl font-semibold;
+    }
+
+    .buttonsContainer {
+      @apply w-[200px] flex flex-col gap-4;
     }
   }
 }

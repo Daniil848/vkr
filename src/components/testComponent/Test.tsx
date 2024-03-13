@@ -4,7 +4,15 @@ import Button from '../../UI/button/Button';
 import styles from './Test.module.scss';
 
 const Test = () => {
-  const { articlesState, handleRadioChange, handleSubmit, result } = useTest();
+  const {
+    articlesState,
+    handleRadioChange,
+    handleSubmit,
+    result,
+    handleOpenLogIn,
+    handleOpenSignIn,
+    cookie,
+  } = useTest();
 
   if (!articlesState.test) return null;
   return (
@@ -59,6 +67,17 @@ const Test = () => {
                 {articlesState.test.questions.length}
               </span>
             </p>
+          )}
+          {Object.keys(cookie).length === 0 && (
+            <div className={styles.lockTest}>
+              <p className={styles.lockTestTitle}>
+                Чтобы пройти тест зарегистрируйтесь!
+              </p>
+              <div className={styles.buttonsContainer}>
+                <Button onClick={() => handleOpenSignIn()} text="Войти" />
+                <Button onClick={() => handleOpenLogIn()} text="Регистрация " />
+              </div>
+            </div>
           )}
         </div>
       )}

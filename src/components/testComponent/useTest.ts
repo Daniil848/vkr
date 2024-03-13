@@ -2,18 +2,24 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { getTestByArticleId, setTestError } from '../../app/articlesSlice';
+import Cookies from 'js-cookie';
+import { openLogIn, openSignIn } from '../../app/usersSlice';
 
 export const useTest = () => {
   const articlesState = useAppSelector((state) => state.articlesSlice);
+  const usersState = useAppSelector((state) => state.usersSlice);
   const dispatch = useAppDispatch();
   const [answers, setAnswers] = useState({});
   const [result, setResult] = useState<number | undefined>();
 
   const { articleID } = useParams();
 
+  const cookie = Cookies.get();
+  console.log(cookie);
+
   useEffect(() => {
     if (articleID) dispatch(getTestByArticleId(articleID));
-  }, []);
+  }, [usersState.authorized]);
 
   const handleRadioChange = (questionId: number, answerId: number) => {
     setAnswers((prevState) => ({
@@ -40,11 +46,22 @@ export const useTest = () => {
     }
   };
 
+  const handleOpenSignIn = () => {
+    dispatch(openSignIn());
+  };
+
+  const handleOpenLogIn = () => {
+    dispatch(openLogIn());
+  };
+
   return {
     articlesState,
     answers,
     handleRadioChange,
     handleSubmit,
     result,
+    handleOpenLogIn,
+    handleOpenSignIn,
+    cookie,
   };
 };

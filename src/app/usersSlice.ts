@@ -80,6 +80,7 @@ const usersSlice = createSlice({
       .addCase(registration.fulfilled, (state, action) => {
         state.loading = false;
         state.user = action.payload;
+        state.authorized = true;
         state.logIn = false;
 
         Cookies.set('userName', action.payload.userName);
@@ -93,6 +94,7 @@ const usersSlice = createSlice({
       .addCase(autorize.fulfilled, (state, action) => {
         state.loading = false;
         state.user = action.payload;
+        state.authorized = true;
         state.signIn = false;
 
         Cookies.set('userName', action.payload.userName);
