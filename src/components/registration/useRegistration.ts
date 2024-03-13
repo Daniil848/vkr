@@ -5,6 +5,7 @@ import {
   closeRegistrtionModal,
   registration,
 } from '../../app/usersSlice';
+import { nanoid } from 'nanoid';
 
 export const useRegistration = () => {
   const usersState = useAppSelector((state) => state.usersSlice);
@@ -15,7 +16,7 @@ export const useRegistration = () => {
   const [password, setPassword] = useState('');
 
   const userDb = {
-    id: '',
+    id: nanoid(),
     userName: userName,
     email: email,
     password: password,

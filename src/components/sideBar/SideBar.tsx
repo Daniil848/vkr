@@ -25,9 +25,7 @@ const SideBar = () => {
                 .filter((article) => article.sectionId.toString() == section.id)
                 .map((article) => (
                   <li key={article.id} className={styles.sideBarListItem}>
-                    <Link to={`/articles/article/${article.id}`}>
-                      {article.title}
-                    </Link>
+                    <Link to={`/article/${article.id}`}>{article.title}</Link>
                   </li>
                 ))}
             </ul>

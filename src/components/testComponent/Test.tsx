@@ -6,9 +6,9 @@ import styles from './Test.module.scss';
 const Test = () => {
   const {
     articlesState,
+    usersState,
     handleRadioChange,
     handleSubmit,
-    result,
     handleOpenLogIn,
     handleOpenSignIn,
     cookie,
@@ -26,11 +26,13 @@ const Test = () => {
               {item.answers.map((el) => (
                 <div
                   key={el.id}
-                  className={`${styles.testAnswers} ${result && item.correctAnswer === el.id ? styles.correct : ''}`}
+                  className={`${styles.testAnswers} ${usersState.result && item.correctAnswer === el.id ? styles.correct : ''}`}
                 >
                   <input
                     type="radio"
-                    disabled={Boolean(result) && !articlesState.testError}
+                    disabled={
+                      Boolean(usersState.result) && !articlesState.testError
+                    }
                     id={el.answer}
                     value={el.id}
                     name={item.question}
@@ -47,7 +49,7 @@ const Test = () => {
               ))}
             </div>
           ))}
-          {!result && (
+          {!usersState.result && (
             <div className={styles.resultContainer}>
               {articlesState.testError && (
                 <p className={styles.buttonErrorText}>
@@ -59,12 +61,15 @@ const Test = () => {
               </div>
             </div>
           )}
-          {result && (
+          {usersState.result && (
             <p className={styles.result}>
               Правильных ответов{' '}
-              <span className={styles.resultCount}>{result}</span> из{' '}
               <span className={styles.resultCount}>
-                {articlesState.test.questions.length}
+                {usersState.result.grade}
+              </span>{' '}
+              из{' '}
+              <span className={styles.resultCount}>
+                {usersState.result.answersCount}
               </span>
             </p>
           )}

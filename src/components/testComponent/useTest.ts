@@ -3,23 +3,38 @@ import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { getTestByArticleId, setTestError } from '../../app/articlesSlice';
 import Cookies from 'js-cookie';
-import { openLogIn, openSignIn, sendTestResult } from '../../app/usersSlice';
-import { Result } from '../../app/usersTypes';
+import {
+  getTestResult,
+  openLogIn,
+  openSignIn,
+  sendTestResult,
+} from '../../app/usersSlice';
+import { nanoid } from 'nanoid';
 
 export const useTest = () => {
   const articlesState = useAppSelector((state) => state.articlesSlice);
   const usersState = useAppSelector((state) => state.usersSlice);
   const dispatch = useAppDispatch();
   const [answers, setAnswers] = useState({});
-  const [result, setResult] = useState<number | undefined>();
 
   const { articleID } = useParams();
 
   const cookie = Cookies.get();
 
   useEffect(() => {
-    if (articleID) dispatch(getTestByArticleId(articleID));
-  }, []);
+    if (articleID) {
+      dispatch(getTestByArticleId(articleID)).then(() => {
+        if (articlesState.test?.id) {
+          dispatch(
+            getTestResult({
+              userId: cookie.userId,
+              testId: articlesState.test.id,
+            }),
+          );
+        }
+      });
+    }
+  }, [articleID, articlesState.test?.id]);
 
   const handleRadioChange = (questionId: number, answerId: number) => {
     setAnswers((prevState) => ({
@@ -34,24 +49,25 @@ export const useTest = () => {
       (el) => el.correctAnswer,
     );
 
-    if (correctAnswers && answersArr.length < correctAnswers.length) {
-      dispatch(setTestError(true));
-    } else {
+    if (correctAnswers && answersArr.length === correctAnswers.length) {
       dispatch(setTestError(false));
-      const score = correctAnswers
-        ?.filter((val, index) => val === answersArr[index])
-        .reduce((acc) => acc + 1, 0);
 
-      setResult(score);
+      const score = correctAnswers
+        .filter((val, index) => val === answersArr[index])
+        .reduce((acc) => acc + 1, 0);
 
       dispatch(
         sendTestResult({
+          id: nanoid(),
           userId: cookie.userId,
           testId: articlesState.test?.id,
           grade: score,
           answersCount: articlesState.test?.questions.length,
         }),
       );
+    } else {
+      dispatch(setTestError(true));
+      return;
     }
   };
 
@@ -65,10 +81,10 @@ export const useTest = () => {
 
   return {
     articlesState,
+    usersState,
     answers,
     handleRadioChange,
     handleSubmit,
-    result,
     handleOpenLogIn,
     handleOpenSignIn,
     cookie,
