@@ -8,8 +8,10 @@ export interface Result {
   id: string;
   userId: string;
   testId: string | undefined;
+  sectionId: number | undefined;
   grade: number | undefined;
   answersCount: number | undefined;
+  percentCorrectAnswers: number;
 }
 export interface State {
   loading: boolean;

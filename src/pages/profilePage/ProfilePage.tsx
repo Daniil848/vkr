@@ -3,7 +3,7 @@ import { useProfilePage } from './useProfilePage';
 import styles from './ProfilePage.module.scss';
 
 const ProfilePage = () => {
-  const { usersState, articlesState, percent } = useProfilePage();
+  const { usersState, articlesState, averageGrade } = useProfilePage();
 
   return (
     <>
@@ -25,7 +25,9 @@ const ProfilePage = () => {
                 if (testsWithResults.length > 0) {
                   return (
                     <div key={section.id}>
-                      <p className={styles.resultsSection}>{section.name}</p>
+                      <p
+                        className={styles.resultsSection}
+                      >{`${section.name} : Средний балл - ${averageGrade()}`}</p>
                       {testsWithResults.map((test) => (
                         <ul key={test.id} className={styles.resultGrades}>
                           <li>{test.title}:</li>
@@ -34,7 +36,7 @@ const ProfilePage = () => {
                             .map((result) => (
                               <div key={result.id}>
                                 <li className={styles.grade}>
-                                  {`${result.grade}/${result.answersCount} Правильных ответов - ${result.grade && result.answersCount ? percent(result.grade, result.answersCount) : ''} Баллов`}
+                                  {`${result.grade}/${result.answersCount} Правильных ответов - ${result.percentCorrectAnswers} Баллов`}
                                 </li>
                               </div>
                             ))}

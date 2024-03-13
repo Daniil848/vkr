@@ -2302,25 +2302,31 @@
   ],
   "usersResults": [
     {
-      "id": "WV5TYQ05IrBeCZIj1XnsT",
+      "id": "gE5jBnrALYsjM3NU_mYqB",
       "userId": "qWUPDeewnmFG7NSZ4vrXB",
       "testId": "1",
+      "sectionId": 1,
       "grade": 2,
-      "answersCount": 5
+      "answersCount": 5,
+      "percentCorrectAnswers": 40
     },
     {
-      "id": "yQahvx6akx-0jaPExObok",
+      "id": "92gDW_lR4Mw6PKeNoi6jY",
       "userId": "qWUPDeewnmFG7NSZ4vrXB",
       "testId": "3",
+      "sectionId": 1,
       "grade": 2,
-      "answersCount": 5
+      "answersCount": 5,
+      "percentCorrectAnswers": 40
     },
     {
-      "id": "3JWUPzSTWkxBD3UBZzncB",
+      "id": "RPKDfSHCLsPuCpZmBIx8b",
       "userId": "qWUPDeewnmFG7NSZ4vrXB",
-      "testId": "5",
-      "grade": 1,
-      "answersCount": 5
+      "testId": "4",
+      "sectionId": 1,
+      "grade": 2,
+      "answersCount": 5,
+      "percentCorrectAnswers": 40
     }
   ]
 }

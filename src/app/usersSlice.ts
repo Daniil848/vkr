@@ -78,7 +78,7 @@ export const sendTestResult = createAsyncThunk<
 
 export const getTestResult = createAsyncThunk<
   Result,
-  { testId: string | undefined; userId: string }, // userId может быть undefined
+  { testId: string | undefined; userId: string },
   { rejectValue: string }
 >('store/getTestResult', async (properties, { rejectWithValue }) => {
   try {

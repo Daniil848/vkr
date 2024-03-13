@@ -49,20 +49,28 @@ export const useTest = () => {
       (el) => el.correctAnswer,
     );
 
-    if (correctAnswers && answersArr.length === correctAnswers.length) {
+    if (
+      correctAnswers &&
+      answersArr.length === correctAnswers.length &&
+      articlesState.test?.questions.length
+    ) {
       dispatch(setTestError(false));
 
       const score = correctAnswers
         .filter((val, index) => val === answersArr[index])
         .reduce((acc) => acc + 1, 0);
 
+      const percent = (score / articlesState.test.questions.length) * 100;
+
       dispatch(
         sendTestResult({
           id: nanoid(),
           userId: cookie.userId,
           testId: articlesState.test?.id,
+          sectionId: articlesState.test?.sectionId,
           grade: score,
-          answersCount: articlesState.test?.questions.length,
+          answersCount: articlesState.test.questions.length,
+          percentCorrectAnswers: percent,
         }),
       );
     } else {

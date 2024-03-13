@@ -17,13 +17,17 @@ export const useProfilePage = () => {
     dispatch(getAllTests());
   }, []);
 
-  const percent = (grade: number, count: number) => {
-    return (grade / count) * 100;
+  const averageGrade = () => {
+    const arr = usersState.results.map((el) => el.percentCorrectAnswers); // массив чисел для вычисления
+
+    const average = arr.reduce((acc, number) => acc + number, 0) / arr.length; // вычисление среднего арифметического
+
+    return average;
   };
 
   return {
     usersState,
     articlesState,
-    percent,
+    averageGrade,
   };
 };
