@@ -94,6 +94,23 @@ export const getTestResult = createAsyncThunk<
   }
 });
 
+export const getAllResults = createAsyncThunk<
+  Result[],
+  string,
+  { rejectValue: string }
+>('store/getAllResults', async (userId, { rejectWithValue }) => {
+  try {
+    const { data } = await axios.get(`http://localhost:3001/usersResults`);
+    const filteredData = data.filter(
+      (el: { userId: string }) => el.userId === userId,
+    );
+    return filteredData;
+  } catch (error) {
+    console.log(error);
+    return rejectWithValue('Server Error!');
+  }
+});
+
 const usersSlice = createSlice({
   name: 'usersSlice',
   initialState,
@@ -156,6 +173,14 @@ const usersSlice = createSlice({
       .addCase(getTestResult.fulfilled, (state, action) => {
         state.loading = false;
         state.result = action.payload;
+      })
+      .addCase(getAllResults.pending, (state) => {
+        state.loading = true;
+        state.error = false;
+      })
+      .addCase(getAllResults.fulfilled, (state, action) => {
+        state.loading = false;
+        state.results = action.payload;
       });
   },
 });

@@ -1,16 +1,17 @@
 import React from 'react';
 import { useAppSelector } from './app/hooks';
 import { Routes, Route } from 'react-router';
+import { Toaster } from 'react-hot-toast';
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
 import HomePage from './pages/homePage/HomePage';
 import ArticlesPage from './pages/articlesPage/ArticlesPage';
 import ArticlePage from './pages/articlePage/ArticlePage';
 import AboutPage from './pages/aboutPage/AboutPage';
-import Loader from './UI/loader/Loader';
+import ProfilePage from './pages/profilePage/ProfilePage';
 import Registration from './components/registration/Registration';
+import Loader from './UI/loader/Loader';
 import './App.css';
-import { Toaster } from 'react-hot-toast';
 
 function App() {
   const articlesState = useAppSelector((state) => state.articlesSlice);
@@ -26,6 +27,7 @@ function App() {
           <Route path="/articles" element={<ArticlesPage />} />
           <Route path="/article/:articleID" element={<ArticlePage />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
         </Routes>
       </div>
       <Footer />

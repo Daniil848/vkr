@@ -52,10 +52,18 @@ const Header = () => {
                 </>
               )}
               {Object.keys(cookie).length !== 0 && (
-                <FontAwesomeIcon
-                  icon={faCircleUser}
+                <Link
+                  to={'/profile'}
                   className={styles.headerRegistrationProfile}
-                />
+                >
+                  <p className={styles.headerRegistrationProfileUser}>
+                    {cookie.userName}
+                  </p>
+                  <FontAwesomeIcon
+                    icon={faCircleUser}
+                    className={styles.headerRegistrationProfileIcon}
+                  />
+                </Link>
               )}
             </div>
           </div>

@@ -167,6 +167,35 @@ export const getAllSections = createAsyncThunk<
   }
 });
 
+export const getAllTests = createAsyncThunk<
+  Test[],
+  undefined,
+  { rejectValue: string }
+>('store/getAllTests', async (_, { rejectWithValue }) => {
+  try {
+    const docRef = query(collection(db, 'tests'));
+    const docs = await getDocs(docRef);
+    const data: Test[] = [];
+
+    docs.forEach((doc: any) => {
+      const test: Test = {
+        id: doc.id,
+        articleId: doc.data().articleId,
+        sectionId: doc.data().sectionId,
+        title: doc.data().title,
+        questions: doc.data().questions,
+      };
+
+      data.push(test);
+    });
+
+    return data;
+  } catch (error) {
+    console.log(error);
+    return rejectWithValue('Server Error!');
+  }
+});
+
 const articlesSlice = createSlice({
   name: 'slice',
   initialState,
@@ -225,6 +254,14 @@ const articlesSlice = createSlice({
       .addCase(searchArticles.fulfilled, (state, action) => {
         state.loading = false;
         state.articles = action.payload;
+      })
+      .addCase(getAllTests.pending, (state) => {
+        state.loading = true;
+        state.error = false;
+      })
+      .addCase(getAllTests.fulfilled, (state, action) => {
+        state.loading = false;
+        state.tests = action.payload;
       });
   },
 });
