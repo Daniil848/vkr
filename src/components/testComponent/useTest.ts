@@ -22,6 +22,7 @@ export const useTest = () => {
   const cookie = Cookies.get();
 
   useEffect(() => {
+    // сначала получаем тест и потом жем его id для получения результата
     if (articleID) {
       dispatch(getTestByArticleId(articleID)).then(() => {
         if (articlesState.test?.id) {
@@ -44,10 +45,10 @@ export const useTest = () => {
   };
 
   const handleSubmit = () => {
-    const answersArr = Object.values(answers);
+    const answersArr = Object.values(answers); // массив ответов
     const correctAnswers = articlesState.test?.questions.map(
       (el) => el.correctAnswer,
-    );
+    ); // массив правильных ответов
 
     if (
       correctAnswers &&
@@ -58,9 +59,10 @@ export const useTest = () => {
 
       const score = correctAnswers
         .filter((val, index) => val === answersArr[index])
-        .reduce((acc) => acc + 1, 0);
+        .reduce((acc) => acc + 1, 0); // счет количество правильных ответов
 
-      const percent = (score / articlesState.test.questions.length) * 100;
+      const percentCorrectAnswers =
+        (score / articlesState.test.questions.length) * 100; // процент правильных ответов
 
       dispatch(
         sendTestResult({
@@ -70,7 +72,7 @@ export const useTest = () => {
           sectionId: articlesState.test?.sectionId,
           grade: score,
           answersCount: articlesState.test.questions.length,
-          percentCorrectAnswers: percent,
+          percentCorrectAnswers: percentCorrectAnswers,
         }),
       );
     } else {
