@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { db } from '../firebase';
 import { collection, doc, getDoc, getDocs, query } from 'firebase/firestore';
-import { Article, Section, State, Test } from './types';
+import { Article, Section, State, Test } from './articlesTypes';
 
 const initialState: State = {
   sections: [],
@@ -167,7 +167,7 @@ export const getAllSections = createAsyncThunk<
   }
 });
 
-const mainSlice = createSlice({
+const articlesSlice = createSlice({
   name: 'slice',
   initialState,
   reducers: {
@@ -234,6 +234,6 @@ export const {
   setSearchArticles,
   clearSearchArticles,
   setTestError,
-} = mainSlice.actions;
+} = articlesSlice.actions;
 
-export default mainSlice.reducer;
+export default articlesSlice.reducer;

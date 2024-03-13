@@ -3,10 +3,10 @@ import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import styles from './SideBar.module.scss';
 import { Link } from 'react-router-dom';
-import { getAllArticles, getAllSections } from '../../app/mainSlice';
+import { getAllArticles, getAllSections } from '../../app/articlesSlice';
 
 const SideBar = () => {
-  const state = useAppSelector((state) => state.slice);
+  const articlesState = useAppSelector((state) => state.articlesSlice);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -17,11 +17,11 @@ const SideBar = () => {
   return (
     <>
       <aside className={styles.sideBar}>
-        {state.sections.map((section) => (
+        {articlesState.sections.map((section) => (
           <div key={section.id}>
             <p className={styles.sideBarSection}>{section.name}</p>
             <ul className={styles.sideBarList}>
-              {state.articles
+              {articlesState.articles
                 .filter((article) => article.sectionId.toString() == section.id)
                 .map((article) => (
                   <li key={article.id} className={styles.sideBarListItem}>

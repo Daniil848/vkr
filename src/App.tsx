@@ -8,14 +8,18 @@ import ArticlesPage from './pages/articlesPage/ArticlesPage';
 import ArticlePage from './pages/articlePage/ArticlePage';
 import AboutPage from './pages/aboutPage/AboutPage';
 import Loader from './UI/loader/Loader';
+import Registration from './components/registration/Registration';
 import './App.css';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
-  const state = useAppSelector((state) => state.slice);
+  const articlesState = useAppSelector((state) => state.articlesSlice);
+  const usersState = useAppSelector((state) => state.usersSlice);
   return (
     <div className="App">
       <Header />
-      {state.loading && <Loader />}
+      {(usersState.signIn || usersState.logIn) && <Registration />}
+      {articlesState.loading && <Loader />}
       <div className="container">
         <Routes>
           <Route index element={<HomePage />} />
@@ -25,6 +29,7 @@ function App() {
         </Routes>
       </div>
       <Footer />
+      <Toaster position="bottom-center" reverseOrder={false} />
     </div>
   );
 }

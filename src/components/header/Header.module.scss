@@ -23,5 +23,26 @@
         }
       }
     }
+
+    .headerRegistration {
+      @apply flex justify-end w-1/4 gap-2 pr-3;
+
+      .headerRegistrationButton {
+        @apply w-fit
+        h-9
+        border-0
+        text-slate-700
+        bg-slate-100
+        hover:bg-slate-300
+        focus:ring-4
+        focus:ring-slate-400
+        focus:outline-none
+        font-medium
+        transition-all
+        rounded-lg
+        px-5
+        py-1;
+      }
+    }
   }
 }
