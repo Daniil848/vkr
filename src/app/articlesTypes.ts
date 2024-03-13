@@ -23,12 +23,6 @@ export interface Test {
     }[];
   }[];
 }
-export interface User {
-  id: number;
-  userName: string;
-  email: string;
-  password: string;
-}
 export interface State {
   sections: Section[];
   article: Article | null;

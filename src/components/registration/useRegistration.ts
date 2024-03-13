@@ -15,7 +15,7 @@ export const useRegistration = () => {
   const [password, setPassword] = useState('');
 
   const userDb = {
-    id: 0,
+    id: '',
     userName: userName,
     email: email,
     password: password,

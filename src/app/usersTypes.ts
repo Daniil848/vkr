@@ -1,8 +1,14 @@
 export interface User {
-  id: number;
+  id: string;
   userName: string;
   email: string;
   password: string;
+}
+export interface Result {
+  userId: string;
+  testId: string | undefined;
+  grade: number | undefined;
+  answersCount: number | undefined;
 }
 export interface State {
   loading: boolean;
@@ -12,4 +18,6 @@ export interface State {
   authorized: boolean;
   user: User | null;
   users: User[];
+  result: Result | null;
+  results: Result[];
 }

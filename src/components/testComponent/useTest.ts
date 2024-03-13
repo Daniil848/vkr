@@ -3,7 +3,8 @@ import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { getTestByArticleId, setTestError } from '../../app/articlesSlice';
 import Cookies from 'js-cookie';
-import { openLogIn, openSignIn } from '../../app/usersSlice';
+import { openLogIn, openSignIn, sendTestResult } from '../../app/usersSlice';
+import { Result } from '../../app/usersTypes';
 
 export const useTest = () => {
   const articlesState = useAppSelector((state) => state.articlesSlice);
@@ -42,6 +43,15 @@ export const useTest = () => {
         .reduce((acc) => acc + 1, 0);
 
       setResult(score);
+
+      dispatch(
+        sendTestResult({
+          userId: cookie.userId,
+          testId: articlesState.test?.id,
+          grade: score,
+          answersCount: articlesState.test?.questions.length,
+        }),
+      );
     }
   };
 

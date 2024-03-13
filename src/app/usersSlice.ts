@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { User } from './articlesTypes';
-import { State } from './usersTypes';
+import { User } from './usersTypes';
+import { Result, State } from './usersTypes';
 import toast from 'react-hot-toast';
 import Cookies from 'js-cookie';
 
@@ -14,6 +14,8 @@ const initialState: State = {
   authorized: false,
   user: null,
   users: [],
+  result: null,
+  results: [],
 };
 
 export const registration = createAsyncThunk<
@@ -56,6 +58,24 @@ export const autorize = createAsyncThunk<
   }
 });
 
+export const sendTestResult = createAsyncThunk<
+  Result,
+  Result,
+  { rejectValue: string }
+>('store/sendTestResult', async (result, { rejectWithValue }) => {
+  try {
+    const { data } = await axios.post(
+      `http://localhost:3001/usersResults`,
+      result,
+    );
+    toast.success('Готово');
+    return data;
+  } catch (error) {
+    console.log(error);
+    return rejectWithValue('Server Error!');
+  }
+});
+
 const usersSlice = createSlice({
   name: 'usersSlice',
   initialState,
@@ -83,6 +103,7 @@ const usersSlice = createSlice({
         state.authorized = true;
         state.logIn = false;
 
+        Cookies.set('userId', action.payload.id);
         Cookies.set('userName', action.payload.userName);
         Cookies.set('userEmail', action.payload.email);
         Cookies.set('userPassword', action.payload.password);
@@ -97,9 +118,18 @@ const usersSlice = createSlice({
         state.authorized = true;
         state.signIn = false;
 
+        Cookies.set('userId', action.payload.id);
         Cookies.set('userName', action.payload.userName);
         Cookies.set('userEmail', action.payload.email);
         Cookies.set('userPassword', action.payload.password);
+      })
+      .addCase(sendTestResult.pending, (state) => {
+        state.loading = true;
+        state.error = false;
+      })
+      .addCase(sendTestResult.fulfilled, (state, action) => {
+        state.loading = false;
+        state.result = action.payload;
       });
   },
 });

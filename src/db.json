@@ -2305,5 +2305,28 @@
       "email": "11",
       "password": "1"
     }
+  ],
+  "usersResults": [
+    {
+      "id": 0,
+      "userId": "1",
+      "testId": "1",
+      "grade": 2,
+      "answersCount": 5
+    },
+    {
+      "id": "0e34",
+      "userId": "1",
+      "testId": "1",
+      "grade": 2,
+      "answersCount": 5
+    },
+    {
+      "id": "998f",
+      "userId": "1",
+      "testId": "1",
+      "grade": 2,
+      "answersCount": 5
+    }
   ]
 }
