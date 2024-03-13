@@ -1,10 +1,14 @@
+import { useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import { openLogIn, openSignIn } from '../../app/usersSlice';
+import Cookies from 'js-cookie';
 
 export const useHeader = () => {
   const articlesState = useAppSelector((state) => state.articlesSlice);
   const usersState = useAppSelector((state) => state.usersSlice);
   const dispatch = useAppDispatch();
+
+  const cookie = Cookies.get();
 
   const handleOpenSignIn = () => {
     dispatch(openSignIn());
@@ -14,5 +18,5 @@ export const useHeader = () => {
     dispatch(openLogIn());
   };
 
-  return { usersState, dispatch, handleOpenLogIn, handleOpenSignIn };
+  return { usersState, handleOpenLogIn, handleOpenSignIn, cookie };
 };

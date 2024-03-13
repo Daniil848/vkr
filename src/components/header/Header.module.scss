@@ -43,6 +43,9 @@
         px-5
         py-1;
       }
+      .headerRegistrationProfile {
+        @apply text-slate-100 text-[34px];
+      }
     }
   }
 }

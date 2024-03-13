@@ -2,9 +2,11 @@ import React from 'react';
 import { useHeader } from './useHeader';
 import { Link } from 'react-router-dom';
 import styles from './Header.module.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
 
 const Header = () => {
-  const { handleOpenLogIn, handleOpenSignIn } = useHeader();
+  const { handleOpenLogIn, handleOpenSignIn, cookie } = useHeader();
 
   return (
     <>
@@ -33,18 +35,28 @@ const Header = () => {
               </li>
             </ul>
             <div className={styles.headerRegistration}>
-              <button
-                className={styles.headerRegistrationButton}
-                onClick={() => handleOpenSignIn()}
-              >
-                Войти
-              </button>
-              <button
-                className={styles.headerRegistrationButton}
-                onClick={() => handleOpenLogIn()}
-              >
-                Зарегистрироваться
-              </button>
+              {Object.keys(cookie).length === 0 && (
+                <>
+                  <button
+                    className={styles.headerRegistrationButton}
+                    onClick={() => handleOpenSignIn()}
+                  >
+                    Войти
+                  </button>
+                  <button
+                    className={styles.headerRegistrationButton}
+                    onClick={() => handleOpenLogIn()}
+                  >
+                    Зарегистрироваться
+                  </button>
+                </>
+              )}
+              {Object.keys(cookie).length !== 0 && (
+                <FontAwesomeIcon
+                  icon={faCircleUser}
+                  className={styles.headerRegistrationProfile}
+                />
+              )}
             </div>
           </div>
         </div>

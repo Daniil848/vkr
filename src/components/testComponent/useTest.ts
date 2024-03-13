@@ -15,11 +15,10 @@ export const useTest = () => {
   const { articleID } = useParams();
 
   const cookie = Cookies.get();
-  console.log(cookie);
 
   useEffect(() => {
     if (articleID) dispatch(getTestByArticleId(articleID));
-  }, [usersState.authorized]);
+  }, []);
 
   const handleRadioChange = (questionId: number, answerId: number) => {
     setAnswers((prevState) => ({
