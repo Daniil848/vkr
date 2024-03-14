@@ -167,6 +167,10 @@ const usersSlice = createSlice({
     openSignIn(state) {
       state.signIn = true;
     },
+    logOut(state) {
+      state.user = null;
+      Cookies.remove('userId');
+    },
     closeRegistrtionModal(state) {
       state.signIn = false;
       state.logIn = false;
@@ -255,6 +259,7 @@ const usersSlice = createSlice({
 export const {
   openLogIn,
   openSignIn,
+  logOut,
   closeRegistrtionModal,
   setAdminPageError,
 } = usersSlice.actions;

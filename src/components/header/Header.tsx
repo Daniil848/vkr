@@ -8,10 +8,17 @@ import {
   faCircleUser,
   faHome,
   faNewspaper,
+  faRightFromBracket,
 } from '@fortawesome/free-solid-svg-icons';
 
 const Header = () => {
-  const { handleOpenLogIn, handleOpenSignIn, cookie, usersState } = useHeader();
+  const {
+    handleOpenLogIn,
+    handleOpenSignIn,
+    handleLogOut,
+    cookie,
+    usersState,
+  } = useHeader();
 
   return (
     <>
@@ -69,18 +76,27 @@ const Header = () => {
                 </>
               )}
               {cookie && (
-                <Link
-                  to={'/profile'}
-                  className={styles.headerRegistrationProfile}
-                >
-                  <p className={styles.headerRegistrationProfileUser}>
-                    {usersState.user?.userName}
-                  </p>
+                <div className={styles.container}>
+                  {' '}
+                  <Link
+                    to={'/profile'}
+                    className={styles.headerRegistrationProfile}
+                  >
+                    <p className={styles.headerRegistrationProfileUser}>
+                      {usersState.user?.userName}
+                    </p>
+                    <FontAwesomeIcon
+                      icon={faCircleUser}
+                      className={styles.headerRegistrationProfileIcon}
+                    />
+                  </Link>
                   <FontAwesomeIcon
-                    icon={faCircleUser}
-                    className={styles.headerRegistrationProfileIcon}
+                    icon={faRightFromBracket}
+                    className={styles.headerRegistrationLogOut}
+                    title="Выйти из учетной записи"
+                    onClick={() => handleLogOut()}
                   />
-                </Link>
+                </div>
               )}
             </div>
           </div>
