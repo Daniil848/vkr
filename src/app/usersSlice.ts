@@ -175,9 +175,6 @@ const usersSlice = createSlice({
       state.signIn = false;
       state.logIn = false;
     },
-    setAdminPageError(state, action) {
-      state.adminPageError = action.payload;
-    },
   },
   extraReducers: (builder) => {
     builder
@@ -256,12 +253,7 @@ const usersSlice = createSlice({
   },
 });
 
-export const {
-  openLogIn,
-  openSignIn,
-  logOut,
-  closeRegistrtionModal,
-  setAdminPageError,
-} = usersSlice.actions;
+export const { openLogIn, openSignIn, logOut, closeRegistrtionModal } =
+  usersSlice.actions;
 
 export default usersSlice.reducer;

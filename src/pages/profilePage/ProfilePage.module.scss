@@ -18,3 +18,11 @@
     }
   }
 }
+
+.errorWrapper {
+  @apply w-2/3 mx-auto flex items-center justify-center;
+
+  .errorText {
+    @apply text-red-800 text-[35px] font-semibold;
+  }
+}

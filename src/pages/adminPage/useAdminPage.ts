@@ -4,7 +4,6 @@ import {
   getAllResults,
   getAllUsers,
   getSingleUser,
-  setAdminPageError,
 } from '../../app/usersSlice';
 import { getAllSections, getAllTests } from '../../app/articlesSlice';
 import Cookies from 'js-cookie';
@@ -24,13 +23,10 @@ export const useAdminPage = () => {
 
   useEffect(() => {
     if (usersState.user?.admin === true) {
-      dispatch(setAdminPageError(false));
       dispatch(getAllUsers());
       dispatch(getAllResults());
       dispatch(getAllSections());
       dispatch(getAllTests());
-    } else {
-      dispatch(setAdminPageError(true));
     }
   }, [usersState.user?.admin, dispatch]);
 

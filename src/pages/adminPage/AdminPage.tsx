@@ -65,14 +65,11 @@ const AdminPage = () => {
             </div>
           </div>
         )}
-      {(!usersState.user?.admin && usersState.adminPageError) ||
-        (!usersState.user && (
-          <div className={styles.errorWrapper}>
-            <p className={styles.errorText}>
-              У вас нет доступа к этой странице!
-            </p>
-          </div>
-        ))}
+      {!usersState.user?.admin && (
+        <div className={styles.errorWrapper}>
+          <p className={styles.errorText}>У вас нет доступа к этой странице!</p>
+        </div>
+      )}
     </>
   );
 };

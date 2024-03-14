@@ -3,11 +3,12 @@ import { useProfilePage } from './useProfilePage';
 import styles from './ProfilePage.module.scss';
 
 const ProfilePage = () => {
-  const { usersState, articlesState, averageGrade } = useProfilePage();
+  const { usersState, articlesState, averageGrade, userCookie } =
+    useProfilePage();
 
   return (
     <>
-      {!usersState.loading && !articlesState.loading && (
+      {!usersState.loading && !articlesState.loading && userCookie && (
         <div className={styles.wrapper}>
           <div className={styles.content}>
             <p className={styles.title}>Результаты пройденных тестов</p>
@@ -50,6 +51,11 @@ const ProfilePage = () => {
               })}
             </div>
           </div>
+        </div>
+      )}
+      {!userCookie && (
+        <div className={styles.errorWrapper}>
+          <p className={styles.errorText}>Ошибка!</p>
         </div>
       )}
     </>

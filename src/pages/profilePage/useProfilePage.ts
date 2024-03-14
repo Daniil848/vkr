@@ -9,10 +9,10 @@ export const useProfilePage = () => {
   const articlesState = useAppSelector((state) => state.articlesSlice);
   const dispatch = useAppDispatch();
 
-  const userId = Cookies.get('userId');
+  const userCookie = Cookies.get('userId');
 
   useEffect(() => {
-    if (userId) dispatch(getUserResults(userId));
+    if (userCookie) dispatch(getUserResults(userCookie));
     dispatch(getAllSections());
     dispatch(getAllTests());
   }, []);
@@ -31,5 +31,6 @@ export const useProfilePage = () => {
     usersState,
     articlesState,
     averageGrade,
+    userCookie,
   };
 };
