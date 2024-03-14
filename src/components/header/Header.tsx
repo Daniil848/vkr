@@ -3,7 +3,12 @@ import { useHeader } from './useHeader';
 import { Link } from 'react-router-dom';
 import styles from './Header.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
+import {
+  faCircleInfo,
+  faCircleUser,
+  faHome,
+  faNewspaper,
+} from '@fortawesome/free-solid-svg-icons';
 
 const Header = () => {
   const { handleOpenLogIn, handleOpenSignIn, cookie, usersState } = useHeader();
@@ -16,11 +21,19 @@ const Header = () => {
             <a className={styles.headerTitle}></a>
             <ul className={`${styles.headerMenuList}`}>
               <li className={styles.headerMenuListItem}>
+                <FontAwesomeIcon
+                  icon={faHome}
+                  className={styles.headerMenuListItemIcon}
+                />
                 <Link to={'/'} className={styles.headerMenuListItemLink}>
                   На главную
                 </Link>
               </li>
               <li className={styles.headerMenuListItem}>
+                <FontAwesomeIcon
+                  icon={faNewspaper}
+                  className={styles.headerMenuListItemHome}
+                />
                 <Link
                   to={'/articles'}
                   className={styles.headerMenuListItemLink}
@@ -29,6 +42,10 @@ const Header = () => {
                 </Link>
               </li>
               <li className={styles.headerMenuListItem}>
+                <FontAwesomeIcon
+                  icon={faCircleInfo}
+                  className={styles.headerMenuListItemIcon}
+                />
                 <Link to={'/about'} className={styles.headerMenuListItemLink}>
                   Инфо
                 </Link>

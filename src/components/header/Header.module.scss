@@ -8,7 +8,7 @@
       @apply w-1/4 flex items-center pl-4;
 
       .headerTitleText {
-        @apply cursor-pointer self-center text-2xl text-white hover:text-slate-200 transition-colors font-semibold whitespace-nowrap;
+        @apply cursor-pointer self-center text-2xl text-slate-100 hover:text-slate-200 transition-colors font-semibold whitespace-nowrap;
       }
     }
 
@@ -18,8 +18,16 @@
       .headerMenuListItem {
         @apply mr-10 cursor-pointer list-none font-medium transition-colors;
 
+        .headerMenuListItemHome {
+          @apply text-[14px] text-slate-100 mr-2;
+        }
+
+        .headerMenuListItemIcon {
+          @apply text-[17px] text-slate-100 mr-2;
+        }
+
         .headerMenuListItemLink {
-          @apply no-underline text-white hover:text-slate-200 transition-colors;
+          @apply no-underline text-slate-100 hover:text-slate-200 transition-colors;
         }
       }
     }
