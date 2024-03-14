@@ -10,7 +10,7 @@ const ProfilePage = () => {
       {!usersState.loading && !articlesState.loading && (
         <div className={styles.wrapper}>
           <div className={styles.content}>
-            <h1 className={styles.title}>Результаты пройденных тестов</h1>
+            <p className={styles.title}>Результаты пройденных тестов</p>
             <div className={styles.results}>
               {articlesState.sections.map((section) => {
                 const testsInSection = articlesState.tests.filter(

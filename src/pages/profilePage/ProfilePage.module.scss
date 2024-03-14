@@ -4,12 +4,16 @@
   .content {
     @apply w-full h-fit bg-slate-200 rounded p-4;
 
+    .title {
+      @apply text-[30px] my-5 font-semibold;
+    }
+
     .resultGrades {
       @apply flex gap-1 mb-4 justify-between;
     }
     .results {
       .resultsSection {
-        @apply font-semibold border-b border-slate-400;
+        @apply font-semibold text-[22px] border-b border-slate-400;
       }
     }
   }

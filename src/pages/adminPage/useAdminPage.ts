@@ -18,19 +18,21 @@ export const useAdminPage = () => {
 
   useEffect(() => {
     if (adminId) {
-      dispatch(getSingleUser(adminId)).then(() => {
-        if (usersState.user?.admin === true) {
-          dispatch(setAdminPageError(false));
-          dispatch(getAllUsers());
-          dispatch(getAllResults());
-          dispatch(getAllSections());
-          dispatch(getAllTests());
-        } else {
-          dispatch(setAdminPageError(true));
-        }
-      });
+      dispatch(getSingleUser(adminId));
     }
-  }, [adminId]);
+  }, [adminId, dispatch]);
+
+  useEffect(() => {
+    if (usersState.user?.admin === true) {
+      dispatch(setAdminPageError(false));
+      dispatch(getAllUsers());
+      dispatch(getAllResults());
+      dispatch(getAllSections());
+      dispatch(getAllTests());
+    } else {
+      dispatch(setAdminPageError(true));
+    }
+  }, [usersState.user?.admin, dispatch]);
 
   const averageGrade = (sectionId: string, userId: string) => {
     const arr = usersState.results
