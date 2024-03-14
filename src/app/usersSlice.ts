@@ -16,6 +16,7 @@ const initialState: State = {
   users: [],
   result: null,
   results: [],
+  adminPageError: false,
 };
 
 export const registration = createAsyncThunk<
@@ -73,6 +74,21 @@ export const getSingleUser = createAsyncThunk<
   }
 });
 
+export const getAllUsers = createAsyncThunk<
+  User[],
+  undefined,
+  { rejectValue: string }
+>('store/getAllUsers', async (_, { rejectWithValue }) => {
+  try {
+    const { data } = await axios.get(`http://localhost:3001/users`);
+
+    return data;
+  } catch (error) {
+    console.log(error);
+    return rejectWithValue('Server Error!');
+  }
+});
+
 export const sendTestResult = createAsyncThunk<
   Result,
   Result,
@@ -109,17 +125,32 @@ export const getTestResult = createAsyncThunk<
   }
 });
 
-export const getAllResults = createAsyncThunk<
+export const getUserResults = createAsyncThunk<
   Result[],
   string,
   { rejectValue: string }
->('store/getAllResults', async (userId, { rejectWithValue }) => {
+>('store/getUserResults', async (userId, { rejectWithValue }) => {
   try {
     const { data } = await axios.get(`http://localhost:3001/usersResults`);
     const filteredData = data.filter(
       (el: { userId: string }) => el.userId === userId,
     );
     return filteredData;
+  } catch (error) {
+    console.log(error);
+    return rejectWithValue('Server Error!');
+  }
+});
+
+export const getAllResults = createAsyncThunk<
+  Result[],
+  undefined,
+  { rejectValue: string }
+>('store/getAllResults', async (_, { rejectWithValue }) => {
+  try {
+    const { data } = await axios.get(`http://localhost:3001/usersResults`);
+
+    return data;
   } catch (error) {
     console.log(error);
     return rejectWithValue('Server Error!');
@@ -139,6 +170,9 @@ const usersSlice = createSlice({
     closeRegistrtionModal(state) {
       state.signIn = false;
       state.logIn = false;
+    },
+    setAdminPageError(state, action) {
+      state.adminPageError = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -175,6 +209,14 @@ const usersSlice = createSlice({
         state.loading = false;
         state.user = action.payload;
       })
+      .addCase(getAllUsers.pending, (state) => {
+        state.loading = true;
+        state.error = false;
+      })
+      .addCase(getAllUsers.fulfilled, (state, action) => {
+        state.loading = false;
+        state.users = action.payload;
+      })
       .addCase(sendTestResult.pending, (state) => {
         state.loading = true;
         state.error = false;
@@ -191,6 +233,14 @@ const usersSlice = createSlice({
         state.loading = false;
         state.result = action.payload;
       })
+      .addCase(getUserResults.pending, (state) => {
+        state.loading = true;
+        state.error = false;
+      })
+      .addCase(getUserResults.fulfilled, (state, action) => {
+        state.loading = false;
+        state.results = action.payload;
+      })
       .addCase(getAllResults.pending, (state) => {
         state.loading = true;
         state.error = false;
@@ -202,7 +252,11 @@ const usersSlice = createSlice({
   },
 });
 
-export const { openLogIn, openSignIn, closeRegistrtionModal } =
-  usersSlice.actions;
+export const {
+  openLogIn,
+  openSignIn,
+  closeRegistrtionModal,
+  setAdminPageError,
+} = usersSlice.actions;
 
 export default usersSlice.reducer;

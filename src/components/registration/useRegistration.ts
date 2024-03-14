@@ -20,6 +20,7 @@ export const useRegistration = () => {
     userName: userName,
     email: email,
     password: password,
+    admin: false,
   };
 
   const getUserDb = {

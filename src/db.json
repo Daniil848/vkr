@@ -2297,7 +2297,15 @@
       "id": "qWUPDeewnmFG7NSZ4vrXB",
       "userName": "даниил",
       "email": "ladygindaniil848@gmail.com",
-      "password": "123"
+      "password": "123",
+      "admin": true
+    },
+    {
+      "id": "WIPZFcPmTR7s0v7RBz9QL",
+      "userName": "сева",
+      "email": "123",
+      "password": "123",
+      "admin": false
     }
   ],
   "usersResults": [
@@ -2332,6 +2340,33 @@
       "id": "2eaAQg3i0RkyCRoZ3emY-",
       "userId": "qWUPDeewnmFG7NSZ4vrXB",
       "testId": "7",
+      "sectionId": 2,
+      "grade": 1,
+      "answersCount": 5,
+      "percentCorrectAnswers": 20
+    },
+    {
+      "id": "hByvdFzlv-PUlNhXtA5L0",
+      "userId": "WIPZFcPmTR7s0v7RBz9QL",
+      "testId": "1",
+      "sectionId": 1,
+      "grade": 1,
+      "answersCount": 5,
+      "percentCorrectAnswers": 20
+    },
+    {
+      "id": "80syNhrCv9u4H8zxxUorm",
+      "userId": "WIPZFcPmTR7s0v7RBz9QL",
+      "testId": "3",
+      "sectionId": 1,
+      "grade": 1,
+      "answersCount": 5,
+      "percentCorrectAnswers": 20
+    },
+    {
+      "id": "uAwcDqZROJYVIfkvdPfHx",
+      "userId": "WIPZFcPmTR7s0v7RBz9QL",
+      "testId": "9",
       "sectionId": 2,
       "grade": 1,
       "answersCount": 5,

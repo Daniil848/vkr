@@ -1,25 +1,43 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { getUserResults } from '../../app/usersSlice';
+import {
+  getAllResults,
+  getAllUsers,
+  getSingleUser,
+  setAdminPageError,
+} from '../../app/usersSlice';
 import { getAllSections, getAllTests } from '../../app/articlesSlice';
 import Cookies from 'js-cookie';
 
-export const useProfilePage = () => {
+export const useAdminPage = () => {
   const usersState = useAppSelector((state) => state.usersSlice);
   const articlesState = useAppSelector((state) => state.articlesSlice);
   const dispatch = useAppDispatch();
 
-  const userId = Cookies.get('userId');
+  const adminId = Cookies.get('userId');
 
   useEffect(() => {
-    if (userId) dispatch(getUserResults(userId));
-    dispatch(getAllSections());
-    dispatch(getAllTests());
-  }, []);
+    if (adminId) {
+      dispatch(getSingleUser(adminId)).then(() => {
+        if (usersState.user?.admin === true) {
+          dispatch(setAdminPageError(false));
+          dispatch(getAllUsers());
+          dispatch(getAllResults());
+          dispatch(getAllSections());
+          dispatch(getAllTests());
+        } else {
+          dispatch(setAdminPageError(true));
+        }
+      });
+    }
+  }, [adminId]);
 
-  const averageGrade = (sectionId: string) => {
+  const averageGrade = (sectionId: string, userId: string) => {
     const arr = usersState.results
-      .filter((item) => item.sectionId?.toString() === sectionId)
+      .filter(
+        (item) =>
+          item.sectionId?.toString() === sectionId && item.userId === userId,
+      )
       .map((el) => el.percentCorrectAnswers); // массив чисел для вычисления
 
     const average = arr.reduce((acc, number) => acc + number, 0) / arr.length; // вычисление среднего арифметического

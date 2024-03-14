@@ -3,6 +3,7 @@ export interface User {
   userName: string;
   email: string;
   password: string;
+  admin: boolean;
 }
 export interface Result {
   id: string;
@@ -23,4 +24,5 @@ export interface State {
   users: User[];
   result: Result | null;
   results: Result[];
+  adminPageError: boolean;
 }

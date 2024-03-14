@@ -1,0 +1,24 @@
+.wrapper {
+  @apply w-3/5 mx-auto;
+
+  .content {
+    @apply w-full h-fit bg-slate-200 rounded p-4;
+
+    .resultGrades {
+      @apply flex gap-1 mb-4 justify-between;
+    }
+    .results {
+      .resultsSection {
+        @apply font-semibold border-b border-slate-400;
+      }
+    }
+  }
+}
+
+.errorWrapper {
+  @apply w-2/3 mx-auto flex items-center justify-center;
+
+  .errorText {
+    @apply text-red-800 text-[35px] font-semibold;
+  }
+}

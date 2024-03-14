@@ -9,6 +9,7 @@ import ArticlesPage from './pages/articlesPage/ArticlesPage';
 import ArticlePage from './pages/articlePage/ArticlePage';
 import AboutPage from './pages/aboutPage/AboutPage';
 import ProfilePage from './pages/profilePage/ProfilePage';
+import AdminPage from './pages/adminPage/AdminPage';
 import Registration from './components/registration/Registration';
 import Loader from './UI/loader/Loader';
 import './App.css';
@@ -28,6 +29,7 @@ function App() {
           <Route path="/article/:articleID" element={<ArticlePage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/admin" element={<AdminPage />} />
         </Routes>
       </div>
       <Footer />
