@@ -27,7 +27,7 @@ const ProfilePage = () => {
                     <div key={section.id}>
                       <p
                         className={styles.resultsSection}
-                      >{`${section.name} : Средний балл - ${averageGrade()}`}</p>
+                      >{`${section.name} : Средний балл - ${averageGrade(section.id)}`}</p>
                       {testsWithResults.map((test) => (
                         <ul key={test.id} className={styles.resultGrades}>
                           <li>{test.title}:</li>

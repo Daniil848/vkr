@@ -2327,6 +2327,15 @@
       "grade": 2,
       "answersCount": 5,
       "percentCorrectAnswers": 40
+    },
+    {
+      "id": "2eaAQg3i0RkyCRoZ3emY-",
+      "userId": "qWUPDeewnmFG7NSZ4vrXB",
+      "testId": "7",
+      "sectionId": 2,
+      "grade": 1,
+      "answersCount": 5,
+      "percentCorrectAnswers": 20
     }
   ]
 }

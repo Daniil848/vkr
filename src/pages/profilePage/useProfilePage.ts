@@ -17,8 +17,10 @@ export const useProfilePage = () => {
     dispatch(getAllTests());
   }, []);
 
-  const averageGrade = () => {
-    const arr = usersState.results.map((el) => el.percentCorrectAnswers); // массив чисел для вычисления
+  const averageGrade = (sectionId: string) => {
+    const arr = usersState.results
+      .filter((item) => item.sectionId?.toString() === sectionId)
+      .map((el) => el.percentCorrectAnswers); // массив чисел для вычисления
 
     const average = arr.reduce((acc, number) => acc + number, 0) / arr.length; // вычисление среднего арифметического
 
