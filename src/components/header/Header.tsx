@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
 
 const Header = () => {
-  const { handleOpenLogIn, handleOpenSignIn, cookie } = useHeader();
+  const { handleOpenLogIn, handleOpenSignIn, cookie, usersState } = useHeader();
 
   return (
     <>
@@ -57,7 +57,7 @@ const Header = () => {
                   className={styles.headerRegistrationProfile}
                 >
                   <p className={styles.headerRegistrationProfileUser}>
-                    {cookie}
+                    {usersState.user?.userName}
                   </p>
                   <FontAwesomeIcon
                     icon={faCircleUser}

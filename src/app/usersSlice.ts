@@ -58,6 +58,21 @@ export const autorize = createAsyncThunk<
   }
 });
 
+export const getSingleUser = createAsyncThunk<
+  User,
+  string,
+  { rejectValue: string }
+>('store/getSingleUser', async (id, { rejectWithValue }) => {
+  try {
+    const { data } = await axios.get(`http://localhost:3001/users/${id}`);
+
+    return data;
+  } catch (error) {
+    console.log(error);
+    return rejectWithValue('Server Error!');
+  }
+});
+
 export const sendTestResult = createAsyncThunk<
   Result,
   Result,
@@ -151,6 +166,14 @@ const usersSlice = createSlice({
         state.signIn = false;
 
         Cookies.set('userId', action.payload.id);
+      })
+      .addCase(getSingleUser.pending, (state) => {
+        state.loading = true;
+        state.error = false;
+      })
+      .addCase(getSingleUser.fulfilled, (state, action) => {
+        state.loading = false;
+        state.user = action.payload;
       })
       .addCase(sendTestResult.pending, (state) => {
         state.loading = true;

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
-import { openLogIn, openSignIn } from '../../app/usersSlice';
+import { getSingleUser, openLogIn, openSignIn } from '../../app/usersSlice';
 import Cookies from 'js-cookie';
 
 export const useHeader = () => {
@@ -9,6 +9,10 @@ export const useHeader = () => {
   const dispatch = useAppDispatch();
 
   const cookie = Cookies.get('userId');
+
+  useEffect(() => {
+    if (cookie) dispatch(getSingleUser(cookie));
+  }, []);
 
   const handleOpenSignIn = () => {
     dispatch(openSignIn());
