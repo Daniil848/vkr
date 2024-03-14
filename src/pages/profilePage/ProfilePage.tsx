@@ -35,7 +35,7 @@ const ProfilePage = () => {
                             .filter((result) => result.testId === test.id)
                             .map((result) => (
                               <div key={result.id}>
-                                <li className={styles.grade}>
+                                <li>
                                   {`${result.grade}/${result.answersCount} Правильных ответов - ${result.percentCorrectAnswers} Баллов`}
                                 </li>
                               </div>

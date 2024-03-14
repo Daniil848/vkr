@@ -1,19 +1,11 @@
 .wrapper {
-  @apply w-1/2 mx-auto;
+  @apply w-3/5 mx-auto;
 
   .content {
     @apply w-full h-fit bg-slate-200 rounded p-4;
 
     .resultGrades {
-      @apply flex flex-col gap-2;
-
-      .title {
-        @apply my-[-10px] font-medium;
-      }
-
-      .grade {
-        @apply font-medium;
-      }
+      @apply flex gap-1 mb-4 justify-between;
     }
     .results {
       .resultsSection {
