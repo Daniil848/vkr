@@ -70,11 +70,14 @@ const AdminPage = () => {
                                       result.userId === user.id,
                                   )
                                   .map((result) => (
-                                    <div key={result.id}>
-                                      <li>
-                                        {`${result.grade}/${result.answersCount} Правильных ответов - ${result.percentCorrectAnswers} Баллов`}
-                                      </li>
-                                    </div>
+                                    <li
+                                      key={result.id}
+                                      className={styles.resultGrade}
+                                    >
+                                      {result.grade}/{result.answersCount}
+                                      <div className={styles.dot}></div>
+                                      {result.percentCorrectAnswers} Баллов
+                                    </li>
                                   ))}
                               </ul>
                             ))}

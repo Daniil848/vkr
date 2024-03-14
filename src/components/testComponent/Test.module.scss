@@ -2,7 +2,7 @@
   @apply relative w-1/2 mx-auto my-6 p-4 bg-slate-200 rounded;
 
   .testTitle {
-    @apply my-0 text-3xl font-semibold;
+    @apply my-0 text-3xl font-semibold text-center;
   }
 
   .wrapper {
@@ -38,7 +38,7 @@
   }
 
   .result {
-    @apply w-fit mx-auto text-xl;
+    @apply w-fit mx-auto text-xl text-center;
 
     .resultCount {
       @apply text-slate-500 font-medium text-2xl;

@@ -14,41 +14,44 @@ const Test = () => {
     cookie,
   } = useTest();
 
+  console.log(articlesState.test);
+
   if (!articlesState.test) return null;
   return (
     <>
       {!articlesState.loading && (
         <div className={styles.container}>
-          <p className={styles.testTitle}>{articlesState.test?.title}:</p>
-          {articlesState.test?.questions?.map((item) => (
-            <div key={item.id} className={styles.wrapper}>
-              <p className={styles.testQuestion}>{item.question}</p>
-              {item.answers.map((el) => (
-                <div
-                  key={el.id}
-                  className={`${styles.testAnswers} ${usersState.result && item.correctAnswer === el.id ? styles.correct : ''}`}
-                >
-                  <input
-                    type="radio"
-                    disabled={
-                      Boolean(usersState.result) && !articlesState.testError
-                    }
-                    id={el.answer}
-                    value={el.id}
-                    name={item.question}
-                    onChange={() => handleRadioChange(item.id, el.id)}
-                    className={styles.testAnswersRadio}
-                  />
-                  <label
-                    htmlFor={el.answer}
-                    className={styles.testAnswersLabel}
+          <p className={styles.testTitle}>{articlesState.test?.title}</p>
+          {!usersState.result &&
+            articlesState.test?.questions?.map((item) => (
+              <div key={item.id} className={styles.wrapper}>
+                <p className={styles.testQuestion}>{item.question}</p>
+                {item.answers.map((el) => (
+                  <div
+                    key={el.id}
+                    className={`${styles.testAnswers} ${usersState.result && item.correctAnswer === el.id ? styles.correct : ''}`}
                   >
-                    {el.answer}
-                  </label>
-                </div>
-              ))}
-            </div>
-          ))}
+                    <input
+                      type="radio"
+                      disabled={
+                        Boolean(usersState.result) && !articlesState.testError
+                      }
+                      id={el.answer}
+                      value={el.id}
+                      name={item.question}
+                      onChange={() => handleRadioChange(item.id, el.id)}
+                      className={styles.testAnswersRadio}
+                    />
+                    <label
+                      htmlFor={el.answer}
+                      className={styles.testAnswersLabel}
+                    >
+                      {el.answer}
+                    </label>
+                  </div>
+                ))}
+              </div>
+            ))}
           {!usersState.result && (
             <div className={styles.resultContainer}>
               {articlesState.testError && (
@@ -62,16 +65,24 @@ const Test = () => {
             </div>
           )}
           {usersState.result && (
-            <p className={styles.result}>
-              Правильных ответов{' '}
-              <span className={styles.resultCount}>
-                {usersState.result.grade}
-              </span>{' '}
-              из{' '}
-              <span className={styles.resultCount}>
-                {usersState.result.answersCount}
-              </span>
-            </p>
+            <div className={styles.result}>
+              <p>
+                Правильных ответов{' '}
+                <span className={styles.resultCount}>
+                  {usersState.result.grade}
+                </span>{' '}
+                из{' '}
+                <span className={styles.resultCount}>
+                  {usersState.result.answersCount}
+                </span>
+              </p>
+              <p className={styles.resultPercent}>
+                <span className={styles.resultCount}>
+                  {usersState.result.percentCorrectAnswers}
+                </span>{' '}
+                Баллов
+              </p>
+            </div>
           )}
           {!cookie && (
             <div className={styles.lockTest}>

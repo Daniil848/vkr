@@ -25,21 +25,25 @@ const ProfilePage = () => {
 
                 if (testsWithResults.length > 0) {
                   return (
-                    <div key={section.id}>
-                      <p
-                        className={styles.resultsSection}
-                      >{`${section.name} - Средний балл : ${averageGrade(section.id)}`}</p>
+                    <div key={section.id} className={styles.resultsSection}>
+                      <div className={styles.resultsSectionTitle}>
+                        <p>{section.name}:</p>
+                        <p>Средний балл: {averageGrade(section.id)}%</p>
+                      </div>
                       {testsWithResults.map((test) => (
-                        <ul key={test.id} className={styles.resultGrades}>
+                        <ul key={test.id} className={styles.resultTest}>
                           <li>{test.title}:</li>
                           {usersState.results
                             .filter((result) => result.testId === test.id)
                             .map((result) => (
-                              <div key={result.id}>
-                                <li>
-                                  {`${result.grade}/${result.answersCount} Правильных ответов - ${result.percentCorrectAnswers} Баллов`}
-                                </li>
-                              </div>
+                              <li
+                                key={result.id}
+                                className={styles.resultGrade}
+                              >
+                                {result.grade}/{result.answersCount}
+                                <div className={styles.dot}></div>
+                                {result.percentCorrectAnswers}%
+                              </li>
                             ))}
                         </ul>
                       ))}
