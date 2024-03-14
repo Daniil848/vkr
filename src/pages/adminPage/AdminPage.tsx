@@ -57,7 +57,7 @@ const AdminPage = () => {
                               <p>{section.name}:</p>
                               <p>
                                 Средний балл:{' '}
-                                {averageGrade(section.id, user.id)}
+                                {averageGrade(section.id, user.id)}%
                               </p>
                             </div>
                             {testsWithResults.map((test) => (
@@ -76,7 +76,7 @@ const AdminPage = () => {
                                     >
                                       {result.grade}/{result.answersCount}
                                       <div className={styles.dot}></div>
-                                      {result.percentCorrectAnswers} Баллов
+                                      {result.percentCorrectAnswers}%
                                     </li>
                                   ))}
                               </ul>
