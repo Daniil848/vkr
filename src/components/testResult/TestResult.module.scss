@@ -1,0 +1,19 @@
+.resultsSection {
+  @apply bg-slate-100 px-4 pb-4 mb-6 rounded;
+
+  .resultsSectionTitle {
+    @apply text-[20px] font-semibold flex justify-between;
+  }
+
+  .resultTest {
+    @apply flex gap-1 mb-4 items-center justify-between;
+
+    .resultGrade {
+      @apply flex items-center;
+
+      .dot {
+        @apply block bg-slate-600 rounded-[50%] w-[6px] h-[6px] m-2;
+      }
+    }
+  }
+}

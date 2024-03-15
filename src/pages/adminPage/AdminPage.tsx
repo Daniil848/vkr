@@ -6,14 +6,8 @@ import { faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons';
 import TestResult from '../../components/testResult/TestResult';
 
 const AdminPage = () => {
-  const {
-    usersState,
-    articlesState,
-    averageGrade,
-    accordion,
-    handleAccordion,
-    adminId,
-  } = useAdminPage();
+  const { usersState, articlesState, accordion, handleAccordion, adminId } =
+    useAdminPage();
   return (
     <>
       {!usersState.loading &&

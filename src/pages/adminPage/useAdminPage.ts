@@ -37,19 +37,6 @@ export const useAdminPage = () => {
     }
   }, [usersState.user?.admin, dispatch]);
 
-  const averageGrade = (sectionId: string, userId: string) => {
-    const arr = usersState.results
-      .filter(
-        (item) =>
-          item.sectionId?.toString() === sectionId && item.userId === userId,
-      )
-      .map((el) => el.percentCorrectAnswers); // массив чисел для вычисления
-
-    const average = arr.reduce((acc, number) => acc + number, 0) / arr.length; // вычисление среднего арифметического
-
-    return average;
-  };
-
   const handleAccordion = (user: User) => {
     setAccordion((prevState: any) => ({
       ...prevState,
@@ -60,7 +47,6 @@ export const useAdminPage = () => {
   return {
     usersState,
     articlesState,
-    averageGrade,
     accordion,
     handleAccordion,
     adminId,
