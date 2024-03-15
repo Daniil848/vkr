@@ -8,8 +8,8 @@ import {
   faCircleInfo,
   faCircleUser,
   faHome,
-  faNewspaper,
   faRightFromBracket,
+  faUser,
 } from '@fortawesome/free-solid-svg-icons';
 
 const Header = () => {
@@ -18,6 +18,8 @@ const Header = () => {
     handleOpenSignIn,
     handleLogOut,
     cookie,
+    isOpenMenu,
+    setOpenMenu,
     usersState,
   } = useHeader();
 
@@ -77,26 +79,44 @@ const Header = () => {
                 </>
               )}
               {cookie && (
-                <div className={styles.container}>
-                  {' '}
-                  <Link
-                    to={'/profile'}
-                    className={styles.headerRegistrationProfile}
-                  >
-                    <p className={styles.headerRegistrationProfileUser}>
-                      {usersState.user?.userName}
-                    </p>
-                    <FontAwesomeIcon
-                      icon={faCircleUser}
-                      className={styles.headerRegistrationProfileIcon}
-                    />
-                  </Link>
+                <div
+                  className={styles.headerProfile}
+                  onClick={() => setOpenMenu(!isOpenMenu)}
+                >
+                  <span className={styles.headerProfileName}>
+                    {usersState.user?.userName}
+                  </span>
                   <FontAwesomeIcon
-                    icon={faRightFromBracket}
-                    className={styles.headerRegistrationLogOut}
-                    title="Выйти из учетной записи"
-                    onClick={() => handleLogOut()}
+                    icon={faCircleUser}
+                    className={styles.headerProfileIcon}
                   />
+
+                  {isOpenMenu && (
+                    <div className={styles.headerProfileDropMenu}>
+                      <Link
+                        to={'/profile'}
+                        className={styles.headerProfileDropMenuItem}
+                      >
+                        <span>Профиль</span>
+                        <FontAwesomeIcon
+                          icon={faUser}
+                          className={styles.headerProfileDropMenuIcon}
+                          title="Выйти из учетной записи"
+                        />
+                      </Link>
+                      <div
+                        className={styles.headerProfileDropMenuItem}
+                        onClick={() => handleLogOut()}
+                      >
+                        <span>Выход</span>
+                        <FontAwesomeIcon
+                          icon={faRightFromBracket}
+                          className={styles.headerProfileDropMenuLogOutIcon}
+                          title="Выйти из учетной записи"
+                        />
+                      </div>
+                    </div>
+                  )}
                 </div>
               )}
             </div>

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import {
   getSingleUser,
@@ -11,6 +11,8 @@ import Cookies from 'js-cookie';
 export const useHeader = () => {
   const usersState = useAppSelector((state) => state.usersSlice);
   const dispatch = useAppDispatch();
+
+  const [isOpenMenu, setOpenMenu] = useState<boolean>(false);
 
   const cookie = Cookies.get('userId');
 
@@ -34,5 +36,7 @@ export const useHeader = () => {
     handleOpenSignIn,
     handleLogOut,
     cookie,
+    isOpenMenu,
+    setOpenMenu,
   };
 };
