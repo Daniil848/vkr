@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import styles from './Header.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
+  faBookmark,
   faCircleInfo,
   faCircleUser,
   faHome,
@@ -38,8 +39,8 @@ const Header = () => {
               </li>
               <li className={styles.headerMenuListItem}>
                 <FontAwesomeIcon
-                  icon={faNewspaper}
-                  className={styles.headerMenuListItemHome}
+                  icon={faBookmark}
+                  className={styles.headerMenuListItemIcon}
                 />
                 <Link
                   to={'/articles'}

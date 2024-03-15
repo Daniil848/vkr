@@ -22,7 +22,7 @@ const AdminPage = () => {
         adminId && (
           <div className={styles.wrapper}>
             <div className={styles.content}>
-              <h1 className={styles.title}>Результаты пройденных тестов</h1>
+              <p className={styles.title}>Результаты пройденных тестов</p>
               <div className={styles.results}>
                 {usersState.users.map((user) => (
                   <div key={user.id}>
@@ -30,7 +30,7 @@ const AdminPage = () => {
                       className={styles.resultsUser}
                       onClick={() => handleAccordion(user)}
                     >
-                      <p>{user.userName}</p>
+                      <p className={styles.resultsUserName}>{user.userName}</p>
                       <FontAwesomeIcon
                         icon={accordion[user.id] ? faCaretUp : faCaretDown}
                       />
