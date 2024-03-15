@@ -3,6 +3,7 @@ import { useAdminPage } from './useAdminPage';
 import styles from './AdminPage.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons';
+import TestResult from '../../components/testResult/TestResult';
 
 const AdminPage = () => {
   const {
@@ -35,58 +36,11 @@ const AdminPage = () => {
                         icon={accordion[user.id] ? faCaretUp : faCaretDown}
                       />
                     </div>
-                    {articlesState.sections.map((section) => {
-                      const testsInSection = articlesState.tests.filter(
-                        (test) => test.sectionId.toString() === section.id,
-                      );
-                      const testsWithResults = testsInSection.filter((test) =>
-                        usersState.results.some(
-                          (result) =>
-                            result.testId === test.id &&
-                            result.userId === user.id,
-                        ),
-                      );
-
-                      if (testsWithResults.length > 0) {
-                        return (
-                          <div
-                            key={section.id}
-                            className={`${accordion[user.id] ? styles.accordion : styles.accordionClose}`}
-                          >
-                            <div className={styles.resultsSection}>
-                              <p>{section.name}:</p>
-                              <p>
-                                Средний балл:{' '}
-                                {averageGrade(section.id, user.id)}%
-                              </p>
-                            </div>
-                            {testsWithResults.map((test) => (
-                              <ul key={test.id} className={styles.resultGrades}>
-                                <li>{test.title}:</li>
-                                {usersState.results
-                                  .filter(
-                                    (result) =>
-                                      result.testId === test.id &&
-                                      result.userId === user.id,
-                                  )
-                                  .map((result) => (
-                                    <li
-                                      key={result.id}
-                                      className={styles.resultGrade}
-                                    >
-                                      {result.grade}/{result.answersCount}
-                                      <div className={styles.dot}></div>
-                                      {result.percentCorrectAnswers}%
-                                    </li>
-                                  ))}
-                              </ul>
-                            ))}
-                          </div>
-                        );
-                      }
-
-                      return null;
-                    })}
+                    <div
+                      className={`${accordion[user.id] ? styles.accordion : styles.accordionClose}`}
+                    >
+                      <TestResult userId={user.id} />
+                    </div>
                   </div>
                 ))}
               </div>
