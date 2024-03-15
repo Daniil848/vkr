@@ -2,15 +2,17 @@
   @apply w-1/2 mx-auto;
 
   .content {
-    @apply w-full h-fit bg-slate-200 rounded px-4 pb-4;
+    @apply inline-block w-full h-fit bg-slate-200 rounded px-4;
 
     .title {
       @apply text-[30px] my-5 font-semibold;
     }
 
     .results {
+      @apply gap-4;
+
       .resultsUser {
-        @apply bg-slate-300 rounded p-2 h-fit flex items-center gap-3 text-[30px] mb-4 mt-4 cursor-pointer;
+        @apply bg-slate-300 rounded p-2 h-fit flex items-center gap-3 text-[30px] my-4 cursor-pointer;
 
         .resultsUserName {
           @apply my-0 ml-2;
@@ -18,7 +20,7 @@
       }
 
       .accordion {
-        @apply block transition-all mb-6 rounded;
+        @apply block transition-all rounded;
       }
       .accordionClose {
         @apply hidden transition-all;
