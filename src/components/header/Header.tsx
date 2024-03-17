@@ -10,6 +10,7 @@ import {
   faHome,
   faRightFromBracket,
   faUser,
+  faUserPlus,
 } from '@fortawesome/free-solid-svg-icons';
 
 const Header = () => {
@@ -68,13 +69,24 @@ const Header = () => {
                     className={styles.headerRegistrationButton}
                     onClick={() => handleOpenSignIn()}
                   >
-                    Войти
+                    <p className={styles.headerRegistrationButtonText}>Войти</p>
+                    <FontAwesomeIcon
+                      icon={faRightFromBracket}
+                      className={styles.headerRegistrationButtonIcon}
+                    />
                   </button>
+
                   <button
                     className={styles.headerRegistrationButton}
                     onClick={() => handleOpenLogIn()}
                   >
-                    Зарегистрироваться
+                    <p className={styles.headerRegistrationButtonText}>
+                      Зарегистрироваться
+                    </p>
+                    <FontAwesomeIcon
+                      icon={faUserPlus}
+                      className={styles.headerRegistrationButtonIcon}
+                    />
                   </button>
                 </>
               )}

@@ -29,6 +29,26 @@
 
       .headerRegistrationButton {
         @apply w-fit h-9 border-0 text-slate-700 bg-slate-100 hover:bg-slate-300 focus:ring-4 focus:ring-slate-400 focus:outline-none font-medium transition-all rounded-lg px-5 py-1;
+
+        .headerRegistrationButtonText {
+          @apply m-0;
+        }
+
+        .headerRegistrationButtonIcon {
+          @apply text-[17px] ml-2;
+        }
+
+        @media (max-width: 480px) {
+          @apply w-[35px] h-[35px] px-2 py-0;
+
+          .headerRegistrationButtonText {
+            @apply hidden;
+          }
+
+          .headerRegistrationButtonIcon {
+            @apply m-0;
+          }
+        }
       }
 
       .headerProfile {

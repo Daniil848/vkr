@@ -60,7 +60,7 @@
     @apply absolute top-0 left-0 backdrop-blur-sm h-full w-full flex flex-col items-center justify-center rounded;
 
     .lockTestTitle {
-      @apply text-2xl font-semibold;
+      @apply text-2xl font-semibold text-center text-slate-800;
     }
 
     .buttonsContainer {
