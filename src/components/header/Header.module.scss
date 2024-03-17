@@ -6,10 +6,6 @@
 
     .headerTitle {
       @apply w-1/4 flex items-center pl-4;
-
-      .headerTitleText {
-        @apply cursor-pointer self-center text-2xl text-slate-100 hover:text-slate-200 transition-colors font-semibold whitespace-nowrap;
-      }
     }
 
     .headerMenuList {
@@ -17,10 +13,6 @@
 
       .headerMenuListItem {
         @apply mr-10 cursor-pointer list-none font-medium transition-colors;
-
-        .headerMenuListItemHome {
-          @apply text-[14px] text-slate-100 mr-2;
-        }
 
         .headerMenuListItemIcon {
           @apply text-[17px] text-slate-100 mr-2;
@@ -36,20 +28,7 @@
       @apply flex justify-end w-1/4 gap-2 pr-3;
 
       .headerRegistrationButton {
-        @apply w-fit
-        h-9
-        border-0
-        text-slate-700
-        bg-slate-100
-        hover:bg-slate-300
-        focus:ring-4
-        focus:ring-slate-400
-        focus:outline-none
-        font-medium
-        transition-all
-        rounded-lg
-        px-5
-        py-1;
+        @apply w-fit h-9 border-0 text-slate-700 bg-slate-100 hover:bg-slate-300 focus:ring-4 focus:ring-slate-400 focus:outline-none font-medium transition-all rounded-lg px-5 py-1;
       }
 
       .headerProfile {
@@ -61,6 +40,18 @@
 
         .headerProfileIcon {
           @apply text-[34px] font-medium transition-colors text-slate-100;
+        }
+
+        @media (max-width: 480px) {
+          @apply flex-col-reverse gap-0;
+
+          .headerProfileName {
+            @apply text-xs font-medium;
+          }
+
+          .headerProfileIcon {
+            @apply text-[20px];
+          }
         }
 
         .headerProfileDropMenu {
@@ -75,6 +66,28 @@
             .headerProfileDropMenuLogOutIcon {
               @apply text-red-800 ml-auto;
             }
+          }
+        }
+      }
+    }
+
+    @media (max-width: 480px) {
+      .headerTitle {
+        @apply hidden w-0;
+      }
+
+      .headerMenuList {
+        @apply w-3/4 gap-0 pl-3;
+
+        .headerMenuListItem {
+          @apply flex flex-col items-center justify-between;
+
+          .headerMenuListItemIcon {
+            @apply mr-0;
+          }
+
+          .headerMenuListItemLink {
+            @apply text-xs text-center;
           }
         }
       }

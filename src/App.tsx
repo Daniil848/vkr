@@ -22,7 +22,7 @@ function App() {
       <Header />
       {(usersState.signIn || usersState.logIn) && <Registration />}
       {articlesState.loading && <Loader />}
-      <div className="container">
+      <div className="wrapper">
         <Routes>
           <Route index element={<HomePage />} />
           <Route path="/articles" element={<ArticlesPage />} />

@@ -27,9 +27,9 @@ const Header = () => {
     <>
       <nav>
         <div className={styles.header}>
-          <div className={`${styles.headerMenu}`}>
+          <div className={styles.headerMenu}>
             <a className={styles.headerTitle}></a>
-            <ul className={`${styles.headerMenuList}`}>
+            <ul className={styles.headerMenuList}>
               <li className={styles.headerMenuListItem}>
                 <FontAwesomeIcon
                   icon={faHome}

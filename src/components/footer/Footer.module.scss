@@ -1,7 +1,11 @@
 .footer {
-  @apply relative bottom-0 z-30 flex justify-center items-center mt-8 h-[80px] bg-slate-200 border-t border-slate-300;
+  @apply relative bottom-0 z-30 flex justify-center items-center h-[80px] bg-slate-200 border-t border-slate-300;
 
   .content {
     @apply w-1/2 text-center font-semibold;
+
+    @media (max-width: 480px) {
+      @apply w-full;
+    }
   }
 }
