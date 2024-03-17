@@ -3,6 +3,10 @@
 
   .title {
     @apply text-5xl font-semibold;
+
+    @media (max-width: 480px) {
+      @apply text-3xl px-3;
+    }
   }
 
   .linkContainer {

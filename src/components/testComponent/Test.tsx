@@ -14,8 +14,6 @@ const Test = () => {
     cookie,
   } = useTest();
 
-  console.log(articlesState.test);
-
   if (!articlesState.test) return null;
   return (
     <>

@@ -12,12 +12,17 @@ const ArticlesPage = () => {
   return (
     <>
       <div className={styles.wrapper}>
-        <Input placeholder="Найти..." onChange={(e) => handleSearchChange(e)} />
+        <div className={styles.inputContainer}>
+          <Input
+            placeholder="Найти..."
+            onChange={(e) => handleSearchChange(e)}
+          />
+        </div>
         {!articlesState.searchArticles
           ? !articlesState.loading &&
             articlesState.sections.map((section) => (
               <div key={section.id}>
-                <h1 className={styles.section}>{section.name}</h1>
+                <p className={styles.section}>{section.name}</p>
                 {articlesState.articles
                   .filter(
                     (article) => article.sectionId.toString() == section.id,

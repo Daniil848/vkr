@@ -5,7 +5,7 @@
     @apply w-1/2 text-center font-semibold;
 
     @media (max-width: 480px) {
-      @apply w-full;
+      @apply w-full px-3;
     }
   }
 }

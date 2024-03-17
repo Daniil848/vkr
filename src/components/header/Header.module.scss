@@ -1,5 +1,5 @@
 .header {
-  @apply fixed top-0 z-20 h-[65px] w-[100%] bg-slate-700 max-w-full mx-auto border-b border-solid border-slate-400 border-t-0 border-x-0;
+  @apply fixed top-0 z-20 h-[65px] w-[100%] bg-slate-700 max-w-full mx-auto;
 
   .headerMenu {
     @apply h-full flex flex-wrap items-center;
@@ -71,7 +71,7 @@
       }
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 889px) {
       .headerTitle {
         @apply hidden w-0;
       }

@@ -1,6 +1,10 @@
 .wrapper {
   @apply w-1/2 mx-auto;
 
+  @media (max-width: 769px) {
+    width: calc(100vw - 24px);
+  }
+
   .content {
     @apply inline-block box-border w-full h-fit bg-slate-200 rounded px-4;
 
