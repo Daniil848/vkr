@@ -1,30 +1,13 @@
 import React from 'react';
+import { useTestResult } from './useTestResult';
 import styles from './TestResult.module.scss';
-import { useAppSelector } from '../../app/hooks';
 
 interface Props {
   userId: string | undefined;
 }
 
 const TestResult = (props: Props) => {
-  const usersState = useAppSelector((state) => state.usersSlice);
-  const articlesState = useAppSelector((state) => state.articlesSlice);
-
-  const averageGrade = (sectionId: string, userId: string) => {
-    const arr = usersState.results
-      .filter(
-        (item) =>
-          item.sectionId?.toString() === sectionId &&
-          props.userId &&
-          item.userId === userId,
-      )
-      .map((el) => el.percentCorrectAnswers);
-
-    const average = arr.reduce((acc, number) => acc + number, 0) / arr.length;
-
-    return average;
-  };
-
+  const { averageGrade, articlesState, usersState } = useTestResult(props);
   return (
     <>
       {articlesState.sections.map((section) => {
