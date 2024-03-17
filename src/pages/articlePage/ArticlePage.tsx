@@ -16,7 +16,7 @@ const ArticlePage = () => {
         <div className={styles.wrapper}>
           <article>
             <h1>{articlesState.article.title}</h1>
-            {HTMLReactParser(articlesState.article.text)}
+            {/* {HTMLReactParser(articlesState.article.text)} */}
           </article>
         </div>
       )}

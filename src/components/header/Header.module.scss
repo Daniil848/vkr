@@ -35,7 +35,7 @@
         }
 
         .headerRegistrationButtonIcon {
-          @apply text-[17px] ml-2;
+          @apply hidden text-[17px] ml-2;
         }
 
         @media (max-width: 480px) {

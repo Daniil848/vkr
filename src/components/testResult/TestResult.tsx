@@ -28,7 +28,9 @@ const TestResult = (props: Props) => {
                 <p>{section.name}:</p>
                 <p>
                   Средний балл:{' '}
-                  {props.userId && averageGrade(section.id, props.userId)}%
+                  {props.userId &&
+                    averageGrade(section.id, props.userId).toFixed(0)}
+                  %
                 </p>
               </div>
               {testsWithResults.map((test) => (

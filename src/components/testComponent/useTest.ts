@@ -1,12 +1,17 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { getTestByArticleId, setTestError } from '../../app/articlesSlice';
+import {
+  getTestByArticleId,
+  resetStateTest,
+  setTestError,
+} from '../../app/articlesSlice';
 import Cookies from 'js-cookie';
 import {
   getTestResult,
   openLogIn,
   openSignIn,
+  resetStateTestResult,
   sendTestResult,
 } from '../../app/usersSlice';
 import { nanoid } from 'nanoid';
@@ -22,20 +27,36 @@ export const useTest = () => {
   const cookie = Cookies.get('userId');
 
   useEffect(() => {
-    // сначала получаем тест и потом жем его id для получения результата
-    if (articleID) {
-      dispatch(getTestByArticleId(articleID)).then(() => {
-        if (articlesState.test?.id) {
-          dispatch(
-            getTestResult({
-              userId: cookie,
-              testId: articlesState.test.id,
-            }),
-          );
-        }
-      });
-    }
-  }, [articleID, articlesState.test?.id]);
+    dispatch(resetStateTest());
+    dispatch(resetStateTestResult());
+    if (articleID) dispatch(getTestByArticleId(articleID));
+  }, [articleID]);
+
+  useEffect(() => {
+    dispatch(
+      getTestResult({
+        userId: cookie,
+        testId: articlesState.test?.id,
+      }),
+    );
+  }, [articlesState.test?.id, dispatch]);
+
+  // useEffect(() => {
+  //   // сначала получаем тест и потом жем его id для получения результата
+  //   if (articleID) {
+  //     dispatch(getTestByArticleId(articleID)).then(() => {
+  //       dispatch(resetStateTestResult());
+  //       if (articlesState.test?.id === articleID) {
+  //         dispatch(
+  //           getTestResult({
+  //             userId: cookie,
+  //             testId: articlesState.test.id,
+  //           }),
+  //         );
+  //       }
+  //     });
+  //   }
+  // }, [articleID, articlesState.test?.id, dispatch]);
 
   const handleRadioChange = (questionId: number, answerId: number) => {
     setAnswers((prevState) => ({

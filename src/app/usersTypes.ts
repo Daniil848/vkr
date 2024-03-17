@@ -9,7 +9,7 @@ export interface Result {
   id: string;
   userId: string | undefined;
   testId: string | undefined;
-  sectionId: number | undefined;
+  sectionId: number;
   grade: number | undefined;
   answersCount: number | undefined;
   percentCorrectAnswers: number;

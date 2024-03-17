@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import {
   autorize,
-  closeRegistrtionModal,
+  closeRegistrationModal,
   registration,
 } from '../../app/usersSlice';
 import { nanoid } from 'nanoid';
@@ -29,7 +29,7 @@ export const useRegistration = () => {
   };
 
   const handleClose = () => {
-    dispatch(closeRegistrtionModal());
+    dispatch(closeRegistrationModal());
   };
 
   const handleRegistation = () => {

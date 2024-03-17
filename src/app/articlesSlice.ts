@@ -212,6 +212,9 @@ const articlesSlice = createSlice({
     setTestError(state, action) {
       state.testError = action.payload;
     },
+    resetStateTest(state) {
+      state.test = null;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -271,6 +274,7 @@ export const {
   setSearchArticles,
   clearSearchArticles,
   setTestError,
+  resetStateTest,
 } = articlesSlice.actions;
 
 export default articlesSlice.reducer;
