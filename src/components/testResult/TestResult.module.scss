@@ -1,8 +1,12 @@
 .resultsSection {
-  @apply bg-slate-100 px-4 pb-4 mb-6 rounded;
+  @apply bg-slate-100 px-4 pb-4 mb-4 rounded;
 
-  .resultsSectionTitle {
-    @apply text-[20px] font-semibold flex justify-between;
+  .resultsSectionName {
+    @apply w-full text-[20px] font-semibold border-b py-5 m-0;
+  }
+
+  .resultsSectionGrade {
+    @apply font-semibold flex justify-between;
   }
 
   .resultTest {

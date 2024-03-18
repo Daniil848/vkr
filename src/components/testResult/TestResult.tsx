@@ -24,8 +24,17 @@ const TestResult = (props: Props) => {
         if (testsWithResults.length > 0) {
           return (
             <div key={section.id} className={styles.resultsSection}>
-              <div className={styles.resultsSectionTitle}>
-                <p>{section.name}:</p>
+              <p className={styles.resultsSectionName}>{section.name}:</p>
+              <div className={styles.resultsSectionGrade}>
+                <p>
+                  Тестов решено:{' '}
+                  {
+                    testsWithResults.filter(
+                      (test) => test.sectionId.toString() === section.id,
+                    ).length
+                  }
+                  /{testsInSection.length}
+                </p>
                 <p>
                   Средний балл:{' '}
                   {props.userId &&

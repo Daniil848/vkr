@@ -9,17 +9,20 @@
     }
 
     .headerMenuList {
-      @apply w-1/2 m-0 flex items-center gap-7;
+      @apply w-1/2 m-0 flex items-center justify-center;
 
-      .headerMenuListItem {
-        @apply mr-10 cursor-pointer list-none font-medium transition-colors;
+      .container {
+        @apply flex items-center gap-20;
+        .headerMenuListItem {
+          @apply flex items-center justify-center w-[130px] cursor-pointer list-none font-medium transition-colors;
 
-        .headerMenuListItemIcon {
-          @apply text-[17px] text-slate-100 mr-2;
-        }
+          .headerMenuListItemIcon {
+            @apply text-[17px] text-slate-100 mr-2;
+          }
 
-        .headerMenuListItemLink {
-          @apply no-underline text-slate-100 hover:text-slate-200 transition-colors;
+          .headerMenuListItemLink {
+            @apply no-underline text-slate-100 hover:text-slate-200 transition-colors;
+          }
         }
       }
     }
@@ -97,17 +100,21 @@
       }
 
       .headerMenuList {
-        @apply w-3/4 gap-0 pl-3;
+        @apply w-3/4 gap-0 pl-3 justify-start;
 
-        .headerMenuListItem {
-          @apply flex flex-col items-center justify-between;
+        .container {
+          @apply gap-10 justify-start;
 
-          .headerMenuListItemIcon {
-            @apply mr-0;
-          }
+          .headerMenuListItem {
+            @apply w-fit flex flex-col items-center justify-between;
 
-          .headerMenuListItemLink {
-            @apply text-xs text-center;
+            .headerMenuListItemIcon {
+              @apply mr-0;
+            }
+
+            .headerMenuListItemLink {
+              @apply text-xs text-center;
+            }
           }
         }
       }

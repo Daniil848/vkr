@@ -31,36 +31,38 @@ const Header = () => {
           <div className={styles.headerMenu}>
             <a className={styles.headerTitle}></a>
             <ul className={styles.headerMenuList}>
-              <li className={styles.headerMenuListItem}>
-                <FontAwesomeIcon
-                  icon={faHome}
-                  className={styles.headerMenuListItemIcon}
-                />
-                <Link to={'/'} className={styles.headerMenuListItemLink}>
-                  На главную
-                </Link>
-              </li>
-              <li className={styles.headerMenuListItem}>
-                <FontAwesomeIcon
-                  icon={faBookmark}
-                  className={styles.headerMenuListItemIcon}
-                />
-                <Link
-                  to={'/articles'}
-                  className={styles.headerMenuListItemLink}
-                >
-                  Статьи
-                </Link>
-              </li>
-              <li className={styles.headerMenuListItem}>
-                <FontAwesomeIcon
-                  icon={faCircleInfo}
-                  className={styles.headerMenuListItemIcon}
-                />
-                <Link to={'/about'} className={styles.headerMenuListItemLink}>
-                  Инфо
-                </Link>
-              </li>
+              <div className={styles.container}>
+                <li className={styles.headerMenuListItem}>
+                  <FontAwesomeIcon
+                    icon={faHome}
+                    className={styles.headerMenuListItemIcon}
+                  />
+                  <Link to={'/'} className={styles.headerMenuListItemLink}>
+                    На главную
+                  </Link>
+                </li>
+                <li className={styles.headerMenuListItem}>
+                  <FontAwesomeIcon
+                    icon={faBookmark}
+                    className={styles.headerMenuListItemIcon}
+                  />
+                  <Link
+                    to={'/articles'}
+                    className={styles.headerMenuListItemLink}
+                  >
+                    Статьи
+                  </Link>
+                </li>
+                <li className={styles.headerMenuListItem}>
+                  <FontAwesomeIcon
+                    icon={faCircleInfo}
+                    className={styles.headerMenuListItemIcon}
+                  />
+                  <Link to={'/about'} className={styles.headerMenuListItemLink}>
+                    Инфо
+                  </Link>
+                </li>
+              </div>
             </ul>
             <div className={styles.headerRegistration}>
               {!cookie && (
