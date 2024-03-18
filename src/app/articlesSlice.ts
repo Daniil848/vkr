@@ -201,7 +201,7 @@ const articlesSlice = createSlice({
   initialState,
   reducers: {
     clearArticleState(state) {
-      state.article = null;
+      state.article = initialState.article;
     },
     setSearchArticles(state) {
       state.searchArticles = true;
@@ -213,7 +213,7 @@ const articlesSlice = createSlice({
       state.testError = action.payload;
     },
     resetStateTest(state) {
-      state.test = null;
+      state.test = initialState.test;
     },
   },
   extraReducers: (builder) => {

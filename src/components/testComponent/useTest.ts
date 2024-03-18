@@ -1,34 +1,29 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import {
-  getTestByArticleId,
-  resetStateTest,
-  setTestError,
-} from '../../app/articlesSlice';
-import Cookies from 'js-cookie';
+import { getTestByArticleId, setTestError } from '../../app/articlesSlice';
 import {
   getTestResult,
   openLogIn,
   openSignIn,
-  resetStateTestResult,
   sendTestResult,
 } from '../../app/usersSlice';
 import { nanoid } from 'nanoid';
+import Cookies from 'js-cookie';
 
 export const useTest = () => {
   const articlesState = useAppSelector((state) => state.articlesSlice);
   const usersState = useAppSelector((state) => state.usersSlice);
   const dispatch = useAppDispatch();
+
   const [answers, setAnswers] = useState({});
+  const [showResult, setShowResult] = useState<boolean>(false);
 
   const { articleID } = useParams();
 
   const cookie = Cookies.get('userId');
 
   useEffect(() => {
-    dispatch(resetStateTest());
-    dispatch(resetStateTestResult());
     if (articleID) dispatch(getTestByArticleId(articleID));
   }, [articleID]);
 
@@ -39,24 +34,10 @@ export const useTest = () => {
         testId: articlesState.test?.id,
       }),
     );
-  }, [articlesState.test?.id, dispatch]);
+  }, [articlesState.test?.id, showResult, usersState.authorized]);
 
-  // useEffect(() => {
-  //   // сначала получаем тест и потом жем его id для получения результата
-  //   if (articleID) {
-  //     dispatch(getTestByArticleId(articleID)).then(() => {
-  //       dispatch(resetStateTestResult());
-  //       if (articlesState.test?.id === articleID) {
-  //         dispatch(
-  //           getTestResult({
-  //             userId: cookie,
-  //             testId: articlesState.test.id,
-  //           }),
-  //         );
-  //       }
-  //     });
-  //   }
-  // }, [articleID, articlesState.test?.id, dispatch]);
+  console.log('u', usersState.loading);
+  console.log('a', articlesState.loading);
 
   const handleRadioChange = (questionId: number, answerId: number) => {
     setAnswers((prevState) => ({
@@ -77,6 +58,7 @@ export const useTest = () => {
       articlesState.test?.questions.length
     ) {
       dispatch(setTestError(false));
+      setShowResult(true);
 
       const score = correctAnswers
         .filter((val, index) => val === answersArr[index])

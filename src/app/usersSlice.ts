@@ -330,7 +330,12 @@ const usersSlice = createSlice({
       })
       .addCase(getTestResult.fulfilled, (state, action) => {
         state.loading = false;
+        console.log('ap', action.payload);
+
         state.result = action.payload;
+      })
+      .addCase(getTestResult.rejected, (state) => {
+        state.loading = false;
       })
       .addCase(getUserResults.pending, (state) => {
         state.loading = true;
