@@ -36,9 +36,6 @@ export const useTest = () => {
     );
   }, [articlesState.test?.id, showResult, usersState.authorized]);
 
-  console.log('u', usersState.loading);
-  console.log('a', articlesState.loading);
-
   const handleRadioChange = (questionId: number, answerId: number) => {
     setAnswers((prevState) => ({
       ...prevState,
