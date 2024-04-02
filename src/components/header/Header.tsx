@@ -50,7 +50,7 @@ const Header = () => {
                     to={'/articles'}
                     className={styles.headerMenuListItemLink}
                   >
-                    Статьи
+                    Курсы
                   </Link>
                 </li>
                 <li className={styles.headerMenuListItem}>

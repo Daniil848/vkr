@@ -1,5 +1,5 @@
 .sideBar {
-  @apply z-10 top-[65px] fixed overflow-y-scroll h-full w-[350px] px-4 pt-6 pb-[150px] bg-slate-100 border-r;
+  @apply z-10 top-[65px] fixed overflow-y-scroll h-full w-[350px] px-4 pt-6 pb-[150px] bg-white border-r;
 
   @media (max-width: 1024px) {
     @apply hidden;
@@ -22,5 +22,5 @@
   @apply bg-slate-200 /* цвет дорожки */;
 }
 .sideBar::-webkit-scrollbar-thumb {
-  @apply bg-slate-300 rounded;
+  @apply bg-teal-700 cursor-pointer;
 }
