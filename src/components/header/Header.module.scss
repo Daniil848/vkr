@@ -1,5 +1,5 @@
 .header {
-  @apply fixed top-0 z-20 h-[65px] w-[100%] bg-slate-700 max-w-full mx-auto;
+  @apply fixed top-0 z-20 h-[65px] w-[100%] bg-white border-b max-w-full mx-auto;
 
   .headerMenu {
     @apply h-full flex flex-wrap items-center;
@@ -17,11 +17,11 @@
           @apply flex items-center justify-center w-[130px] cursor-pointer list-none font-medium transition-colors;
 
           .headerMenuListItemIcon {
-            @apply text-[17px] text-slate-100 mr-2;
+            @apply text-[17px] text-teal-700 mr-2;
           }
 
           .headerMenuListItemLink {
-            @apply no-underline text-slate-100 hover:text-slate-200 transition-colors;
+            @apply no-underline text-teal-700 hover:text-teal-800 transition-colors;
           }
         }
       }
@@ -31,7 +31,7 @@
       @apply flex justify-end w-1/4 gap-2 pr-3;
 
       .headerRegistrationButton {
-        @apply w-fit h-9 border-0 text-slate-700 bg-slate-100 hover:bg-slate-300 focus:ring-4 focus:ring-slate-400 focus:outline-none font-medium transition-all rounded-lg px-5 py-1;
+        @apply w-fit h-9 border-0 bg-teal-700 text-white hover:bg-slate-200 hover:text-teal-700 focus:ring-4 focus:ring-slate-400 focus:outline-none font-medium transition-all rounded-lg px-5 py-1;
 
         .headerRegistrationButtonText {
           @apply m-0;
@@ -58,11 +58,11 @@
         @apply relative flex items-center gap-4 h-fit cursor-pointer;
 
         .headerProfileName {
-          @apply text-slate-100;
+          @apply text-teal-700;
         }
 
         .headerProfileIcon {
-          @apply text-[34px] font-medium transition-colors text-slate-100;
+          @apply text-[34px] font-medium transition-colors text-teal-700;
         }
 
         @media (max-width: 480px) {
