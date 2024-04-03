@@ -79,6 +79,12 @@
             @apply text-blue-900 underline text-base;
           }
         }
+
+        .testTotal {
+          .testTotalCell {
+            @apply bg-slate-100 p-2 border-b border-slate-300 font-normal;
+          }
+        }
       }
     }
   }

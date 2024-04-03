@@ -37,10 +37,6 @@
         }
       }
 
-      .resultsTableRow:last-child {
-        @apply rounded-b;
-      }
-
       .testTotal {
         .testTotalCell {
           @apply bg-slate-100 p-2 border-b border-slate-300 font-normal;

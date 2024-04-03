@@ -2,7 +2,6 @@ import React from 'react';
 import { useTest } from './useTest';
 import Button from '../../UI/button/Button';
 import styles from './Test.module.scss';
-import TestResult from '../testResult/TestResult';
 import { Link } from 'react-router-dom';
 
 const Test = () => {
@@ -13,6 +12,7 @@ const Test = () => {
     setAnswers,
     handleSubmit,
     userResults,
+    averageTestGrade,
     handleOpenLogIn,
     handleOpenSignIn,
     showTest,
@@ -105,6 +105,14 @@ const Test = () => {
                         </th>
                       </tr>
                     ))}
+                    <tr className={styles.testTotal}>
+                      <th className={styles.testTotalCell}>Средний балл:</th>
+                      <th className={styles.testTotalCell}></th>
+                      <th className={styles.testTotalCell}>
+                        {averageTestGrade(articlesState.test.id).toFixed(2)}
+                      </th>
+                      <th className={styles.testTotalCell}></th>
+                    </tr>
                   </tbody>
                 </table>
               </div>

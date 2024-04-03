@@ -85,6 +85,20 @@ export const useTest = () => {
       result.userId == usersState.user?.id,
   );
 
+  const averageTestGrade = (testId: string) => {
+    const gradesInTest = usersState.results
+      .filter(
+        (result) =>
+          result.testId === testId && result.userId === usersState.user?.id,
+      )
+      .map((result) => result.percentCorrectAnswers);
+
+    const average =
+      gradesInTest.reduce((acc, number) => acc + number) / gradesInTest.length;
+
+    return average;
+  };
+
   const handleOpenSignIn = () => {
     dispatch(openSignIn());
   };
@@ -101,10 +115,11 @@ export const useTest = () => {
     setAnswers,
     handleSubmit,
     userResults,
-    handleOpenLogIn,
-    handleOpenSignIn,
+    averageTestGrade,
     showTest,
     setShowTest,
+    handleOpenLogIn,
+    handleOpenSignIn,
     cookie,
   };
 };
