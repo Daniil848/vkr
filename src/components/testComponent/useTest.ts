@@ -30,7 +30,7 @@ export const useTest = () => {
 
   useEffect(() => {
     dispatch(getAllResults());
-  }, [showResult, usersState.authorized]);
+  }, [showTest, showResult, usersState.authorized]);
 
   const handleRadioChange = (questionId: number, answerId: number) => {
     setAnswers((prevState) => ({

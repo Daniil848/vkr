@@ -9,7 +9,7 @@ export const useTestResult = (props: Props) => {
   const articlesState = useAppSelector((state) => state.articlesSlice);
 
   const averageGrade = (sectionId: string, userId: string) => {
-    const arr = usersState.results
+    const gradesInSection = usersState.results
       .filter(
         (item) =>
           item.sectionId?.toString() === sectionId &&
@@ -18,14 +18,30 @@ export const useTestResult = (props: Props) => {
       )
       .map((el) => el.percentCorrectAnswers);
 
-    const average = arr.reduce((acc, number) => acc + number, 0) / arr.length;
+    const average =
+      gradesInSection.reduce((acc, number) => acc + number) /
+      gradesInSection.length;
+
+    return average;
+  };
+
+  const averageTestGrade = (testId: string) => {
+    const gradesInTest = usersState.results
+      .filter(
+        (result) => result.testId === testId && result.userId === props.userId,
+      )
+      .map((result) => result.percentCorrectAnswers);
+
+    const average =
+      gradesInTest.reduce((acc, number) => acc + number) / gradesInTest.length;
 
     return average;
   };
 
   return {
-    averageGrade,
-    articlesState,
     usersState,
+    articlesState,
+    averageGrade,
+    averageTestGrade,
   };
 };

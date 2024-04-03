@@ -6,7 +6,7 @@
   }
 
   .content {
-    @apply inline-block box-border w-full h-fit bg-slate-200 rounded px-4;
+    @apply inline-block box-border w-full h-fit bg-white border border-teal-600 rounded px-4;
 
     .title {
       @apply text-[30px] my-5 font-semibold;

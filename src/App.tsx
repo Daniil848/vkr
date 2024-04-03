@@ -11,11 +11,9 @@ import AboutPage from './pages/aboutPage/AboutPage';
 import ProfilePage from './pages/profilePage/ProfilePage';
 import AdminPage from './pages/adminPage/AdminPage';
 import Registration from './components/registration/Registration';
-import Loader from './UI/loader/Loader';
 import './App.css';
 
 function App() {
-  const articlesState = useAppSelector((state) => state.articlesSlice);
   const usersState = useAppSelector((state) => state.usersSlice);
   return (
     <div className="App">
