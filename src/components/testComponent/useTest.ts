@@ -51,15 +51,13 @@ export const useTest = () => {
       articlesState.test?.questions.length
     ) {
       dispatch(setTestError(false));
-      setShowResult(true);
-      setShowTest(false);
 
       const countCorrectAnswers = correctAnswers
         .filter((val, index) => val === answersArr[index])
-        .reduce((acc) => acc + 1, 0); // количество правильных ответов
+        .reduce((acc) => acc + 1, 0);
 
       const percentCorrectAnswers =
-        (countCorrectAnswers / articlesState.test.questions.length) * 100; // процент правильных ответов
+        (countCorrectAnswers / articlesState.test.questions.length) * 100;
 
       dispatch(
         sendTestResult({
@@ -73,6 +71,8 @@ export const useTest = () => {
         }),
       );
       setAnswers({});
+      setShowResult(true);
+      setShowTest(false);
     } else {
       dispatch(setTestError(true));
       return;

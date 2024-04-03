@@ -11,7 +11,7 @@
   }
 
   .wrapper {
-    @apply box-content border border-slate-300 px-3 pb-3 rounded my-4;
+    @apply box-content border border-slate-300 px-3 pb-3 rounded my-4 shadow-md;
 
     .testQuestion {
       @apply text-xl font-semibold ml-2;
@@ -52,32 +52,31 @@
     @apply w-full rounded mx-auto text-xl text-center flex flex-col;
 
     .resultTable {
-      @apply text-slate-500;
+      @apply w-full border-x border-x-slate-300 rounded shadow-md;
 
       .resultTableCaption {
-        @apply text-2xl text-teal-700 py-4 font-semibold border-x border-t border-slate-300;
+        @apply border border-slate-300 bg-teal-700 text-white p-2 font-medium;
       }
 
       .resultTableHead {
-        @apply bg-teal-700;
+        @apply bg-slate-200 text-slate-600 border-x border-slate-300;
 
         .resultTableHeadRow {
-          @apply border border-x-slate-300;
-
           .resultTableHeadCell {
-            @apply text-white px-4 py-2;
+            @apply p-2 border-b border-slate-300;
           }
         }
       }
 
       .resultTableBody {
-        @apply bg-slate-100;
+        @apply text-slate-600 font-normal;
 
         .resultTableBodyRow {
-          @apply border border-b-slate-300;
-
           .resultTableBodyCell {
-            @apply text-slate-600 px-4 py-2;
+            @apply p-2 border-b border-slate-300 font-normal;
+          }
+          .link {
+            @apply text-blue-900 underline text-base;
           }
         }
       }

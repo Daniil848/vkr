@@ -2,6 +2,8 @@ import React from 'react';
 import { useTest } from './useTest';
 import Button from '../../UI/button/Button';
 import styles from './Test.module.scss';
+import TestResult from '../testResult/TestResult';
+import { Link } from 'react-router-dom';
 
 const Test = () => {
   const {
@@ -81,6 +83,7 @@ const Test = () => {
                         Правильные ответы
                       </th>
                       <th className={styles.resultTableHeadCell}>Балл</th>
+                      <th className={styles.resultTableHeadCell}>Результаты</th>
                     </tr>
                   </thead>
                   <tbody className={styles.resultTableBody}>
@@ -94,6 +97,11 @@ const Test = () => {
                         </th>
                         <th className={styles.resultTableBodyCell}>
                           {result.percentCorrectAnswers}
+                        </th>
+                        <th
+                          className={`${styles.resultTableBodyCell} ${styles.link}`}
+                        >
+                          <Link to={'/profile'}>Посмотреть все результаты</Link>
                         </th>
                       </tr>
                     ))}
@@ -114,6 +122,7 @@ const Test = () => {
               )}
             </>
           )}
+
           {!cookie && (
             <div className={styles.lockTest}>
               <p className={styles.lockTestTitle}>
