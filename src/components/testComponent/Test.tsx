@@ -65,25 +65,41 @@ const Test = () => {
             </>
           ) : (
             usersState.result && (
-              <div className={styles.result}>
-                <p className={styles.testTitle}>{articlesState.test?.title}</p>
-                <p>
-                  Правильных ответов{' '}
-                  <span className={styles.resultCount}>
-                    {usersState.result.grade}
-                  </span>{' '}
-                  из{' '}
-                  <span className={styles.resultCount}>
-                    {usersState.result.answersCount}
-                  </span>
-                </p>
-                <p className={styles.resultPercent}>
-                  <span className={styles.resultCount}>
-                    {usersState.result.percentCorrectAnswers}
-                  </span>{' '}
-                  Баллов
-                </p>
-              </div>
+              <>
+                <div className={styles.result}>
+                  <table className={styles.resultTable}>
+                    <caption className={styles.resultTableCaption}>
+                      {articlesState.test?.title}
+                    </caption>
+                    <thead className={styles.resultTableHead}>
+                      <tr>
+                        <th className={styles.resultTableHeadCell}>
+                          Номер попытки
+                        </th>
+                        <th className={styles.resultTableHeadCell}>
+                          Правильные ответов
+                        </th>
+                        <th className={styles.resultTableHeadCell}>Балл</th>
+                      </tr>
+                    </thead>
+                    <tbody className={styles.resultTableBody}>
+                      <tr>
+                        <th className={styles.resultTableBodyCell}>1</th>
+                        <th className={styles.resultTableBodyCell}>
+                          {usersState.result.grade}/
+                          {usersState.result.answersCount}
+                        </th>
+                        <th className={styles.resultTableBodyCell}>
+                          {usersState.result.percentCorrectAnswers}
+                        </th>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div className={styles.buttonContainer}>
+                  <Button text="Повторить попытку" />
+                </div>
+              </>
             )
           )}
           {!cookie && (

@@ -49,11 +49,35 @@
   }
 
   .result {
-    @apply w-full bg-slate-100 rounded mx-auto text-xl text-center flex flex-col;
+    @apply w-full rounded mx-auto text-xl text-center flex flex-col border border-slate-300;
 
-    .resultCount {
-      @apply text-slate-500 font-medium text-2xl;
+    .resultTable {
+      @apply text-slate-500;
+
+      .resultTableCaption {
+        @apply text-2xl text-teal-700 py-4 font-semibold;
+      }
+
+      .resultTableHead {
+        @apply bg-teal-700;
+
+        .resultTableHeadCell {
+          @apply text-white px-4 py-2;
+        }
+      }
+
+      .resultTableBody {
+        @apply bg-slate-100;
+
+        .resultTableBodyCell {
+          @apply text-slate-600 px-4 py-2;
+        }
+      }
     }
+  }
+
+  .buttonContainer {
+    @apply w-fit mx-auto mt-4;
   }
 
   .lockTest {
