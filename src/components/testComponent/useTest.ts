@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { getTestByArticleId, setTestError } from '../../app/articlesSlice';
 import {
-  getTestResult,
+  getAllResults,
   openLogIn,
   openSignIn,
   sendTestResult,
@@ -18,6 +18,7 @@ export const useTest = () => {
 
   const [answers, setAnswers] = useState({});
   const [showResult, setShowResult] = useState<boolean>(false);
+  const [showTest, setShowTest] = useState<boolean>(false);
 
   const { articleID } = useParams();
 
@@ -28,13 +29,8 @@ export const useTest = () => {
   }, [articleID]);
 
   useEffect(() => {
-    dispatch(
-      getTestResult({
-        userId: cookie,
-        testId: articlesState.test?.id,
-      }),
-    );
-  }, [articlesState.test?.id, showResult, usersState.authorized]);
+    dispatch(getAllResults());
+  }, [showResult, usersState.authorized]);
 
   const handleRadioChange = (questionId: number, answerId: number) => {
     setAnswers((prevState) => ({
@@ -56,13 +52,14 @@ export const useTest = () => {
     ) {
       dispatch(setTestError(false));
       setShowResult(true);
+      setShowTest(false);
 
-      const score = correctAnswers
+      const countCorrectAnswers = correctAnswers
         .filter((val, index) => val === answersArr[index])
-        .reduce((acc) => acc + 1, 0); // счет количество правильных ответов
+        .reduce((acc) => acc + 1, 0); // количество правильных ответов
 
       const percentCorrectAnswers =
-        (score / articlesState.test.questions.length) * 100; // процент правильных ответов
+        (countCorrectAnswers / articlesState.test.questions.length) * 100; // процент правильных ответов
 
       dispatch(
         sendTestResult({
@@ -70,16 +67,23 @@ export const useTest = () => {
           userId: cookie,
           testId: articlesState.test?.id,
           sectionId: articlesState.test?.sectionId,
-          grade: score,
+          grade: countCorrectAnswers,
           answersCount: articlesState.test.questions.length,
           percentCorrectAnswers: percentCorrectAnswers,
         }),
       );
+      setAnswers({});
     } else {
       dispatch(setTestError(true));
       return;
     }
   };
+
+  const userResults = usersState.results.filter(
+    (result) =>
+      result.testId == articlesState.test?.id &&
+      result.userId == usersState.user?.id,
+  );
 
   const handleOpenSignIn = () => {
     dispatch(openSignIn());
@@ -94,9 +98,13 @@ export const useTest = () => {
     usersState,
     answers,
     handleRadioChange,
+    setAnswers,
     handleSubmit,
+    userResults,
     handleOpenLogIn,
     handleOpenSignIn,
+    showTest,
+    setShowTest,
     cookie,
   };
 };

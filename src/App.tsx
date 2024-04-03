@@ -21,7 +21,6 @@ function App() {
     <div className="App">
       <Header />
       {(usersState.signIn || usersState.logIn) && <Registration />}
-      {(articlesState.loading || usersState.loading) && <Loader />}
       <div className="wrapper">
         <Routes>
           <Route index element={<HomePage />} />

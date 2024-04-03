@@ -8,29 +8,31 @@ const Test = () => {
     articlesState,
     usersState,
     handleRadioChange,
+    setAnswers,
     handleSubmit,
+    userResults,
     handleOpenLogIn,
     handleOpenSignIn,
+    showTest,
+    setShowTest,
     cookie,
   } = useTest();
-  console.log(usersState.result);
 
   if (!articlesState.test) return null;
+  console.log(userResults);
+
   return (
     <>
       {!articlesState.loading && (
         <div className={styles.container}>
-          {!usersState.result ? (
+          {!userResults || showTest ? (
             <>
               <p className={styles.testTitle}>{articlesState.test?.title}</p>
               {articlesState.test?.questions?.map((item) => (
                 <div key={item.id} className={styles.wrapper}>
                   <p className={styles.testQuestion}>{item.question}</p>
                   {item.answers.map((el) => (
-                    <div
-                      key={el.id}
-                      className={`${styles.testAnswers} ${usersState.result && item.correctAnswer === el.id ? styles.correct : ''}`}
-                    >
+                    <div key={el.id} className={styles.testAnswers}>
                       <input
                         type="radio"
                         disabled={
@@ -64,43 +66,53 @@ const Test = () => {
               </div>
             </>
           ) : (
-            usersState.result && (
-              <>
-                <div className={styles.result}>
-                  <table className={styles.resultTable}>
-                    <caption className={styles.resultTableCaption}>
-                      {articlesState.test?.title}
-                    </caption>
-                    <thead className={styles.resultTableHead}>
-                      <tr>
-                        <th className={styles.resultTableHeadCell}>
-                          Номер попытки
-                        </th>
-                        <th className={styles.resultTableHeadCell}>
-                          Правильные ответов
-                        </th>
-                        <th className={styles.resultTableHeadCell}>Балл</th>
-                      </tr>
-                    </thead>
-                    <tbody className={styles.resultTableBody}>
-                      <tr>
-                        <th className={styles.resultTableBodyCell}>1</th>
+            <>
+              <div className={styles.result}>
+                <table className={styles.resultTable}>
+                  <caption className={styles.resultTableCaption}>
+                    {articlesState.test?.title}
+                  </caption>
+                  <thead className={styles.resultTableHead}>
+                    <tr className={styles.resultTableHeadRow}>
+                      <th className={styles.resultTableHeadCell}>
+                        Номер попытки
+                      </th>
+                      <th className={styles.resultTableHeadCell}>
+                        Правильные ответы
+                      </th>
+                      <th className={styles.resultTableHeadCell}>Балл</th>
+                    </tr>
+                  </thead>
+                  <tbody className={styles.resultTableBody}>
+                    {userResults.map((result, index) => (
+                      <tr key={result.id} className={styles.resultTableBodyRow}>
                         <th className={styles.resultTableBodyCell}>
-                          {usersState.result.grade}/
-                          {usersState.result.answersCount}
+                          {index + 1}
                         </th>
                         <th className={styles.resultTableBodyCell}>
-                          {usersState.result.percentCorrectAnswers}
+                          {result.grade}/{result.answersCount}
+                        </th>
+                        <th className={styles.resultTableBodyCell}>
+                          {result.percentCorrectAnswers}
                         </th>
                       </tr>
-                    </tbody>
-                  </table>
-                </div>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              {userResults.length < 3 && (
                 <div className={styles.buttonContainer}>
-                  <Button text="Повторить попытку" />
+                  <Button
+                    text="Повторить попытку"
+                    onClick={() => {
+                      setShowTest(!showTest);
+                      setAnswers({});
+                    }}
+                  />
                 </div>
-              </>
-            )
+              )}
+            </>
           )}
           {!cookie && (
             <div className={styles.lockTest}>

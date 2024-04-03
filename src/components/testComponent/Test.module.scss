@@ -34,43 +34,51 @@
   }
 
   .submitContainer {
-    @apply w-[400px] mx-auto;
+    @apply w-fit mx-auto;
 
     @media (max-width: 480px) {
       @apply w-full m-0;
     }
 
     .buttonErrorText {
-      @apply text-red-600 text-center;
+      @apply text-red-600 text-center mx-auto my-0;
     }
     .buttonContainer {
-      @apply w-[200px] mx-auto mt-6;
+      @apply w-[200px] mx-auto mt-4;
     }
   }
 
   .result {
-    @apply w-full rounded mx-auto text-xl text-center flex flex-col border border-slate-300;
+    @apply w-full rounded mx-auto text-xl text-center flex flex-col;
 
     .resultTable {
       @apply text-slate-500;
 
       .resultTableCaption {
-        @apply text-2xl text-teal-700 py-4 font-semibold;
+        @apply text-2xl text-teal-700 py-4 font-semibold border-x border-t border-slate-300;
       }
 
       .resultTableHead {
         @apply bg-teal-700;
 
-        .resultTableHeadCell {
-          @apply text-white px-4 py-2;
+        .resultTableHeadRow {
+          @apply border border-x-slate-300;
+
+          .resultTableHeadCell {
+            @apply text-white px-4 py-2;
+          }
         }
       }
 
       .resultTableBody {
         @apply bg-slate-100;
 
-        .resultTableBodyCell {
-          @apply text-slate-600 px-4 py-2;
+        .resultTableBodyRow {
+          @apply border border-b-slate-300;
+
+          .resultTableBodyCell {
+            @apply text-slate-600 px-4 py-2;
+          }
         }
       }
     }
