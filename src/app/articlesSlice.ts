@@ -1,7 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { db } from '../firebase';
-import { collection, doc, getDoc, getDocs, query } from 'firebase/firestore';
+import {
+  DocumentData,
+  QueryDocumentSnapshot,
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+} from 'firebase/firestore';
 import { Article, Section, State, Test } from './articlesTypes';
 
 const initialState: State = {
@@ -27,7 +35,7 @@ export const getAllArticles = createAsyncThunk<
     const docs = await getDocs(docRef);
     const data: Article[] = [];
 
-    docs.forEach((doc: any) => {
+    docs.forEach((doc: QueryDocumentSnapshot<DocumentData, DocumentData>) => {
       const article: Article = {
         id: doc.id,
         sectionId: doc.data().sectionId,
@@ -82,7 +90,7 @@ export const searchArticles = createAsyncThunk<
     const docs = await getDocs(docRef);
     const data: Article[] = [];
 
-    docs.forEach((doc: any) => {
+    docs.forEach((doc: QueryDocumentSnapshot<DocumentData, DocumentData>) => {
       const article: Article = {
         id: doc.id,
         sectionId: doc.data().sectionId,
@@ -114,7 +122,7 @@ export const getTestByArticleId = createAsyncThunk<
     const docs = await getDocs(docRef);
     const data: Test[] = [];
 
-    docs.forEach((doc: any) => {
+    docs.forEach((doc: QueryDocumentSnapshot<DocumentData, DocumentData>) => {
       const test: Test = {
         id: doc.id,
         articleId: doc.data().articleId,
@@ -151,7 +159,7 @@ export const getAllSections = createAsyncThunk<
     const docs = await getDocs(docRef);
     const data: Section[] = [];
 
-    docs.forEach((doc: any) => {
+    docs.forEach((doc: QueryDocumentSnapshot<DocumentData, DocumentData>) => {
       const section: Section = {
         id: doc.id,
         name: doc.data().name,
@@ -177,7 +185,7 @@ export const getAllTests = createAsyncThunk<
     const docs = await getDocs(docRef);
     const data: Test[] = [];
 
-    docs.forEach((doc: any) => {
+    docs.forEach((doc: QueryDocumentSnapshot<DocumentData, DocumentData>) => {
       const test: Test = {
         id: doc.id,
         articleId: doc.data().articleId,
