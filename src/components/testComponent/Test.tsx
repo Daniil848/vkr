@@ -25,7 +25,7 @@ const Test = () => {
     <>
       {!articlesState.loading && (
         <div className={styles.container}>
-          {!userResults || showTest ? (
+          {userResults.length === 0 || showTest ? (
             <>
               <p className={styles.testTitle}>{articlesState.test?.title}</p>
               {articlesState.test?.questions?.map((item) => (
