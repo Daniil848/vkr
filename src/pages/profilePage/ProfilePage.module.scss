@@ -5,6 +5,25 @@
     width: calc(100vw - 24px);
   }
 
+  .user {
+    @apply flex items-end justify-between pb-4;
+    .userData {
+      @apply flex flex-col;
+
+      .userName {
+        @apply text-4xl font-semibold mb-2 mt-0;
+      }
+
+      .userEmail {
+        @apply m-0;
+      }
+
+      .butonContainer {
+        @apply w-20;
+      }
+    }
+  }
+
   .content {
     @apply inline-block box-border w-full h-fit bg-white border border-teal-600 rounded px-4;
 

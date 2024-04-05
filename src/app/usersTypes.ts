@@ -25,4 +25,5 @@ export interface State {
   result: Result | null;
   results: Result[];
   adminPageError: boolean;
+  isAdminPage: boolean;
 }

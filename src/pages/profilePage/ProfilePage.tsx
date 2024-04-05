@@ -2,14 +2,28 @@ import React from 'react';
 import { useProfilePage } from './useProfilePage';
 import styles from './ProfilePage.module.scss';
 import TestResult from '../../components/testResult/TestResult';
+import Button from '../../UI/button/Button';
 
 const ProfilePage = () => {
-  const { usersState, articlesState, userCookie } = useProfilePage();
+  const { usersState, articlesState, userCookie, handleLogOut } =
+    useProfilePage();
 
   return (
     <>
       {!usersState.loading && !articlesState.loading && userCookie && (
         <div className={styles.wrapper}>
+          <div className={styles.user}>
+            <div className={styles.userData}>
+              <p className={styles.userName}>{usersState.user?.userName}</p>
+              <p className={styles.userEmail}>{usersState.user?.email}</p>
+            </div>
+            <div className={styles.butonContainer}>
+              <Button
+                text="Выйти из учетой записи"
+                onClick={() => handleLogOut()}
+              />
+            </div>
+          </div>
           <div className={styles.content}>
             <p className={styles.title}>Результаты пройденных тестов</p>
             <div className={styles.results}>

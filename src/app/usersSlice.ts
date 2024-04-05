@@ -27,6 +27,7 @@ const initialState: State = {
   result: null,
   results: [],
   adminPageError: false,
+  isAdminPage: false,
 };
 
 export const registration = createAsyncThunk<
@@ -277,6 +278,9 @@ const usersSlice = createSlice({
     resetStateTestResult(state) {
       state.result = null;
     },
+    setIsAdminPage(state, action) {
+      state.isAdminPage = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -360,6 +364,7 @@ export const {
   logOut,
   closeRegistrationModal,
   resetStateTestResult,
+  setIsAdminPage,
 } = usersSlice.actions;
 
 export default usersSlice.reducer;
