@@ -16,6 +16,10 @@
   .resultsTable {
     @apply w-full my-6 border-x border-x-slate-300 rounded shadow-md;
 
+    @media (max-width: 480px) {
+      @apply overflow-x-auto;
+    }
+
     .resultsTableCaption {
       @apply border border-slate-300 bg-teal-700 text-white p-2 font-medium;
     }

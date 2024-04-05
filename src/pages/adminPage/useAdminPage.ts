@@ -4,6 +4,7 @@ import {
   getAllResults,
   getAllUsers,
   getSingleUser,
+  setIsAdminPage,
 } from '../../app/usersSlice';
 import { getAllSections, getAllTests } from '../../app/articlesSlice';
 import Cookies from 'js-cookie';
@@ -34,6 +35,7 @@ export const useAdminPage = () => {
       dispatch(getAllResults());
       dispatch(getAllSections());
       dispatch(getAllTests());
+      dispatch(setIsAdminPage(true));
     }
   }, [usersState.user?.admin, dispatch]);
 

@@ -19,28 +19,11 @@ const AdminPage = () => {
             <div className={styles.content}>
               <p className={styles.title}>Результаты пройденных тестов</p>
               <div className={styles.results}>
-                {usersState.users
-                  .filter((el) => el.id !== usersState.user?.id)
-                  .map((user) => (
-                    <div key={user.id}>
-                      <div
-                        className={styles.resultsUser}
-                        onClick={() => handleAccordion(user)}
-                      >
-                        <p className={styles.resultsUserName}>
-                          {user.userName}
-                        </p>
-                        <FontAwesomeIcon
-                          icon={accordion[user.id] ? faCaretUp : faCaretDown}
-                        />
-                      </div>
-                      <div
-                        className={`${accordion[user.id] ? styles.accordion : styles.accordionClose}`}
-                      >
-                        <TestResult userId={user.id} />
-                      </div>
-                    </div>
-                  ))}
+                <div>
+                  <div>
+                    <TestResult />
+                  </div>
+                </div>
               </div>
             </div>
           </div>

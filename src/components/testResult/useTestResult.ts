@@ -4,7 +4,7 @@ interface Props {
   userId: string | undefined;
 }
 
-export const useTestResult = (props: Props) => {
+export const useTestResult = (props: Partial<Props>) => {
   const usersState = useAppSelector((state) => state.usersSlice);
   const articlesState = useAppSelector((state) => state.articlesSlice);
 

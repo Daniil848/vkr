@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { getUserResults, logOut } from '../../app/usersSlice';
+import { getUserResults, logOut, setIsAdminPage } from '../../app/usersSlice';
 import { getAllSections, getAllTests } from '../../app/articlesSlice';
 import Cookies from 'js-cookie';
 
@@ -15,6 +15,7 @@ export const useProfilePage = () => {
     if (userCookie) dispatch(getUserResults(userCookie));
     dispatch(getAllSections());
     dispatch(getAllTests());
+    dispatch(setIsAdminPage(false));
   }, []);
 
   const handleLogOut = () => {
