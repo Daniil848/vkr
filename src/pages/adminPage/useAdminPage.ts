@@ -24,12 +24,6 @@ export const useAdminPage = () => {
   const adminId = Cookies.get('userId');
 
   useEffect(() => {
-    if (adminId) {
-      dispatch(getSingleUser(adminId));
-    }
-  }, [adminId, dispatch]);
-
-  useEffect(() => {
     if (usersState.user?.admin === true) {
       dispatch(getAllUsers());
       dispatch(getAllResults());

@@ -13,37 +13,40 @@
     }
   }
 
-  .resultsTable {
-    @apply w-full my-6 border-x border-x-slate-300 rounded shadow-md;
+  .tableContainer {
+    @apply border border-x-slate-300 rounded my-6;
+    .resultsTable {
+      @apply w-full shadow-md rounded;
 
-    @media (max-width: 480px) {
-      @apply overflow-x-auto;
-    }
-
-    .resultsTableCaption {
-      @apply border border-slate-300 bg-teal-700 text-white p-2 font-medium;
-    }
-
-    .resultsTableHead {
-      @apply bg-slate-200 text-slate-600 border-x border-slate-300;
-      .resultsTableRow {
-        .resultsTableCell {
-          @apply p-2 border-b border-slate-300;
-        }
+      @media (max-width: 480px) {
+        @apply overflow-x-auto;
       }
-    }
 
-    .resultsTableBody {
-      @apply text-slate-600 font-normal;
-      .resultsTableRow {
-        .resultsTableCell {
-          @apply p-2 border-b border-slate-300 font-normal;
+      .resultsTableCaption {
+        @apply border-b border-slate-300 bg-teal-700 text-white p-2 font-medium cursor-pointer rounded-t;
+      }
+
+      .resultsTableHead {
+        @apply bg-slate-200 text-slate-600 border-slate-300;
+        .resultsTableRow {
+          .resultsTableCell {
+            @apply p-2 border-b border-slate-300;
+          }
         }
       }
 
-      .testTotal {
-        .testTotalCell {
-          @apply bg-slate-100 p-2 border-b border-slate-300 font-normal;
+      .resultsTableBody {
+        @apply text-slate-600 font-normal;
+        .resultsTableRow {
+          .resultsTableCell {
+            @apply p-2 border-b border-slate-300 font-normal;
+          }
+        }
+
+        .testTotal {
+          .testTotalCell {
+            @apply bg-slate-100 p-2 border-b border-slate-300 font-normal;
+          }
         }
       }
     }

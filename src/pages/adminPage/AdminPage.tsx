@@ -21,7 +21,7 @@ const AdminPage = () => {
               <div className={styles.results}>
                 <div>
                   <div>
-                    <TestResult />
+                    <TestResult userId={usersState.user?.id} />
                   </div>
                 </div>
               </div>
