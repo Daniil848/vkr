@@ -1,13 +1,11 @@
 import React from 'react';
 import { useAdminPage } from './useAdminPage';
 import styles from './AdminPage.module.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons';
 import TestResult from '../../components/testResult/TestResult';
 
 const AdminPage = () => {
-  const { usersState, articlesState, accordion, handleAccordion, adminId } =
-    useAdminPage();
+  const { usersState, articlesState, adminId } = useAdminPage();
+
   return (
     <>
       {!usersState.loading &&
