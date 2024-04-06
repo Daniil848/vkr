@@ -54,13 +54,23 @@ const TestResult = (props: Props) => {
                 </div>
                 {testsWithResults(testsInSection(section.id)).map((test) => (
                   <div key={test.id} className={styles.tableContainer}>
-                    <table className={styles.resultsTable}>
-                      <caption
-                        className={styles.resultsTableCaption}
+                    <div className={styles.resultsTest}>
+                      <button
                         onClick={() => handleAccordion(test.id)}
+                        className={styles.resultsTestToggle}
                       >
-                        Тест: {test.title}
-                      </caption>
+                        {test.title}
+                        <FontAwesomeIcon
+                          icon={accordion[test.id] ? faCaretUp : faCaretDown}
+                        />
+                      </button>
+                    </div>
+                    {usersState.isAdminPage && accordion[test.id] && (
+                      <div className={styles.inputContainer}>
+                        <input placeholder="Найти пользователя" />
+                      </div>
+                    )}
+                    <table className={styles.resultsTable}>
                       {accordion[test.id] && (
                         <>
                           <thead className={styles.resultsTableHead}>
