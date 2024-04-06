@@ -65,6 +65,7 @@ export const useTest = () => {
           userId: cookie,
           testId: articlesState.test?.id,
           sectionId: articlesState.test?.sectionId,
+          answers: answersArr,
           correctAnswersCount: countCorrectAnswers,
           answersCount: articlesState.test.questions.length,
           percentCorrectAnswers: percentCorrectAnswers,

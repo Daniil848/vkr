@@ -10,6 +10,7 @@ export interface Result {
   userId: string | undefined;
   testId: string | undefined;
   sectionId: number;
+  answers: unknown[];
   correctAnswersCount: number | undefined;
   answersCount: number | undefined;
   percentCorrectAnswers: number;
