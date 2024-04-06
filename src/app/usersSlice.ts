@@ -176,7 +176,7 @@ export const getTestResult = createAsyncThunk<
         userId: doc.data().userId,
         testId: doc.data().testId,
         sectionId: doc.data().sectionId,
-        grade: doc.data().grade,
+        correctAnswersCount: doc.data().correctAnswersCount,
         answersCount: doc.data().answersCount,
         percentCorrectAnswers: doc.data().percentCorrectAnswers,
       };
@@ -208,7 +208,7 @@ export const getUserResults = createAsyncThunk<
         userId: resultData.userId,
         testId: resultData.testId,
         sectionId: resultData.sectionId,
-        grade: resultData.grade,
+        correctAnswersCount: resultData.correctAnswersCount,
         answersCount: resultData.answersCount,
         percentCorrectAnswers: resultData.percentCorrectAnswers,
       };
@@ -242,7 +242,7 @@ export const getAllResults = createAsyncThunk<
         userId: resultData.userId,
         testId: resultData.testId,
         sectionId: resultData.sectionId,
-        grade: resultData.grade,
+        correctAnswersCount: resultData.correctAnswersCount,
         answersCount: resultData.answersCount,
         percentCorrectAnswers: resultData.percentCorrectAnswers,
       };

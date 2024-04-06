@@ -12,6 +12,8 @@ const TestResult = (props: Props) => {
   const {
     articlesState,
     usersState,
+    search,
+    handleSearch,
     accordion,
     handleAccordion,
     averageGradeInSection,
@@ -29,7 +31,9 @@ const TestResult = (props: Props) => {
             <>
               <div key={section.id} className={styles.resultsSection}>
                 <div className={styles.wrapper}>
-                  <p className={styles.resultsSectionName}>{section.name}:</p>
+                  <p className={styles.resultsSectionName}>
+                    Курс: {section.name}
+                  </p>
                   {!usersState.isAdminPage && (
                     <div className={styles.resultsSectionGrade}>
                       <p>
@@ -67,7 +71,13 @@ const TestResult = (props: Props) => {
                     </div>
                     {usersState.isAdminPage && accordion[test.id] && (
                       <div className={styles.inputContainer}>
-                        <input placeholder="Найти пользователя" />
+                        <input
+                          placeholder="Найти пользователя"
+                          value={search[test.id]}
+                          onChange={(e) =>
+                            handleSearch(test.id, e.target.value)
+                          }
+                        />
                       </div>
                     )}
                     <table className={styles.resultsTable}>
@@ -94,7 +104,25 @@ const TestResult = (props: Props) => {
                           </thead>
                           <tbody className={styles.resultsTableBody}>
                             {usersState.results
-                              .filter((result) => result.testId === test.id)
+                              .filter((result) => {
+                                if (result.testId !== test.id) {
+                                  return false; // Пропускаем результаты тестов, которые не относятся к текущему тесту
+                                }
+
+                                if (
+                                  search[test.id] &&
+                                  search[test.id].trim() !== ''
+                                ) {
+                                  const userName = findUserName(
+                                    result.userId,
+                                  ).toLowerCase();
+                                  const searchValue =
+                                    search[test.id].toLowerCase();
+                                  return userName.includes(searchValue);
+                                }
+
+                                return true;
+                              })
                               .sort((a, b) => {
                                 if (a.userId && b.userId) {
                                   return a.userId > b.userId ? 1 : -1;
@@ -118,7 +146,8 @@ const TestResult = (props: Props) => {
                                     {section.name}
                                   </th>
                                   <th className={styles.resultsTableCell}>
-                                    {result.grade}/{result.answersCount}
+                                    {result.correctAnswersCount}/
+                                    {result.answersCount}
                                   </th>
                                   <th className={styles.resultsTableCell}>
                                     {result.percentCorrectAnswers}

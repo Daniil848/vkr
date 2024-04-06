@@ -93,7 +93,7 @@ const Test = () => {
                           {index + 1}
                         </th>
                         <th className={styles.resultTableBodyCell}>
-                          {result.grade}/{result.answersCount}
+                          {result.correctAnswersCount}/{result.answersCount}
                         </th>
                         <th className={styles.resultTableBodyCell}>
                           {result.percentCorrectAnswers}

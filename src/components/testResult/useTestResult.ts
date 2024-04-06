@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Test } from '../../app/articlesTypes';
 import { useAppSelector } from '../../app/hooks';
+import { Result } from '../../app/usersTypes';
 
 interface Props {
   userId: string | undefined;
@@ -15,11 +16,19 @@ export const useTestResult = (props: Partial<Props>) => {
   const articlesState = useAppSelector((state) => state.articlesSlice);
 
   const [accordion, setAccordion] = useState<Accordion>({});
+  const [search, setSearch] = useState<{ [key: string]: string }>({});
 
   const handleAccordion = (testId: string) => {
     setAccordion((prevState: any) => ({
       ...prevState,
       [testId]: !prevState[testId] || false,
+    }));
+  };
+
+  const handleSearch = (testId: string, value: string) => {
+    setSearch((pervProductName) => ({
+      ...pervProductName,
+      [testId]: value,
     }));
   };
 
@@ -78,6 +87,8 @@ export const useTestResult = (props: Partial<Props>) => {
   return {
     usersState,
     articlesState,
+    search,
+    handleSearch,
     accordion,
     handleAccordion,
     averageGradeInSection,

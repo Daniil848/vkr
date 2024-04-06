@@ -10,7 +10,7 @@ export interface Result {
   userId: string | undefined;
   testId: string | undefined;
   sectionId: number;
-  grade: number | undefined;
+  correctAnswersCount: number | undefined;
   answersCount: number | undefined;
   percentCorrectAnswers: number;
 }
