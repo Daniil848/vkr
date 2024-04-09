@@ -1,0 +1,48 @@
+.showButton {
+  @apply text-blue-900 underline text-base;
+}
+.wrapper {
+  @apply fixed top-0 bottom-0 left-0 right-0 flex justify-center items-center min-h-full min-w-full z-40 bg-black bg-opacity-70;
+
+  .container {
+    @apply w-1/2 h-4/5 flex flex-col border border-slate-300 border-r-teal-700 bg-white px-6 rounded text-start overflow-y-scroll;
+
+    .testTitle {
+      @apply text-3xl font-medium mx-auto mb-0 mt-4;
+    }
+
+    .closeModal {
+      @apply absolute top-4 right-4 z-10 w-9 h-9 rounded-full font-semibold text-teal-700 bg-white;
+    }
+
+    .question {
+      @apply py-4 border-b border-b-slate-300;
+
+      .questionText {
+        @apply font-medium text-2xl text-teal-700;
+      }
+
+      p {
+        @apply my-3;
+
+        span {
+          @apply font-medium;
+        }
+      }
+    }
+
+    .question:last-child {
+      @apply border-none;
+    }
+  }
+
+  .container::-webkit-scrollbar {
+    @apply w-2;
+  }
+  .container::-webkit-scrollbar-track {
+    @apply bg-slate-200 /* цвет дорожки */;
+  }
+  .container::-webkit-scrollbar-thumb {
+    @apply bg-teal-700 cursor-pointer;
+  }
+}

@@ -6,7 +6,7 @@ interface Props {
   userId: string | undefined;
 }
 
-interface Accordion {
+interface ToggleById {
   [key: string]: boolean;
 }
 
@@ -14,11 +14,11 @@ export const useTestsResults = (props: Partial<Props>) => {
   const usersState = useAppSelector((state) => state.usersSlice);
   const articlesState = useAppSelector((state) => state.articlesSlice);
 
-  const [accordion, setAccordion] = useState<Accordion>({});
+  const [accordion, setAccordion] = useState<ToggleById>({});
   const [search, setSearch] = useState<{ [key: string]: string }>({});
 
   const handleAccordion = (testId: string) => {
-    setAccordion((prevState: any) => ({
+    setAccordion((prevState: ToggleById) => ({
       ...prevState,
       [testId]: !prevState[testId] || false,
     }));

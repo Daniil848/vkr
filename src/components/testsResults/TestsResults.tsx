@@ -3,12 +3,13 @@ import { useTestsResults } from './useTestsResults';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons';
 import styles from './TestsResults.module.scss';
+import TestResultModal from '../testResultModal/TestResultModal';
 
 interface Props {
   userId: string | undefined;
 }
 
-const TestResult = (props: Props) => {
+const TestsResults = (props: Props) => {
   const {
     articlesState,
     usersState,
@@ -100,6 +101,11 @@ const TestResult = (props: Props) => {
                                 Правильные ответы
                               </th>
                               <th className={styles.resultsTableCell}>Балл</th>
+                              {usersState.isAdminPage && (
+                                <th className={styles.resultsTableCell}>
+                                  Ответы
+                                </th>
+                              )}
                             </tr>
                           </thead>
                           <tbody className={styles.resultsTableBody}>
@@ -152,6 +158,11 @@ const TestResult = (props: Props) => {
                                   <th className={styles.resultsTableCell}>
                                     {result.percentCorrectAnswers}
                                   </th>
+                                  {usersState.isAdminPage && (
+                                    <th className={styles.resultsTableCell}>
+                                      <TestResultModal result={result} />
+                                    </th>
+                                  )}
                                 </tr>
                               ))}
                             {!usersState.isAdminPage && (
@@ -186,4 +197,4 @@ const TestResult = (props: Props) => {
   );
 };
 
-export default TestResult;
+export default TestsResults;
