@@ -1,7 +1,7 @@
 import React from 'react';
 import { useProfilePage } from './useProfilePage';
 import styles from './ProfilePage.module.scss';
-import TestResult from '../../components/testResult/TestResult';
+import TestResult from '../../components/testsResults/TestsResults';
 import Button from '../../UI/button/Button';
 
 const ProfilePage = () => {

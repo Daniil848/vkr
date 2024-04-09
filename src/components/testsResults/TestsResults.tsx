@@ -1,8 +1,8 @@
 import React from 'react';
-import { useTestResult } from './useTestResult';
+import { useTestsResults } from './useTestsResults';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons';
-import styles from './TestResult.module.scss';
+import styles from './TestsResults.module.scss';
 
 interface Props {
   userId: string | undefined;
@@ -21,7 +21,7 @@ const TestResult = (props: Props) => {
     testsInSection,
     testsWithResults,
     findUserName,
-  } = useTestResult(props);
+  } = useTestsResults(props);
 
   return (
     <>

@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Test } from '../../app/articlesTypes';
 import { useAppSelector } from '../../app/hooks';
-import { Result } from '../../app/usersTypes';
 
 interface Props {
   userId: string | undefined;
@@ -11,7 +10,7 @@ interface Accordion {
   [key: string]: boolean;
 }
 
-export const useTestResult = (props: Partial<Props>) => {
+export const useTestsResults = (props: Partial<Props>) => {
   const usersState = useAppSelector((state) => state.usersSlice);
   const articlesState = useAppSelector((state) => state.articlesSlice);
 

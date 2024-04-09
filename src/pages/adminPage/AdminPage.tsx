@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAdminPage } from './useAdminPage';
 import styles from './AdminPage.module.scss';
-import TestResult from '../../components/testResult/TestResult';
+import TestResult from '../../components/testsResults/TestsResults';
 
 const AdminPage = () => {
   const { usersState, articlesState, adminId } = useAdminPage();
