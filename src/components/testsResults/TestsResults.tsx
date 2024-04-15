@@ -58,7 +58,14 @@ const TestsResults = (props: Props) => {
                   )}
                 </div>
                 {testsWithResults(testsInSection(section.id)).map((test) => (
-                  <div key={test.id} className={styles.tableContainer}>
+                  <div
+                    key={test.id}
+                    className={
+                      accordion[test.id]
+                        ? styles.tableContainer
+                        : styles.tableContainerPadding
+                    }
+                  >
                     <div className={styles.resultsTest}>
                       <button
                         onClick={() => handleAccordion(test.id)}

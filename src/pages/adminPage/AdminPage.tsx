@@ -15,7 +15,7 @@ const AdminPage = () => {
         adminId && (
           <div className={styles.wrapper}>
             <div className={styles.content}>
-              <p className={styles.title}>Результаты пройденных тестов</p>
+              <p className={styles.title}>Результаты тестов пользователей</p>
               <div className={styles.results}>
                 <div>
                   <div>

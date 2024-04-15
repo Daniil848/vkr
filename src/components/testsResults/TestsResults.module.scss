@@ -1,5 +1,5 @@
 .resultsSection {
-  @apply bg-white border border-slate-300 px-4 mb-4 rounded shadow-lg;
+  @apply bg-white mb-4 rounded;
 
   .wrapper {
     @apply flex items-center justify-between;
@@ -13,11 +13,23 @@
     }
   }
 
-  .tableContainer {
-    @apply my-4;
+  .tableContainerPadding {
+    @apply my-4 border border-slate-300 rounded p-4 font-medium;
 
     .resultsTest {
-      @apply min-w-full p-4 border border-slate-300  font-medium cursor-pointer rounded;
+      @apply min-w-full text-lg font-medium cursor-pointer rounded;
+
+      .resultsTestToggle {
+        @apply min-w-full flex items-center justify-between;
+      }
+    }
+  }
+
+  .tableContainer {
+    @apply my-4 border border-slate-300 rounded px-4 pb-4;
+
+    .resultsTest {
+      @apply min-w-full py-4 text-lg font-medium cursor-pointer rounded;
 
       .resultsTestToggle {
         @apply min-w-full flex items-center justify-between;
