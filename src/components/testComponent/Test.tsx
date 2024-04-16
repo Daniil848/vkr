@@ -134,11 +134,14 @@ const Test = () => {
           {!cookie && (
             <div className={styles.lockTest}>
               <p className={styles.lockTestTitle}>
-                Чтобы пройти тест зарегистрируйтесь!
+                Чтобы пройти тест войдите или зарегистрируйтесь!
               </p>
               <div className={styles.buttonsContainer}>
                 <Button onClick={() => handleOpenSignIn()} text="Войти" />
-                <Button onClick={() => handleOpenLogIn()} text="Регистрация " />
+                <Button
+                  onClick={() => handleOpenLogIn()}
+                  text="Зарегистрироваться"
+                />
               </div>
             </div>
           )}

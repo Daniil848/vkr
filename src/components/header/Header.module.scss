@@ -78,7 +78,7 @@
         }
 
         .headerProfileDropMenu {
-          @apply w-[200px] absolute top-[80px] right-0 bg-slate-200 rounded p-3 flex flex-col gap-2;
+          @apply w-[250px] absolute top-[65px] right-0 bg-white border border-teal-700 rounded p-3 flex flex-col gap-2;
 
           .headerProfileDropMenuItem {
             @apply flex items-center justify-between m-0;

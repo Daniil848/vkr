@@ -11,6 +11,7 @@ import {
   faRightFromBracket,
   faUser,
   faUserPlus,
+  faUserTie,
 } from '@fortawesome/free-solid-svg-icons';
 
 const Header = () => {
@@ -115,18 +116,28 @@ const Header = () => {
                         <FontAwesomeIcon
                           icon={faUser}
                           className={styles.headerProfileDropMenuIcon}
-                          title="Выйти из учетной записи"
                         />
                       </Link>
+                      {usersState.user?.admin && (
+                        <Link
+                          to={'/admin'}
+                          className={styles.headerProfileDropMenuItem}
+                        >
+                          <span>Администрирование</span>
+                          <FontAwesomeIcon
+                            icon={faUserTie}
+                            className={styles.headerProfileDropMenuIcon}
+                          />
+                        </Link>
+                      )}
                       <div
                         className={styles.headerProfileDropMenuItem}
                         onClick={() => handleLogOut()}
                       >
-                        <span>Выход</span>
+                        <span>Выйти из профиля</span>
                         <FontAwesomeIcon
                           icon={faRightFromBracket}
                           className={styles.headerProfileDropMenuLogOutIcon}
-                          title="Выйти из учетной записи"
                         />
                       </div>
                     </div>
