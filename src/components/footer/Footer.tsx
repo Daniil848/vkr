@@ -6,7 +6,7 @@ const Footer = () => {
     <>
       <div className={styles.footer}>
         <p className={styles.content}>
-          Разработал студент группы 19СН1с: Ладыгин Даниил Львович
+          &copy; 2024 Учебно-методический ресурс по ГО и ЧС.
         </p>
       </div>
     </>

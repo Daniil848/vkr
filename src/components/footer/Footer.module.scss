@@ -1,5 +1,5 @@
 .footer {
-  @apply relative bottom-0 z-30 flex justify-center items-center h-[80px] bg-white border-t border-slate-300;
+  @apply fixed bottom-0 z-30 flex justify-center items-center max-h-[64px] min-w-full bg-white border-t border-slate-300;
 
   .content {
     @apply w-1/2 text-center font-semibold;
