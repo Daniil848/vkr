@@ -4,7 +4,7 @@
   .content {
     @apply flex flex-col items-center justify-center py-16;
     .title {
-      @apply text-[40px] font-semibold mt-4;
+      @apply text-[40px] font-semibold mt-0;
 
       @media (max-width: 480px) {
         @apply text-3xl px-3;

@@ -130,7 +130,8 @@ const Header = () => {
                           />
                         </Link>
                       )}
-                      <div
+                      <Link
+                        to={'/'}
                         className={styles.headerProfileDropMenuItem}
                         onClick={() => handleLogOut()}
                       >
@@ -139,7 +140,7 @@ const Header = () => {
                           icon={faRightFromBracket}
                           className={styles.headerProfileDropMenuLogOutIcon}
                         />
-                      </div>
+                      </Link>
                     </div>
                   )}
                 </div>

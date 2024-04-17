@@ -3,6 +3,7 @@ import { useProfilePage } from './useProfilePage';
 import styles from './ProfilePage.module.scss';
 import TestResult from '../../components/testsResults/TestsResults';
 import Button from '../../UI/button/Button';
+import { Link } from 'react-router-dom';
 
 const ProfilePage = () => {
   const { usersState, articlesState, userCookie, handleLogOut } =
@@ -17,12 +18,9 @@ const ProfilePage = () => {
               <p className={styles.userName}>{usersState.user?.userName}</p>
               <p className={styles.userEmail}>{usersState.user?.email}</p>
             </div>
-            <div className={styles.butonContainer}>
-              <Button
-                text="Выйти из учетой записи"
-                onClick={() => handleLogOut()}
-              />
-            </div>
+            <Link to={'/'} onClick={() => handleLogOut()}>
+              <Button text="Выйти из учетой записи" />
+            </Link>
           </div>
           <div className={styles.content}>
             <p className={styles.title}>Результаты пройденных тестов</p>
